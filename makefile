@@ -14,7 +14,7 @@ NAME = minishell
 
 CC = CC
 
-CFLAG = -Wall -Werror -Wextra -lreadline
+CFLAG = -Wall -Werror -Wextra -lreadline 
 
 SRS = lexer/lexer.c main.c lexer/token.c get_prompt.c \
 	libft/ft_memmove.c libft/ft_isalpha.c libft/ft_isdigit.c libft/ft_isalnum.c libft/ft_isascii.c \
@@ -30,10 +30,12 @@ $(NAME) : $(SRS)
 	@$(CC) $(CFLAG) $(SRS) -o $(NAME)
 	@echo "\033[42mMinishell Is Ready"
 
-clean : 
+fclean : 
 	@rm $(NAME)
 	@echo "\033[41mCleaning Minishell"
 
-fclean : clean
+clean : 
+	@rm $(NAME)
+	@echo "\033[41mCleaning Minishell"
 	
 re : fclean all

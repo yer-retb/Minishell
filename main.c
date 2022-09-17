@@ -15,12 +15,17 @@
 int	main(void)
 {
 	char	*cmd;
+	t_lexer	*lexer;
+	t_token	*token;
 
 	while (TRUE)
 	{
 		cmd = get_prompt();
-		printf("%s\n", cmd);
-		free(cmd);
+		break ;
 	}
+	lexer = init_lexer(cmd);
+	token = NULL;
+	while ((token = lexer_get_next_token(lexer)) != NULL)
+		printf("TOKEN %d -> %s\n", token->e_type , token->value);
 	printf ("ok");
 }
