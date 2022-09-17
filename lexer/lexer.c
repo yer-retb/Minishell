@@ -43,6 +43,21 @@ t_token	*the_separater(t_lexer *lexer)
 	if (lexer->c == '|')
 		return (lexer_advence_with_token(lexer,
 				init_token(TOKEN_PIPE, lexer_get_c_as_str(lexer))));
+	else if (lexer->c == '>')
+		return (lexer_advence_with_token(lexer,
+				init_token(TOKEN_OUTPUT, lexer_get_c_as_str(lexer))));
+	else if (lexer->c == '<')
+		return (lexer_advence_with_token(lexer,
+				init_token(TOKEN_INPUT, lexer_get_c_as_str(lexer))));
+	else if (lexer->c == '\'')
+		return (lexer_advence_with_token(lexer,
+				init_token(TOKEN_SINGLE_Q, lexer_get_c_as_str(lexer))));
+	else if (lexer->c == '"')
+		return (lexer_advence_with_token(lexer,
+				init_token(TOKEN_DOUBLE_Q, lexer_get_c_as_str(lexer))));
+	else if (lexer->c == '$')
+		return (lexer_advence_with_token(lexer,
+				init_token(TOKEN_DOLER, lexer_get_c_as_str(lexer))));
 	return (NULL);
 }
 
@@ -79,7 +94,6 @@ t_token	*collect_string(t_lexer *lexer)
 		lexer_advence(lexer);
 	}
 	lexer_advence(lexer);
-
 	return (init_token(TOKEN_STR, value));
 }
 
@@ -90,6 +104,5 @@ char	*lexer_get_c_as_str(t_lexer *lexer)
 	str = malloc (sizeof(char) * 2);
 	str[0] = lexer->c;
 	str[1] = '\0';
-
 	return (str);
 }
