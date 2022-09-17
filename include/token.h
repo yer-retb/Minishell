@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 02:15:58 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/17 01:46:48 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/17 22:46:42 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ typedef struct n_token
 		TOKEN_PIPE,
 		TOKEN_INPUT,
 		TOKEN_OUTPUT,
+		TOKEN_LL,
+		TOKEN_GG,
 		TOKEN_SINGLE_Q,
 		TOKEN_DOUBLE_Q,
 		TOKEN_DOLER,

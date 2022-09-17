@@ -6,7 +6,7 @@
 #    By: enja <enja@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/16 00:40:44 by yer-retb          #+#    #+#              #
-#    Updated: 2022/09/17 01:55:24 by enja             ###   ########.fr        #
+#    Updated: 2022/09/17 22:40:32 by enja             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,3 +39,8 @@ clean :
 	@echo "\033[41mCleaning Minishell"
 	
 re : fclean all
+
+push : 
+	@git add .
+	@git commit -m "make push"
+	@git push
