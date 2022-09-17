@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 22:42:36 by enja              #+#    #+#             */
-/*   Updated: 2022/09/17 01:52:05 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/17 02:37:36 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 void	clear_prompt(void)
 {
-	static int	sig;
 	const char	*clear_ansi;
 
-	sig = 1;
-	if (sig)
-	{
-		clear_ansi = "\e[1;1H\e[2J";
-		write(1, clear_ansi, 11);
-		sig = 0;
-	}
+	clear_ansi = "\e[1;1H\e[2J";
+	write(1, clear_ansi, 11);
 }
 
 char	*get_prompt(void)
 {
-	char	*cmd;
+	char		*cmd;
+	static int	sig;
 
-	clear_prompt();
+	sig = 1;
+	if (sig == 1)
+	{
+		clear_prompt();
+		sig = 0;
+	}
 	cmd = readline("[ minishell ]~> ");
 	return (cmd);
 }

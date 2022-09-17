@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 05:50:34 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/17 01:52:14 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/17 02:38:21 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ int	main(void)
 {
 	char	*cmd;
 
-	cmd = get_prompt();
+	while (TRUE)
+	{
+		cmd = get_prompt();
+		printf("%s\n", cmd);
+		free(cmd);
+	}
 	printf ("ok");
 }
