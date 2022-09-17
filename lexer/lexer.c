@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 04:39:39 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/18 00:27:24 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/18 00:49:20 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,10 @@ t_token	*the_separater(t_lexer *lexer)
 	if (lexer->c == '|')
 		return (lexer_advence_with_token(lexer,
 				init_token(TOKEN_PIPE, lexer_get_c_as_str(lexer))));
-	else if (lexer->c == '>' && lexer->content[lexer->i + 1] == '>')
-		return (lexer_advence_with_token(lexer,
-				init_token(TOKEN_GG, lexer_get_c_as_str(lexer))));
-	else if (lexer->c == '<' && lexer->content[lexer->i + 1] == '<')
-		return (lexer_advence_with_token(lexer,
-				init_token(TOKEN_LL, lexer_get_c_as_str(lexer))));
-	else if (lexer->c == '>' && lexer->content[lexer->i - 1] != '>' )
+	else if (lexer->c == '>')
 		return (lexer_advence_with_token(lexer,
 				init_token(TOKEN_OUTPUT, lexer_get_c_as_str(lexer))));
-	else if (lexer->c == '<' && lexer->content[lexer->i - 1] != '<')
+	else if (lexer->c == '<')
 		return (lexer_advence_with_token(lexer,
 				init_token(TOKEN_INPUT, lexer_get_c_as_str(lexer))));
 	else if (lexer->c == '\'')
