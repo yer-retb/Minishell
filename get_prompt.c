@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 22:42:36 by enja              #+#    #+#             */
-/*   Updated: 2022/09/17 02:37:36 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/17 22:21:28 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ void	clear_prompt(void)
 char	*get_prompt(void)
 {
 	char		*cmd;
-	static int	sig;
+	static int	sig = 1;
 
-	sig = 1;
 	if (sig == 1)
 	{
 		clear_prompt();

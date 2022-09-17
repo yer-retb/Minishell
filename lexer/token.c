@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 07:48:31 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/17 01:36:24 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/17 05:36:43 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,5 @@ t_token	*init_token(int e_type, char *value)
 	token = malloc(sizeof(t_token));
 	token->e_type = e_type;
 	token->value = value;
-
 	return (token);
 }
