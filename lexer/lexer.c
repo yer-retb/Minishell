@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 04:39:39 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/17 01:35:14 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/17 22:38:00 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,22 @@ t_token	*collect_string(t_lexer *lexer, char t)
 	value = malloc(sizeof(char));
 	while (lexer->c != '\'' && t == '\'')
 	{
+		if (lexer->c == '\0')
+		{
+			printf("error\n");
+			break ;
+		}
 		str = lexer_get_c_as_str(lexer);
 		value = ft_strjoin(value, str);
 		lexer_advence(lexer);
 	}
 	while (lexer->c != '\"' && t == '\"')
 	{
+		if (lexer->c == '\0')
+		{
+			printf("error\n");
+			break ;
+		}
 		str = lexer_get_c_as_str(lexer);
 		value = ft_strjoin(value, str);
 		lexer_advence(lexer);
