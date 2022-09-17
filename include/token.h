@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 02:15:58 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/16 08:51:57 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/09/17 01:46:48 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKEN_H
 # define TOKEN_H
-
 
 typedef struct n_token
 {
@@ -31,7 +30,5 @@ typedef struct n_token
 }	t_token;
 
 t_token	*init_token(int e_type, char *value);
-
-# include "lexer.h"
 
 #endif

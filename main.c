@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 05:50:34 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/16 23:10:34 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/17 01:52:14 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/lexer.h"
-#include "include/heders.h"
+#include "include/include.h"
 
 int	main(void)
 {
+	char	*cmd;
+
+	cmd = get_prompt();
 	printf ("ok");
 }

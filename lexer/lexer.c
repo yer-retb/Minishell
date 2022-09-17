@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 04:39:39 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/16 22:51:00 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/09/17 01:35:14 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/lexer.h"
-#include "../include/token.h"
-#include "../include/heders.h"
-#include "../Libft/libft.h"
+#include "../include/include.h"
 
 t_lexer	*init_lexer(char *content)
 {

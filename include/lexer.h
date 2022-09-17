@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 00:35:07 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/16 08:48:27 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/09/17 01:46:41 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
-
-# include "token.h"
 
 typedef struct n_lexer
 {

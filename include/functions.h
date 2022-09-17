@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heders.h                                           :+:      :+:    :+:   */
+/*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/16 04:48:47 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/16 05:29:35 by yer-retb         ###   ########.fr       */
+/*   Created: 2022/09/17 01:45:10 by enja              #+#    #+#             */
+/*   Updated: 2022/09/17 01:52:22 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEDERS_H
-# define HEDERS_H
+#ifndef FUNCTIONS_H
+# define FUNCTIONS_H
 
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
+char	*get_prompt(void);
+void	clear_prompt(void);
 
 #endif

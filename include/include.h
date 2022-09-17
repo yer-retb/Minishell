@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   include.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 11:16:12 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/17 01:25:43 by enja             ###   ########.fr       */
+/*   Created: 2022/09/16 04:48:47 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/09/17 01:47:09 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef INCLUDE_H
+# define INCLUDE_H
 
-void	*ft_memmove(void *dst, const void *src, size_t n)
-{
-	char			*str;
-	char			*d;
-	unsigned int	j;
+//*********SYSTEM*********//
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
-	if (!dst && !src)
-		return (0);
-	str = (char *)src;
-	d = (char *)dst;
-	if (str == d)
-		return (str);
-	if (d > str)
-	{
-		j = n - 1;
-		while (j + 1 > 0)
-		{
-			d[j] = str[j];
-			j--;
-		}
-		return (dst);
-	}
-	if (d < str)
-		ft_memcpy(d, str, n);
-	return (dst);
-}
+//*********USEER*********//
+# include "token.h"
+# include "lexer.h"
+# include "../libft/libft.h"
+# include "functions.h"
+
+#endif

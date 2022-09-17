@@ -3,20 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 11:23:13 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/16 08:21:14 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/09/17 01:35:42 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stdlib.h>
-# include <unistd.h>
-# include "../include/lexer.h"
-# include "../include/heders.h"
+# include "../include/include.h"
 
 int		ft_isalpha(int i);
 int		ft_isdigit(int i);
