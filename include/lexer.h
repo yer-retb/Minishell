@@ -29,7 +29,7 @@ void	lexer_skip_space(t_lexer *lexer);
 
 t_token	*lexer_get_next_token(t_lexer *lexer);
 
-t_token	*collect_string(t_lexer *lexer);
+t_token	*collect_string(t_lexer *lexer, char t);
 
 t_token	*collect_cmd(t_lexer *lexer);
 

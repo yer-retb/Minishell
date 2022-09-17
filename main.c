@@ -20,7 +20,7 @@ int	main(void)
 
 	while (TRUE)
 	{
-		cmd = get_prompt();
+		cmd = get_prompt(); // free at the end of while
 		lexer = init_lexer(cmd);
 		token = NULL;
 		while ((token = lexer_get_next_token(lexer)) != NULL)
