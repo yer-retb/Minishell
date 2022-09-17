@@ -71,7 +71,8 @@ t_token	*lexer_get_next_token(t_lexer *lexer)
 			return (collect_string(lexer));
 		if (lexer->c == '-')
 			return (collect_flag(lexer));
-		if (ft_isalnum(lexer->c))
+		if (ft_isascii(lexer->c) && (!(is_rederection(lexer->c)))
+			&& (!(lexer->c == ' ' && lexer->c == '\t')))
 			return (collect_cmd(lexer));
 		if (is_rederection(lexer->c))
 			return (the_separater(lexer));
@@ -111,7 +112,8 @@ t_token	*collect_flag(t_lexer *lexer)
 	str = lexer_get_c_as_str(lexer);
 	value = ft_strjoin(value, str);
 	lexer_advence(lexer);
-	while (lexer->c != ' ' && lexer->c != '\t' && (!(is_rederection(lexer->c))))
+	while (lexer->c != ' ' && lexer->c != '\t' && lexer->c != '\0'
+		&& (!(is_rederection(lexer->c))))
 	{
 		str = lexer_get_c_as_str(lexer);
 		value = ft_strjoin(value, str);
@@ -126,7 +128,8 @@ t_token	*collect_cmd(t_lexer *lexer)
 	char	*str;
 
 	value = malloc(sizeof(char));
-	while (lexer->c != ' ' && lexer->c != '\t' && (!(is_rederection(lexer->c))))
+	while (lexer->c != ' ' && lexer->c != '\t' && lexer->c != '\0'
+		&& (!(is_rederection(lexer->c))))
 	{
 		str = lexer_get_c_as_str(lexer);
 		value = ft_strjoin(value, str);
