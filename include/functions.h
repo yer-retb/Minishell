@@ -17,5 +17,6 @@
 
 char	*get_prompt(void);
 void	clear_prompt(void);
+int		is_rederection(char c);
 
 #endif

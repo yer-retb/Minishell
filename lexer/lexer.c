@@ -69,7 +69,12 @@ t_token	*lexer_get_next_token(t_lexer *lexer)
 			lexer_skip_space (lexer);
 		if (lexer->c == '"')
 			return (collect_string(lexer));
-		return (the_separater(lexer));
+		if (lexer->c == '-')
+			return (collect_flag(lexer));
+		if (ft_isalnum(lexer->c))
+			return (collect_cmd(lexer));
+		if (is_rederection(lexer->c))
+			return (the_separater(lexer));
 	}
 	return (NULL);
 }
@@ -97,6 +102,39 @@ t_token	*collect_string(t_lexer *lexer)
 	return (init_token(TOKEN_STR, value));
 }
 
+t_token	*collect_flag(t_lexer *lexer)
+{
+	char	*value;
+	char	*str;
+
+	value = malloc(sizeof(char));
+	str = lexer_get_c_as_str(lexer);
+	value = ft_strjoin(value, str);
+	lexer_advence(lexer);
+	while (lexer->c != ' ' && lexer->c != '\t' && (!(is_rederection(lexer->c))))
+	{
+		str = lexer_get_c_as_str(lexer);
+		value = ft_strjoin(value, str);
+		lexer_advence(lexer);
+	}
+	return (init_token(TOKEN_FLAG, value));
+}
+
+t_token	*collect_cmd(t_lexer *lexer)
+{
+	char	*value;
+	char	*str;
+
+	value = malloc(sizeof(char));
+	while (lexer->c != ' ' && lexer->c != '\t' && (!(is_rederection(lexer->c))))
+	{
+		str = lexer_get_c_as_str(lexer);
+		value = ft_strjoin(value, str);
+		lexer_advence(lexer);
+	}
+	return (init_token(TOKEN_CMD, value));
+}
+
 char	*lexer_get_c_as_str(t_lexer *lexer)
 {
 	char	*str;
@@ -105,4 +143,11 @@ char	*lexer_get_c_as_str(t_lexer *lexer)
 	str[0] = lexer->c;
 	str[1] = '\0';
 	return (str);
+}
+
+int	is_rederection(char c)
+{
+	if (c == '>' || c == '<' || c == '|' || c == '\'' || c == '\"' || c == '$')
+		return (1);
+	return (0);
 }

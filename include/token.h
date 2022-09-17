@@ -25,6 +25,7 @@ typedef struct n_token
 		TOKEN_SINGLE_Q,
 		TOKEN_DOUBLE_Q,
 		TOKEN_DOLER,
+		TOKEN_FLAG,
 	} e_type;
 	char	*value;
 }	t_token;

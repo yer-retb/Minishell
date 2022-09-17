@@ -31,6 +31,10 @@ t_token	*lexer_get_next_token(t_lexer *lexer);
 
 t_token	*collect_string(t_lexer *lexer);
 
+t_token	*collect_cmd(t_lexer *lexer);
+
+t_token	*collect_flag(t_lexer *lexer);
+
 t_token	*the_separater(t_lexer *lexer);
 
 t_token	*lexer_advence_with_token(t_lexer *lexer, t_token *token);

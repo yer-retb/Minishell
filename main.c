@@ -26,6 +26,6 @@ int	main(void)
 	lexer = init_lexer(cmd);
 	token = NULL;
 	while ((token = lexer_get_next_token(lexer)) != NULL)
-		printf("TOKEN %d -> %s\n", token->e_type , token->value);
+		printf("TOKEN (%d ==> %s)\n", token->e_type, token->value);
 	printf ("ok");
 }
