@@ -28,15 +28,15 @@ all : $(NAME)
 
 $(NAME) : $(SRS)
 	@$(CC) $(CFLAG) $(SRS) -o $(NAME)
-	@echo "\033[42mMinishell Is Ready"
+	@echo "\033[42mMinishell Is Ready\033[0m"
 
 fclean : 
 	@rm $(NAME)
-	@echo "\033[41mCleaning Minishell"
+	@echo "\033[41mCleaning Minishell\033[0m"
 
 clean : 
 	@rm $(NAME)
-	@echo "\033[41mCleaning Minishell"
+	@echo "\033[41mCleaning Minishell\033[0m"
 	
 re : fclean all
 
