@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: enja <enja@student.42.fr>                  +#+  +:+       +#+         #
+#    By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/16 00:40:44 by yer-retb          #+#    #+#              #
-#    Updated: 2022/09/18 05:36:35 by enja             ###   ########.fr        #
+#    Updated: 2022/09/18 08:47:02 by ky05h1n          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-CC = CC
+CC = gcc
 
 CFLAG = -Wall -Werror -Wextra -lreadline -fsanitize=address -g
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 04:39:39 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/18 05:53:19 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/18 09:16:13 by ky05h1n          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,10 @@ t_token	*lexer_get_next_token(t_lexer *lexer)
 
 t_token	*collect_string(t_lexer *lexer, char t)
 {
-	char	*value;
+	char	*value = NULL;
 	char	*str;
 
 	lexer_advence(lexer);
-	value = malloc(sizeof(char));
 	while (lexer->content[lexer->i - 1 ] && lexer->c != '\'' && t == '\'')
 	{
 		if (lexer->c == '\0')
@@ -72,7 +71,6 @@ t_token	*collect_string(t_lexer *lexer, char t)
 	}
 	while (lexer->content[lexer->i - 1 ] && lexer->c != '\"' && t == '\"')
 	{
-		//exit(1);
 		if (lexer->c == '\0')
 		{
 			printf("error\n");
@@ -89,10 +87,9 @@ t_token	*collect_string(t_lexer *lexer, char t)
 t_token	*appends_end_heredoc(t_lexer *lexer)
 {
 	int		i;
-	char	*value;
+	char	*value = NULL;
 	char	*str;
 
-	value = malloc(sizeof(char));
 	i = 0;
 	while (i < 2)
 	{

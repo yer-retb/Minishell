@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 16:59:54 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/18 05:28:41 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/18 09:13:06 by ky05h1n          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*p;
 
 	i = -1;
-	// if (!s1)
-	// 	s1 = ft_strdup("");
+	if (!s1)
+		return (ft_strdup(s2));
 	if (s1 && s2)
 	{
 		len_1 = ft_strlen(s1);
