@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: enja <enja@student.42.fr>                  +#+  +:+       +#+         #
+#    By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/16 00:40:44 by yer-retb          #+#    #+#              #
-#    Updated: 2022/09/18 23:15:42 by enja             ###   ########.fr        #
+#    Updated: 2022/09/18 23:36:44 by ky05h1n          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 
 CC = gcc
 
-CFLAG = -Wall -Werror -Wextra -lreadline #-fsanitize=address -g
+CFLAG = -Wall -Werror -Wextra -lreadline -fsanitize=address -g
 
 SRS = parser/parser.c lexer/lexer.c main/main.c lexer/token.c lexer/lexer_utils.c lexer/lexer_utils_ll.c main/get_prompt.c \
 	libft/ft_memmove.c libft/ft_isalpha.c libft/ft_isdigit.c libft/ft_isalnum.c libft/ft_isascii.c \
