@@ -37,6 +37,8 @@ t_token	*collect_flag(t_lexer *lexer);
 
 t_token	*the_separater(t_lexer *lexer);
 
+t_token	*appends_end_heredoc(t_lexer *lexer, char *str, char *value);
+
 t_token	*lexer_advence_with_token(t_lexer *lexer, t_token *token);
 
 char	*lexer_get_c_as_str(t_lexer *lexer);

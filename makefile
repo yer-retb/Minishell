@@ -16,7 +16,7 @@ CC = CC
 
 CFLAG = -Wall -Werror -Wextra -lreadline 
 
-SRS = lexer/lexer.c main.c lexer/token.c get_prompt.c \
+SRS = lexer/lexer.c main.c lexer/token.c lexer/lexer_utils.c lexer/lexer_utils_ll.c get_prompt.c \
 	libft/ft_memmove.c libft/ft_isalpha.c libft/ft_isdigit.c libft/ft_isalnum.c libft/ft_isascii.c \
 	libft/ft_isprint.c libft/ft_strlen.c libft/ft_memset.c libft/ft_bzero.c libft/ft_memcpy.c libft/ft_toupper.c \
 	libft/ft_tolower.c libft/ft_strlcpy.c libft/ft_strlcat.c libft/ft_strchr.c libft/ft_strrchr.c libft/ft_atoi.c \
@@ -42,5 +42,5 @@ re : fclean all
 
 push : 
 	@git add .
-	@git commit -m "make push"
+	@git commit -m "norm"
 	@git push
