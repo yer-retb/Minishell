@@ -3,59 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 16:58:55 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/18 08:49:37 by ky05h1n          ###   ########.fr       */
+/*   Created: 2021/11/29 17:35:28 by enja              #+#    #+#             */
+/*   Updated: 2021/11/30 17:09:33 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	count_int(long int x)
-
+static int	len(int n)
 {
-	int			j;
-	long int	n;
+	int	l;
 
-	n = x;
-	j = 1;
+	l = 0;
 	if (n < 0)
 	{
-		n = n * -1;
-		j++;
+		l++;
 	}
-	while (n > 9)
+	while (n != 0)
 	{
 		n = n / 10;
-		j++;
+		l++;
 	}
-	return (j);
+	return (l);
+}
+
+static char	*posetive(char *strp, int n)
+{
+	int		zix;
+	int		b;
+
+	zix = len(n);
+	if (!strp)
+		return (NULL);
+	zix--;
+	while (zix >= 0)
+	{
+		b = n % 10;
+		n = n / 10;
+		strp[zix] = b + 48;
+		zix--;
+	}
+	return (strp);
 }
 
 char	*ft_itoa(int n)
-
 {
-	char		*rsl;
-	int			count;
-	long int	tmp;
+	int		aix;
+	char	*string;
+	int		a;
 
-	count = count_int(n);
-	rsl = (char *)malloc(sizeof (char) * (count + 1));
-	if (!rsl)
+	if (n == 0)
+		return (string = ft_strdup("0"));
+	aix = len(n);
+	string = malloc((aix + 1) * sizeof(char));
+	if (!string)
 		return (NULL);
-	rsl[count] = '\0';
-	count--;
-	tmp = n;
-	if (tmp < 0)
-		tmp = tmp * -1;
-	while (count >= 0)
-	{
-		rsl[count] = (tmp % 10) + 48;
-		tmp = tmp / 10;
-		count--;
-	}
+	string[aix--] = '\0';
 	if (n < 0)
-		rsl[0] = '-';
-	return (rsl);
+	{
+		*string = '-';
+		while (aix > 0)
+		{
+			a = n % 10;
+			n = n / 10;
+			string[aix--] = (a * -1) + 48;
+		}
+		return (string);
+	}
+	return (string = posetive(string, n));
 }

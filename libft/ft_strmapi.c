@@ -5,30 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 21:04:29 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/17 01:25:40 by enja             ###   ########.fr       */
+/*   Created: 2021/11/28 19:09:00 by enja              #+#    #+#             */
+/*   Updated: 2021/11/28 22:17:48 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
-
 {
-	char	*str;
-	int		i;
+	unsigned int	a;
+	char			*str;
 
-	i = 0;
 	if (!s)
 		return (NULL);
-	str = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
+	str = ft_strdup(s);
 	if (!str)
 		return (NULL);
-	while (s[i])
+	a = 0;
+	while (str[a] != '\0')
 	{
-		str[i] = f(i, s[i]);
-		i++;
+		str[a] = f(a, str[a]);
+		a++;
 	}
-	str[i] = '\0';
 	return (str);
 }

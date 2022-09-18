@@ -5,28 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 19:47:08 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/17 01:25:43 by enja             ###   ########.fr       */
+/*   Created: 2021/11/15 22:26:41 by enja              #+#    #+#             */
+/*   Updated: 2022/09/18 22:25:19 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memcpy(void *dest, const void *src, int n)
 {
-	unsigned int	i;
-	char			*str;
-	char			*d;
+	int		idx;
 
-	i = 0;
-	if (!dst && !src)
-		return (0);
-	str = (char *)src;
-	d = (char *)dst;
-	while (i < n)
+	if (dest == src || !n)
+		return (dest);
+	idx = 0;
+	while (idx < n)
 	{
-		d[i] = str[i];
-		i++;
+		*((char *)dest + idx) = *((char *)src + idx);
+		idx++ ;
 	}
-	return (dst);
+	return (dest);
 }

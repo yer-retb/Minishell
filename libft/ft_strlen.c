@@ -5,19 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 19:32:08 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/18 05:18:55 by enja             ###   ########.fr       */
+/*   Created: 2021/11/15 22:18:11 by enja              #+#    #+#             */
+/*   Updated: 2022/09/18 22:25:19 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(const char *str)
+int	ft_strlen(const char *s)
 {
-	size_t	i;
+	int	a;
 
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
+	a = 0;
+	while (s[a] != '\0')
+	{
+		a++;
+	}
+	return (a);
 }

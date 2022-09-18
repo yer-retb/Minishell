@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 04:39:39 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/18 09:16:13 by ky05h1n          ###   ########.fr       */
+/*   Updated: 2022/09/18 23:20:19 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_token	*lexer_get_next_token(t_lexer *lexer)
 		if (lexer->c == ' ' || lexer->c == '\t')
 			lexer_skip_space (lexer);
 		if (lexer->c == '\"')
-			return (collect_string(lexer, '\"'));// buffer over flow
+			return (collect_string(lexer, '\"'));
 		if (lexer->c == '\'')
 			return (collect_string(lexer, '\''));
 		if (lexer->c == '-')
@@ -54,28 +54,23 @@ t_token	*lexer_get_next_token(t_lexer *lexer)
 
 t_token	*collect_string(t_lexer *lexer, char t)
 {
-	char	*value = NULL;
+	char	*value;
 	char	*str;
 
+	value = NULL;
 	lexer_advence(lexer);
-	while (lexer->content[lexer->i - 1 ] && lexer->c != '\'' && t == '\'')
+	while (lexer->c != '\'' && t == '\'')
 	{
 		if (lexer->c == '\0')
-		{
-			printf("error\n");
-			break ;
-		}
+			msg_error();
 		str = lexer_get_c_as_str(lexer);
 		value = ft_strjoin(value, str);
 		lexer_advence(lexer);
 	}
-	while (lexer->content[lexer->i - 1 ] && lexer->c != '\"' && t == '\"')
+	while (lexer->c != '\"' && t == '\"')
 	{
 		if (lexer->c == '\0')
-		{
-			printf("error\n");
-			break ;
-		}
+			msg_error();
 		str = lexer_get_c_as_str(lexer);
 		value = ft_strjoin(value, str);
 		lexer_advence(lexer);
@@ -87,9 +82,10 @@ t_token	*collect_string(t_lexer *lexer, char t)
 t_token	*appends_end_heredoc(t_lexer *lexer)
 {
 	int		i;
-	char	*value = NULL;
+	char	*value;
 	char	*str;
 
+	value = NULL;
 	i = 0;
 	while (i < 2)
 	{

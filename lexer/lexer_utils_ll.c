@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils_ll.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 02:16:35 by enja              #+#    #+#             */
-/*   Updated: 2022/09/18 09:13:58 by ky05h1n          ###   ########.fr       */
+/*   Updated: 2022/09/18 22:59:35 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 int	is_rederection(char c)
 {
-	if (c == '>' || c == '<' || c == '|' || c == '\'' || c == '\"' || c == '$')
+	if (c == '>' || c == '<' || c == '|' || c == '\'' || c == '\"')
 		return (1);
 	return (0);
 }
 
 t_token	*collect_flag(t_lexer *lexer)
 {
-	char	*value = NULL;
+	char	*value;
 	char	*str;
 
+	value = NULL;
 	str = lexer_get_c_as_str(lexer);
 	value = ft_strjoin(value, str);
 	lexer_advence(lexer);
@@ -39,9 +40,10 @@ t_token	*collect_flag(t_lexer *lexer)
 
 t_token	*collect_cmd(t_lexer *lexer)
 {
-	char	*value = NULL;
+	char	*value;
 	char	*str;
 
+	value = NULL;
 	while (lexer->c != '\0' && (!(is_rederection(lexer->c)))
 		&& lexer->c != ' ' && lexer->c != '\t')
 	{

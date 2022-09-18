@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 21:01:30 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/17 01:25:42 by enja             ###   ########.fr       */
+/*   Created: 2021/11/30 21:09:17 by enja              #+#    #+#             */
+/*   Updated: 2021/11/30 21:33:14 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,21 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	long int	num;
-	char		a;
+	long int	nbr;
 
-	num = (long int) n;
-	if (num < 0)
+	nbr = n;
+	if (nbr < 0)
 	{
-		num = -num;
-		write(fd, "-", 1);
+		ft_putchar_fd('-', fd);
+		nbr = nbr * -1;
 	}
-	if (num < 10)
+	if (nbr > 9)
 	{
-		a = num + 48;
-		write(fd, &a, 1);
+		ft_putnbr_fd(nbr / 10, fd);
+		ft_putnbr_fd(nbr % 10, fd);
 	}
-	else
+	if (nbr <= 9)
 	{
-		ft_putnbr_fd(num / 10, fd);
-		ft_putnbr_fd(num % 10, fd);
+		ft_putchar_fd(nbr + 48, fd);
 	}
 }

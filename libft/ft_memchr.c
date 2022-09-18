@@ -5,26 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/14 19:05:17 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/17 01:25:42 by enja             ###   ########.fr       */
+/*   Created: 2021/11/15 22:29:59 by enja              #+#    #+#             */
+/*   Updated: 2022/09/18 22:25:19 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *str, int c, size_t n)
-
+void	*ft_memchr(const void *s, int c, int n)
 {
-	size_t				i;
-	unsigned char		*s;
+	int			idx;
 
-	s = (unsigned char *)str;
-	i = 0;
-	while (i < n)
+	idx = 0;
+	while (idx < n)
 	{
-		if (s[i] == (unsigned char )c)
-			return (&s[i]);
-		i++;
+		if (*(unsigned char *)s == (unsigned char)c)
+			return ((void *)s);
+		s++;
+		idx++;
 	}
 	return (NULL);
 }

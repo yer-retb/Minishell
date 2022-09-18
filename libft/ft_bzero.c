@@ -5,23 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 18:18:28 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/17 01:25:42 by enja             ###   ########.fr       */
+/*   Created: 2021/11/15 22:22:48 by enja              #+#    #+#             */
+/*   Updated: 2022/09/18 22:25:19 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_bzero(void *str, int n)
 {
-	char	*str;
-	size_t	i;
-
-	i = 0;
-	str = (char *)s;
-	while (i < n)
-	{
-		str[i] = 0;
-		i++;
-	}
+	ft_memset(str, 0, n);
 }

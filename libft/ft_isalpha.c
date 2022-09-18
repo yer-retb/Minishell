@@ -5,16 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/01 12:37:36 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/17 01:25:42 by enja             ###   ########.fr       */
+/*   Created: 2021/11/15 22:18:57 by enja              #+#    #+#             */
+/*   Updated: 2021/11/19 15:21:02 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalpha(int i)
+int	ft_isalpha(int c)
 {
-	if ((i >= 'A' && i <= 'Z') || (i >= 'a' && i <= 'z'))
+	if ((c >= 'a' && c <= 'z')
+		|| (c >= 'A' && c <= 'Z'))
 		return (1);
-	return (0);
+	else
+		return (0);
 }

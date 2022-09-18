@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/14 00:32:57 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/17 01:25:40 by enja             ###   ########.fr       */
+/*   Created: 2021/11/15 22:21:31 by enja              #+#    #+#             */
+/*   Updated: 2021/11/24 20:47:45 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,14 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int		i;
-	char	*str;
+	int	len;
 
-	str = (char *)s;
-	i = ft_strlen(str);
-	if (c == '\0')
-		return (&str[i]);
-	while (i >= 0)
+	len = ft_strlen(s);
+	while (len >= 0)
 	{
-		if (str[i] == (char )c)
-			return (&str[i]);
-		i--;
+		if (s[len] == (char)c)
+			return ((char *)&s[len]);
+		len--;
 	}
 	return (NULL);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 05:50:34 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/18 09:36:23 by ky05h1n          ###   ########.fr       */
+/*   Updated: 2022/09/18 23:30:21 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(void)
 	t_lexer		*lexer;
 	t_token		*token;
 	// t_parser	*head;
-
+	
 	while (TRUE)
 	{
 		cmd = get_prompt();
@@ -42,6 +42,7 @@ int	main(void)
 			// 	head = head->next_token;
 			// }
 			printf ("ok\n");
+			system("leaks minishell");
 			exit(1);
 		}
 		wait(NULL);

@@ -5,38 +5,38 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/14 04:03:29 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/17 01:25:42 by enja             ###   ########.fr       */
+/*   Created: 2021/11/15 22:21:21 by enja              #+#    #+#             */
+/*   Updated: 2021/11/19 19:12:23 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *s)
+int	ft_atoi(const char *str)
 {
-	unsigned long	rsl;
-	int				sn;
-	int				i;
+	int	sign;
+	int	value;
+	int	range;
 
-	sn = 1;
-	i = 0;
-	rsl = 0;
-	while ((s[i] == 32) || (s[i] >= 9 && s[i] <= 13))
-		i++;
-	if ((s[i] == '-') || (s[i] == '+'))
+	sign = 1;
+	value = 0;
+	range = 0;
+	while ((*str == ' ' || *str == '\f') || (*str == '\n' || *str == '\r')
+		|| (*str == '\t' || *str == '\v'))
+		str++;
+	if (*str == '-')
+		sign = -1;
+	if (*str == '-' || *str == '+')
+		++str;
+	while (*str >= '0' && *str <= '9')
 	{
-		if (s[i] == '-')
-			sn = -1;
-		i++;
+		value = value * 10 + (*str - '0');
+		str++;
+		range++;
+		if (range >= 20 && sign == -1)
+			return (0);
+		if (range >= 20 && sign == 1)
+			return (-1);
 	}
-	while (s[i] && (s[i] >= '0' && s[i] <= '9'))
-	{
-		rsl = rsl * 10 + s[i] - '0';
-		i++;
-	}
-	if (rsl >= 9223372036854775807 && sn == -1)
-		return (0);
-	else if (rsl >= 9223372036854775807 && sn == 1)
-		return (-1);
-	return (sn * rsl);
+	return (value * sign);
 }

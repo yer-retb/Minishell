@@ -5,21 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 18:51:02 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/17 01:25:42 by enja             ###   ########.fr       */
+/*   Created: 2021/11/23 13:43:05 by enja              #+#    #+#             */
+/*   Updated: 2022/09/18 22:25:19 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
-
+void	*ft_calloc(int count, int size)
 {
-	void	*str;
+	void	*ptr;
 
-	str = malloc (count * size);
-	if (str == NULL)
+	ptr = malloc(count * size);
+	if (!ptr)
 		return (NULL);
-	ft_memset(str, 0, count * size);
-	return (str);
+	ft_bzero(ptr, count * size);
+	return (ptr);
 }

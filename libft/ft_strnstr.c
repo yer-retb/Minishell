@@ -5,31 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/14 10:40:53 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/17 01:25:40 by enja             ###   ########.fr       */
+/*   Created: 2021/11/15 22:19:51 by enja              #+#    #+#             */
+/*   Updated: 2022/09/18 22:26:07 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *str, const char *needle, size_t len)
+char	*ft_strnstr(const char *str, const char *tofind, int len)
 {
-	unsigned long	i;
-	int				j;
+	int		idx;
+	int		zy;
+	char	*typstr;
 
-	i = 0;
-	while (needle[i] == '\0')
-		return ((char *)str);
-	while ((str[i]) && (i < len))
+	idx = 0;
+	typstr = (char *)str;
+	if (ft_strlen(tofind) == 0)
+		return (typstr);
+	while (str[idx] && idx < len)
 	{
-		j = 0;
-		while (str[i + j] == needle[j] && i + j < len)
+		zy = 0;
+		while (typstr[idx + zy] == tofind[zy] && idx + zy < len)
 		{
-			j++;
-			if (needle[j] == '\0')
-				return ((char *)&str[i]);
+			if (tofind[zy + 1] == '\0')
+				return (&typstr[idx]);
+			zy++;
 		}
-		i++;
+		idx++;
 	}
-	return (0);
+	return (NULL);
 }

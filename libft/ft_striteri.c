@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 23:11:18 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/17 01:25:40 by enja             ###   ########.fr       */
+/*   Created: 2021/11/28 22:52:04 by enja              #+#    #+#             */
+/*   Updated: 2021/11/30 22:24:27 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	int	i;
+	unsigned int	n;
 
-	i = 0;
-	if (!s)
-		return ;
-	while (s[i])
+	n = 0;
+	if (s != NULL)
 	{
-		f(i, &s[i]);
-		i++;
+		while (s[n] != '\0')
+		{
+			f(n, &s[n]);
+			n++;
+		}
 	}
 }

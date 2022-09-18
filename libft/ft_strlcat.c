@@ -5,30 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/13 13:59:14 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/17 01:25:40 by enja             ###   ########.fr       */
+/*   Created: 2021/11/15 21:22:33 by enja              #+#    #+#             */
+/*   Updated: 2022/09/18 22:25:19 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t n)
-
+int	ft_strlcat(char *dst, const char *src, int dstsize)
 {
-	size_t	i;
-	size_t	len_d;
-	size_t	len_s;
+	int	idx;
+	int	dlen;
+	int	slen;
+	int	allsize;
+	int	cpy;
 
-	i = 0;
-	len_d = ft_strlen(dst);
-	len_s = ft_strlen(src);
-	if (n <= len_d || n == 0)
-		return (len_s + n);
-	while ((i + len_d < n - 1) && src[i] != '\0')
+	if ((!dst && dstsize == 0) || dstsize == 0)
+		return (ft_strlen(src) + dstsize);
+	idx = 0;
+	slen = ft_strlen(src);
+	dlen = ft_strlen(dst);
+	if (dstsize <= dlen)
+		return (slen + dstsize);
+	allsize = ft_strlen(src) + ft_strlen(dst);
+	cpy = dstsize - dlen;
+	while (src[idx] && idx < cpy - 1)
 	{
-		dst[len_d + i] = src[i];
-		i++;
+		dst[dlen] = src[idx];
+		dlen++;
+		idx++;
 	}
-	dst[len_d + i] = '\0';
-	return (len_d + len_s);
+	dst[dlen] = '\0';
+	return (allsize);
 }
