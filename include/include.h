@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 04:48:47 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/17 01:47:09 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/18 02:40:04 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@
 # include "lexer.h"
 # include "../libft/libft.h"
 # include "functions.h"
+# include "parser.h"
 
 #endif

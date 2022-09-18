@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 00:35:07 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/17 01:46:41 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/18 04:05:05 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_token	*collect_flag(t_lexer *lexer);
 
 t_token	*the_separater(t_lexer *lexer);
 
-t_token	*appends_end_heredoc(t_lexer *lexer, char *str, char *value);
+t_token	*appends_end_heredoc(t_lexer *lexer);
 
 t_token	*lexer_advence_with_token(t_lexer *lexer, t_token *token);
 

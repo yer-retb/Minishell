@@ -6,11 +6,11 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 22:42:36 by enja              #+#    #+#             */
-/*   Updated: 2022/09/17 22:21:28 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/18 02:11:07 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/include.h"
+#include "../include/include.h"
 
 void	clear_prompt(void)
 {

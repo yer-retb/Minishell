@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 04:39:39 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/18 00:49:20 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/18 05:53:19 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,10 @@ t_token	*the_separater(t_lexer *lexer)
 				init_token(TOKEN_PIPE, lexer_get_c_as_str(lexer))));
 	else if (lexer->c == '>')
 		return (lexer_advence_with_token(lexer,
-				init_token(TOKEN_OUTPUT, lexer_get_c_as_str(lexer))));
+				init_token(TOKEN_OUT, lexer_get_c_as_str(lexer))));
 	else if (lexer->c == '<')
 		return (lexer_advence_with_token(lexer,
-				init_token(TOKEN_INPUT, lexer_get_c_as_str(lexer))));
-	else if (lexer->c == '\'')
-		return (lexer_advence_with_token(lexer,
-				init_token(TOKEN_SINGLE_Q, lexer_get_c_as_str(lexer))));
-	else if (lexer->c == '"')
-		return (lexer_advence_with_token(lexer,
-				init_token(TOKEN_DOUBLE_Q, lexer_get_c_as_str(lexer))));
-	else if (lexer->c == '$')
-		return (lexer_advence_with_token(lexer,
-				init_token(TOKEN_DOLER, lexer_get_c_as_str(lexer))));
+				init_token(TOKEN_IN, lexer_get_c_as_str(lexer))));
 	return (NULL);
 }
 
@@ -42,7 +33,7 @@ t_token	*lexer_get_next_token(t_lexer *lexer)
 		if (lexer->c == ' ' || lexer->c == '\t')
 			lexer_skip_space (lexer);
 		if (lexer->c == '\"')
-			return (collect_string(lexer, '\"'));
+			return (collect_string(lexer, '\"'));// buffer over flow
 		if (lexer->c == '\'')
 			return (collect_string(lexer, '\''));
 		if (lexer->c == '-')
@@ -52,9 +43,9 @@ t_token	*lexer_get_next_token(t_lexer *lexer)
 			&& (!(lexer->c == ' ' && lexer->c == '\t')))
 			return (collect_cmd(lexer));
 		if (lexer->c == '>' && lexer->content[lexer->i + 1] == '>')
-			return (collect_cmd(lexer));
+			return (appends_end_heredoc(lexer));
 		if (lexer->c == '<' && lexer->content[lexer->i + 1] == '<')
-			return (collect_cmd(lexer));
+			return (appends_end_heredoc(lexer));
 		if (is_rederection(lexer->c))
 			return (the_separater(lexer));
 	}
@@ -68,7 +59,7 @@ t_token	*collect_string(t_lexer *lexer, char t)
 
 	lexer_advence(lexer);
 	value = malloc(sizeof(char));
-	while (lexer->c != '\'' && t == '\'')
+	while (lexer->content[lexer->i - 1 ] && lexer->c != '\'' && t == '\'')
 	{
 		if (lexer->c == '\0')
 		{
@@ -79,8 +70,9 @@ t_token	*collect_string(t_lexer *lexer, char t)
 		value = ft_strjoin(value, str);
 		lexer_advence(lexer);
 	}
-	while (lexer->c != '\"' && t == '\"')
+	while (lexer->content[lexer->i - 1 ] && lexer->c != '\"' && t == '\"')
 	{
+		//exit(1);
 		if (lexer->c == '\0')
 		{
 			printf("error\n");
@@ -94,26 +86,24 @@ t_token	*collect_string(t_lexer *lexer, char t)
 	return (init_token(TOKEN_STR, value));
 }
 
-t_token	*appends_end_heredoc(t_lexer *lexer, char *str, char *value)
+t_token	*appends_end_heredoc(t_lexer *lexer)
 {
 	int		i;
+	char	*value;
+	char	*str;
 
+	value = malloc(sizeof(char));
 	i = 0;
-	while (lexer->c == '>' || lexer->c == '<')
+	while (i < 2)
 	{
 		str = lexer_get_c_as_str(lexer);
 		value = ft_strjoin(value, str);
 		lexer_advence(lexer);
 		i++;
-		if (i > 2)
-		{
-			printf("error\n");
-			exit(1);
-		}
 	}
-	if (i == 2 && lexer->content[lexer->i -1] == '>')
-		return (init_token(TOKEN_GG, value));
-	if (i == 2 && lexer->content[lexer->i -1] == '<')
-		return (init_token(TOKEN_LL, value));
+	if (lexer->content[lexer->i - 1] == '>')
+		return (init_token(TOKEN_APPEND, value));
+	if (lexer->content[lexer->i -1] == '<')
+		return (init_token(TOKEN_HRDOC, value));
 	return (NULL);
 }

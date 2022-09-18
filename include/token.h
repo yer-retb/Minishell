@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 02:15:58 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/17 22:46:42 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/18 04:07:00 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,11 @@ typedef struct n_token
 	enum
 	{
 		TOKEN_STR,
-		TOKEN_CMD,
 		TOKEN_PIPE,
-		TOKEN_INPUT,
-		TOKEN_OUTPUT,
-		TOKEN_LL,
-		TOKEN_GG,
-		TOKEN_SINGLE_Q,
-		TOKEN_DOUBLE_Q,
-		TOKEN_DOLER,
+		TOKEN_IN,
+		TOKEN_OUT,
+		TOKEN_HRDOC,
+		TOKEN_APPEND,
 		TOKEN_FLAG,
 	} e_type;
 	char	*value;

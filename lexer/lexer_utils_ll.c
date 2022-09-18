@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer_utils_ll.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/18 02:16:35 by enja              #+#    #+#             */
+/*   Updated: 2022/09/18 04:04:14 by enja             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/include.h"
 
 int	is_rederection(char c)
@@ -31,9 +43,7 @@ t_token	*collect_cmd(t_lexer *lexer)
 	char	*value;
 	char	*str;
 
-	str = NULL;
 	value = malloc(sizeof(char));
-	appends_end_heredoc(lexer, str, value);
 	while (lexer->c != '\0' && (!(is_rederection(lexer->c)))
 		&& lexer->c != ' ' && lexer->c != '\t')
 	{
@@ -41,5 +51,5 @@ t_token	*collect_cmd(t_lexer *lexer)
 		value = ft_strjoin(value, str);
 		lexer_advence(lexer);
 	}
-	return (init_token(TOKEN_CMD, value));
+	return (init_token(TOKEN_STR, value));
 }
