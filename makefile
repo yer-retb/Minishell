@@ -6,7 +6,7 @@
 #    By: enja <enja@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/16 00:40:44 by yer-retb          #+#    #+#              #
-#    Updated: 2022/09/17 22:40:32 by enja             ###   ########.fr        #
+#    Updated: 2022/09/18 01:59:57 by enja             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = CC
 
 CFLAG = -Wall -Werror -Wextra -lreadline 
 
-SRS = lexer/lexer.c main.c lexer/token.c get_prompt.c \
+SRS = lexer/lexer.c main.c lexer/token.c lexer/lexer_utils.c lexer/lexer_utils_ll.c get_prompt.c \
 	libft/ft_memmove.c libft/ft_isalpha.c libft/ft_isdigit.c libft/ft_isalnum.c libft/ft_isascii.c \
 	libft/ft_isprint.c libft/ft_strlen.c libft/ft_memset.c libft/ft_bzero.c libft/ft_memcpy.c libft/ft_toupper.c \
 	libft/ft_tolower.c libft/ft_strlcpy.c libft/ft_strlcat.c libft/ft_strchr.c libft/ft_strrchr.c libft/ft_atoi.c \
@@ -42,5 +42,5 @@ re : fclean all
 
 push : 
 	@git add .
-	@git commit -m "make push"
-	@git push
+	@git commit -m "norm"
+	@git push -f
