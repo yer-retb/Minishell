@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 02:15:58 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/19 06:08:55 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/19 09:19:20 by ky05h1n          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,3 @@ typedef struct n_token
 t_token	*init_token(int e_type, char *value);
 
 #endif
-

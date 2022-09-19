@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   include.h                                          :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/16 04:48:47 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/19 09:54:45 by ky05h1n          ###   ########.fr       */
+/*   Created: 2022/09/19 10:00:06 by ky05h1n           #+#    #+#             */
+/*   Updated: 2022/09/19 10:23:08 by ky05h1n          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INCLUDE_H
-# define INCLUDE_H
+#include "libft.h"
 
-//*********SYSTEM*********//
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <sys/wait.h>
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
 
-//*********USEER*********//
-# include "token.h"
-# include "lexer.h"
-# include "../libft/libft.h"
-# include "functions.h"
-# include "init_nodes.h"
-# include "parser.h"
-
-#endif
+	i = 0;
+	while (s1[i] && s2[i])
+	{
+		if (s1[i] == s2[i])
+			i++;
+		else
+			return (1);
+	}
+	if (ft_strlen(s1) != ft_strlen(s2))
+		return (1);
+	return (0);
+}

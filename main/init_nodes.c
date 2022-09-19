@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_nodes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 02:06:14 by enja              #+#    #+#             */
-/*   Updated: 2022/09/19 06:09:14 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/19 09:50:59 by ky05h1n          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,3 @@ void	add_list_at_back(t_parser **save, t_parser *node)
 	head->next_token = node;
 	node->next_token = NULL;
 }
-
-

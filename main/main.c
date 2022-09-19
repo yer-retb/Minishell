@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 05:50:34 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/19 06:09:15 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/19 10:10:00 by ky05h1n          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,10 @@ int	main(void)
 	t_parser	*head;
 
 	head = NULL;
-	
 	while (TRUE)
 	{
 		cmd = get_prompt();
-		// if (cmd[0] == '\0')
-		// 	continue ;
-		if (ft_strncmp(cmd, "exit", ft_strlen("exit")) == 0)
+		if (ft_strcmp(cmd, "exit") == 0)
 			exit(1);
 		lexer = init_lexer(cmd);
 		token = NULL;

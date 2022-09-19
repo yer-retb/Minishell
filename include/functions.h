@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 01:45:10 by enja              #+#    #+#             */
-/*   Updated: 2022/09/19 06:08:44 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/19 09:50:17 by ky05h1n          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # define TOKEN_HRDOC	4
 # define TOKEN_APPEND	5
 # define TOKEN_FLAG		6
-
 
 char	*get_prompt(void);
 void	clear_prompt(void);

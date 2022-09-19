@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 07:48:31 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/19 06:09:02 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/19 09:20:27 by ky05h1n          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,3 @@ t_token	*init_token(int e_type, char *value)
 	token->value = value;
 	return (token);
 }
-

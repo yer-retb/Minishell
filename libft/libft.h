@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 09:08:11 by zy0tsh1           #+#    #+#             */
-/*   Updated: 2022/09/18 23:24:35 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/19 10:08:57 by ky05h1n          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 int				ft_strlcat(char *dst, const char *src, int dstsize);
 int				ft_strlcpy(char *dest, const char *src, int size);
+int				ft_strcmp(char *s1, char *s2);
 void			ft_bzero(void *s, int n);
 void			*ft_memset(void *b, int c, int len);
 void			*ft_memcpy(void *dst, const void *src, int n);
