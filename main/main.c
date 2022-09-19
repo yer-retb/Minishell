@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 05:50:34 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/19 02:29:43 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/19 03:04:49 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ int	main(void)
 	char		*cmd;
 	t_lexer		*lexer;
 	t_token		*token;
-	t_parser	*head = NULL;
+	t_parser	*head;
+
+	head = NULL;
 	while (TRUE)
 	{
 		cmd = get_prompt();
