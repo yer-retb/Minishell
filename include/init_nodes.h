@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   init_nodes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/19 05:08:33 by enja              #+#    #+#             */
-/*   Updated: 2022/09/19 05:40:16 by enja             ###   ########.fr       */
+/*   Created: 2022/09/18 01:30:51 by enja              #+#    #+#             */
+/*   Updated: 2022/09/19 05:05:55 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef INIT_NODES_H
+# define INIT_NODES_H
 
-void	parser_get(t_parser *st_list);
+typedef struct n_parser
+{
+	t_token			*token_struct;
+	struct n_parser	*next_token;
+}	t_parser;
 
-void	parser_check_command(t_token *st_list);
+void		add_list_at_back(t_parser **head, t_parser *node);
 
-void	parser_scan_cmd(t_token *st_list);
+t_parser	*init_node(t_token *token);
 
 #endif

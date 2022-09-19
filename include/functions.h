@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 01:45:10 by enja              #+#    #+#             */
-/*   Updated: 2022/09/18 22:50:56 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/19 05:38:18 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ char	*get_prompt(void);
 void	clear_prompt(void);
 int		is_rederection(char c);
 void	msg_error(void);
+void	msg_cmd_error(char *msg);
 #endif

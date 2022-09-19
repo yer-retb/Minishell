@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 05:50:34 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/19 03:04:49 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/19 05:40:37 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ int	main(void)
 		{
 			while ((token = lexer_get_next_token(lexer)) != NULL)
 				add_list_at_back(&head, init_node(token));
-			while (head)
-			{
-				printf("type = %d value = %s\n",head->token_struct->e_type, head->token_struct->value);
-				head = head->next_token;
-			}
-			printf ("ok\n");
+			parser_get(head);
+			// while (head)
+			// {
+			// 	printf("type = %d value = %s\n",head->token_struct->e_type, head->token_struct->value);
+			// 	head = head->next_token;
+			// }
+			// printf ("ok\n");
 			//freii hna
 			exit(1);
 		}

@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 22:44:51 by enja              #+#    #+#             */
-/*   Updated: 2022/09/18 22:57:21 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/19 05:40:28 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,11 @@
 void	msg_error(void)
 {
 	printf("minishell : syntax error\n");
+	exit(1);
+}
+
+void	msg_cmd_error(char *msg)
+{
+	printf("%s : command not found\n", msg);
 	exit(1);
 }
