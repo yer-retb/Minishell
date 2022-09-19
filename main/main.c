@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 05:50:34 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/19 01:00:06 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/19 02:29:43 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int	main(void)
 	char		*cmd;
 	t_lexer		*lexer;
 	t_token		*token;
-	// t_parser	*head;
-	
+	t_parser	*head = NULL;
 	while (TRUE)
 	{
 		cmd = get_prompt();
@@ -31,22 +30,14 @@ int	main(void)
 		if (fork() == 0)
 		{
 			while ((token = lexer_get_next_token(lexer)) != NULL)
+				add_list_at_back(&head, init_node(token));
+			while (head)
 			{
-				//head = add_list_at_back(head, init_node(token));
-				printf("TOKEN (%d ==> %s)\n", token->e_type, token->value);
-				free(token->value);
-				free(token);
+				printf("type = %d value = %s\n",head->token_struct->e_type, head->token_struct->value);
+				head = head->next_token;
 			}
-			// while (head->next_token)
-			// {
-
-			// 	printf("yes\n");
-			// 	head = head->next_token;
-			// }
 			printf ("ok\n");
-			// free(lexer);
-			// system("leaks minishell");
-			//while(1);
+			//freii hna
 			exit(1);
 		}
 		wait(NULL);

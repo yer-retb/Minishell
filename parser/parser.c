@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 02:06:14 by enja              #+#    #+#             */
-/*   Updated: 2022/09/18 05:12:17 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/19 02:15:18 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,20 @@ t_parser	*init_node(t_token *token)
 	return (token_st);
 }
 
-t_parser	*add_list_at_back(t_parser *head, t_parser *node)
+void	add_list_at_back(t_parser **save, t_parser *node)
 {
-	t_parser	*save;
+	t_parser	*head;
 
-	save = head;
+	head = *save;
 	if (head == NULL)
-		return (NULL);
+	{
+		*save = node;
+		return ;
+	}
 	while (head->next_token)
+	{
 		head = head->next_token;
+	}
 	head->next_token = node;
 	node->next_token = NULL;
-	return (save);
 }

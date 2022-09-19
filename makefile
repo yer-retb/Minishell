@@ -6,7 +6,7 @@
 #    By: enja <enja@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/16 00:40:44 by yer-retb          #+#    #+#              #
-#    Updated: 2022/09/19 00:34:29 by enja             ###   ########.fr        #
+#    Updated: 2022/09/19 02:32:26 by enja             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,5 +43,5 @@ re : fclean all ./minishell
 
 push : 
 	@git add .
-	@git commit -m "norm"
+	@git commit -m "lexer_finished"
 	@git push -f
