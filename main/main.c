@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 05:50:34 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/19 00:32:09 by ky05h1n          ###   ########.fr       */
+/*   Updated: 2022/09/19 01:00:06 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(void)
 	
 	while (TRUE)
 	{
-		cmd = "ls <>>> | << >> 'l'";
+		cmd = get_prompt();
 		// if (cmd[0] == '\0')
 		// 	continue ;
 		if (ft_strncmp(cmd, "exit", ft_strlen("exit")) == 0)
@@ -44,10 +44,13 @@ int	main(void)
 			// 	head = head->next_token;
 			// }
 			printf ("ok\n");
+			// free(lexer);
+			// system("leaks minishell");
+			//while(1);
 			exit(1);
 		}
 		wait(NULL);
+		free(lexer->content);
 		free(lexer);
-		exit(1);
 	}
 }
