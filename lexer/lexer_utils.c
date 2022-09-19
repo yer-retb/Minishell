@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 02:16:43 by enja              #+#    #+#             */
-/*   Updated: 2022/09/18 02:16:44 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/19 06:09:00 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	lexer_advence(t_lexer *lexer)
 		lexer->c = lexer->content[lexer->i];
 	}
 }
+
 
 t_lexer	*init_lexer(char *content)
 {

@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 04:39:39 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/19 04:00:19 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/19 06:09:03 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_token	*lexer_get_next_token(t_lexer *lexer)
 	}
 	return (NULL);
 }
+
 
 t_token	*collect_string(t_lexer *lexer, char t)
 {

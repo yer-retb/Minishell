@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 02:15:58 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/18 22:52:54 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/19 06:08:55 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,4 @@ typedef struct n_token
 t_token	*init_token(int e_type, char *value);
 
 #endif
+

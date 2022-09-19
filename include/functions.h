@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 01:45:10 by enja              #+#    #+#             */
-/*   Updated: 2022/09/19 05:38:18 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/19 06:08:44 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define TOKEN_HRDOC	4
 # define TOKEN_APPEND	5
 # define TOKEN_FLAG		6
+
 
 char	*get_prompt(void);
 void	clear_prompt(void);
