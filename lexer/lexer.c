@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 04:39:39 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/19 03:03:33 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/19 04:00:19 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,25 +58,20 @@ t_token	*collect_string(t_lexer *lexer, char t)
 	char	*str;
 
 	value = NULL;
+	str = lexer_get_c_as_str(lexer);
+	value = ft_strjoin(value, str);
 	lexer_advence(lexer);
-	while (lexer->c != '\'' && t == '\'')
+	while (TRUE)
 	{
 		if (lexer->c == '\0')
 			msg_error();
 		str = lexer_get_c_as_str(lexer);
 		value = ft_strjoin(value, str);
 		lexer_advence(lexer);
+		if (value[ft_strlen(value) - 1] == t)
+			return (init_token(TOKEN_STR, value));
 	}
-	while (lexer->c != '\"' && t == '\"')
-	{
-		if (lexer->c == '\0')
-			msg_error();
-		str = lexer_get_c_as_str(lexer);
-		value = ft_strjoin(value, str);
-		lexer_advence(lexer);
-	}
-	lexer_advence(lexer);
-	return (init_token(TOKEN_STR, value));
+	return (NULL);
 }
 
 t_token	*appends_end_heredoc(t_lexer *lexer)
