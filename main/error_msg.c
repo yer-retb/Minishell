@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 22:44:51 by enja              #+#    #+#             */
-/*   Updated: 2022/09/19 09:50:51 by ky05h1n          ###   ########.fr       */
+/*   Updated: 2022/09/19 23:55:52 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,11 @@ void	msg_error(void)
 void	msg_cmd_error(char *msg)
 {
 	printf("%s : command not found\n", msg);
+	exit(1);
+}
+
+void	msg_syntax_error(char *msg)
+{
+	printf("minishell: syntax error near unexpected token `%s'\n", msg);
 	exit(1);
 }

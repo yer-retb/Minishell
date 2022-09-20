@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+         #
+#    By: enja <enja@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/16 00:40:44 by yer-retb          #+#    #+#              #
-#    Updated: 2022/09/19 10:25:44 by ky05h1n          ###   ########.fr        #
+#    Updated: 2022/09/20 04:55:39 by enja             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 
 CC = gcc
 
-CFLAG = -Wall -Werror -Wextra -lreadline -fsanitize=thread -g
+CFLAG = -Wall -Werror -Wextra -lreadline -fsanitize=address -g
 
 SRS = main/get_prompt.c parser/parser.c lexer/lexer.c main/main.c main/init_nodes.c lexer/token.c lexer/lexer_utils.c lexer/lexer_utils_ll.c \
 	libft/ft_memmove.c libft/ft_isalpha.c libft/ft_isdigit.c libft/ft_isalnum.c libft/ft_isascii.c \
@@ -43,6 +43,6 @@ re : fclean all ./minishell
 
 push : 
 	@git add .
-	@git commit -m "begin_parsing"
+	@git commit -m "parsing's error fixed"
 	@git push -f
 	

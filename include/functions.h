@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 01:45:10 by enja              #+#    #+#             */
-/*   Updated: 2022/09/19 09:50:17 by ky05h1n          ###   ########.fr       */
+/*   Updated: 2022/09/19 23:53:06 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ void	clear_prompt(void);
 int		is_rederection(char c);
 void	msg_error(void);
 void	msg_cmd_error(char *msg);
+void	msg_syntax_error(char *msg);
 #endif

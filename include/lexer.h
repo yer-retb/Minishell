@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 00:35:07 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/19 09:51:50 by ky05h1n          ###   ########.fr       */
+/*   Updated: 2022/09/20 04:52:44 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ t_token	*lexer_get_next_token(t_lexer *lexer);
 t_token	*collect_string(t_lexer *lexer, char t);
 
 t_token	*collect_cmd(t_lexer *lexer);
-
-t_token	*collect_flag(t_lexer *lexer);
 
 t_token	*the_separater(t_lexer *lexer);
 

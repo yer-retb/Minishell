@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 04:39:39 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/19 09:19:35 by ky05h1n          ###   ########.fr       */
+/*   Updated: 2022/09/20 04:52:09 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ t_token	*lexer_get_next_token(t_lexer *lexer)
 			return (collect_string(lexer, '\"'));
 		if (lexer->c == '\'')
 			return (collect_string(lexer, '\''));
-		if (lexer->c == '-')
-			return (collect_flag(lexer));
 		if (lexer->c != '\0' && ft_isascii(lexer->c)
 			&& (!(is_rederection(lexer->c)))
 			&& (!(lexer->c == ' ' && lexer->c == '\t')))
