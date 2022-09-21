@@ -25,13 +25,13 @@ void	parser_check_syntax(t_parser *head)
 		}
 		if (head->token_struct->e_type != TOKEN_STR)
 		{
-			if (head->next_token && head->token_struct->e_type == TOKEN_PIPE)
+			if (head->next_token && head->token_struct->e_type == TOKEN_PIPE
+				&& head->next_token->token_struct->e_type != TOKEN_PIPE)
 				head = head->next_token;
-			else if (head->next_token
-				&& head->next_token->token_struct->e_type == 3)
-				head = head->next_token;
-			else if (head->next_token && head->next_token->token_struct->e_type
-				== TOKEN_STR)
+			// else if (head->next_token && head->next_token->token_struct->e_type == TOKEN_OUT)
+			// 	head = head->next_token;
+			else if (head->next_token &&
+				head->next_token->token_struct->e_type == TOKEN_STR)
 				head = head->next_token;
 			else
 				msg_syntax_error(head->token_struct->value);

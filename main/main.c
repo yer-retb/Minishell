@@ -29,14 +29,19 @@ int	main(void)
 		token = NULL;
 		if (fork() == 0)
 		{
-			while ((token = lexer_get_next_token(lexer)) != NULL)
+			token = lexer_get_next_token(lexer);
+			while (token != NULL)
+			{
 				add_list_at_back(&head, init_node(token));
+				token = lexer_get_next_token(lexer);
+			}
 			parser_get(head);
-			// while (head)
-			// {
-			// 	printf("type = %d value = %s\n",head->token_struct->e_type, head->token_struct->value);
-			// 	head = head->next_token;
-			// }
+			while (head)
+			{
+				printf("type = %d value = %s\n",
+					head->token_struct->e_type, head->token_struct->value);
+				head = head->next_token;
+			}
 			// printf ("ok\n");
 			//freii hna
 			exit(1);
@@ -46,4 +51,3 @@ int	main(void)
 		free(lexer);
 	}
 }
-
