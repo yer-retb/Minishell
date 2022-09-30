@@ -20,7 +20,11 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		i;
 
 	if (!s1)
-		return (ft_strdup(s2));
+	{
+		final = ft_strdup(s2);
+		free (s2);
+		return (final);
+	}
 	i = 0;
 	n = 0;
 	len = ft_strlen(s1) + ft_strlen(s2);

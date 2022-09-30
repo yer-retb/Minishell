@@ -12,26 +12,24 @@
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *str, const char *tofind, int len)
+char	*ft_strnstr(const char *str, const char *needle, int len)
 {
-	int		idx;
-	int		zy;
-	char	*typstr;
+	int	i;
+	int	j;
 
-	idx = 0;
-	typstr = (char *)str;
-	if (ft_strlen(tofind) == 0)
-		return (typstr);
-	while (str[idx] && idx < len)
+	i = 0;
+	while (needle[i] == '\0')
+		return ((char *)str);
+	while ((str[i]) && (i < len))
 	{
-		zy = 0;
-		while (typstr[idx + zy] == tofind[zy] && idx + zy < len)
+		j = 0;
+		while (str[i + j] == needle[j] && i + j < len)
 		{
-			if (tofind[zy + 1] == '\0')
-				return (&typstr[idx]);
-			zy++;
+			j++;
+			if (needle[j] == '\0')
+				return ((char *)&str[i + j]);
 		}
-		idx++;
+		i++;
 	}
-	return (NULL);
+	return (0);
 }

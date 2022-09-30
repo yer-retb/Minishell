@@ -32,10 +32,6 @@ t_token	*lexer_get_next_token(t_lexer *lexer)
 	{
 		if (lexer->c == ' ' || lexer->c == '\t')
 			lexer_skip_space (lexer);
-		if (lexer->c == '\"')
-			return (collect_string(lexer, '\"'));
-		if (lexer->c == '\'')
-			return (collect_string(lexer, '\''));
 		if (lexer->c != '\0' && ft_isascii(lexer->c)
 			&& (!(is_rederection(lexer->c)))
 			&& (!(lexer->c == ' ' && lexer->c == '\t')))
@@ -50,7 +46,7 @@ t_token	*lexer_get_next_token(t_lexer *lexer)
 	return (NULL);
 }
 
-t_token	*collect_string(t_lexer *lexer, char t)
+char	*collect_string(t_lexer *lexer, char t)
 {
 	char	*value;
 	char	*str;
@@ -67,7 +63,7 @@ t_token	*collect_string(t_lexer *lexer, char t)
 		value = ft_strjoin(value, str);
 		lexer_advence(lexer);
 		if (value[ft_strlen(value) - 1] == t)
-			return (init_token(TOKEN_STR, value));
+			return (value);
 	}
 	return (NULL);
 }

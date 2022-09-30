@@ -27,7 +27,7 @@ char	*get_prompt(void)
 
 	if (sig == 1)
 	{
-		clear_prompt();
+		// clear_prompt();
 		sig = 0;
 	}
 	cmd = readline("\033[0;32m[\033[0m minishell \033[0;32m]~>\033[0m ");

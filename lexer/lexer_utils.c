@@ -12,15 +12,6 @@
 
 #include "../include/include.h"
 
-void	lexer_advence(t_lexer *lexer)
-{
-	if (lexer->c != '\0' && lexer->i < ft_strlen(lexer->content))
-	{
-		lexer->i += 1;
-		lexer->c = lexer->content[lexer->i];
-	}
-}
-
 t_lexer	*init_lexer(char *content)
 {
 	t_lexer	*lexer;
@@ -30,6 +21,15 @@ t_lexer	*init_lexer(char *content)
 	lexer->i = 0;
 	lexer->c = content[lexer->i];
 	return (lexer);
+}
+
+void	lexer_advence(t_lexer *lexer)
+{
+	if (lexer->c != '\0' && lexer->i < ft_strlen(lexer->content))
+	{
+		lexer->i += 1;
+		lexer->c = lexer->content[lexer->i];
+	}
 }
 
 void	lexer_skip_space(t_lexer *lexer)

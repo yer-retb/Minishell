@@ -14,7 +14,7 @@
 
 int	is_rederection(char c)
 {
-	if (c == '>' || c == '<' || c == '|' || c == '\'' || c == '\"')
+	if (c == '>' || c == '<' || c == '|')
 		return (1);
 	return (0);
 }
@@ -22,15 +22,24 @@ int	is_rederection(char c)
 t_token	*collect_cmd(t_lexer *lexer)
 {
 	char	*value;
+	char	*ptr;
 	char	*str;
 
 	value = NULL;
 	while (lexer->c != '\0' && (!(is_rederection(lexer->c)))
 		&& lexer->c != ' ' && lexer->c != '\t')
 	{
-		str = lexer_get_c_as_str(lexer);
-		value = ft_strjoin(value, str);
-		lexer_advence(lexer);
+		if (lexer->c == '\'' || lexer->c == '\"')
+		{
+			ptr = collect_string(lexer, lexer->c);
+			value = ft_strjoin(value, ptr);
+		}
+		else
+		{
+			str = lexer_get_c_as_str(lexer);
+			value = ft_strjoin(value, str);
+			lexer_advence(lexer);
+		}
 	}
 	return (init_token(TOKEN_STR, value));
 }
