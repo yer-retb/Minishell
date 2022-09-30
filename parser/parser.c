@@ -99,5 +99,5 @@ void	parser_get(t_parser *st_list, char **env)
 		msg_syntax_error(st_list->token_struct->value);
 	parser_check_syntax(st_list);
 	expand_dollar(st_list, env);
-	
+	/** your part **/
 }
