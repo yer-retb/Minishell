@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:04:15 by enja              #+#    #+#             */
-/*   Updated: 2022/09/20 06:14:24 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/30 23:50:30 by ky05h1n          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_switch(char *str, char **env)
 	s1 = str;
 	i = ft_strlen(s1);
 	s1 = ft_strjoin_no_free(s1, "=");
-	while (env[i] != '\0')
+	while (env[i])
 	{
 		if (!(ft_strncmp(s1, env[i], ft_strlen(s1))))
 		{
@@ -93,11 +93,16 @@ void	expand_dollar(t_parser *head, char **env)
 
 void	parser_get(t_parser *st_list, char **env)
 {
+	char **tab;
+	int		i = 0;
 	if (!st_list)
 		return ;
+	(void)tab;
 	if (st_list->token_struct->e_type == TOKEN_PIPE)
 		msg_syntax_error(st_list->token_struct->value);
 	parser_check_syntax(st_list);
 	expand_dollar(st_list, env);
-	/** your part **/
+	tab = parser_get_tab(st_list);
+	while(tab[i])
+		printf("%s\n", tab[i++]);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 05:50:34 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/20 05:48:51 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/30 23:48:57 by ky05h1n          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int ac, char **av, char **env)
 	t_token		*token;
 	t_parser	*head;
 	char		**my_env;
+
 	head = NULL;
 	(void) ac;
 	(void) av;
@@ -38,6 +39,8 @@ int	main(int ac, char **av, char **env)
 		cmd = get_prompt();
 		if (ft_strcmp(cmd, "exit") == 0)
 			exit(1);
+		if (ft_strcmp(cmd, "clear") == 0)
+			clear_prompt();
 		lexer = init_lexer(cmd);
 		token = NULL;
 		if (fork() == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:08:33 by enja              #+#    #+#             */
-/*   Updated: 2022/09/20 00:15:56 by enja             ###   ########.fr       */
+/*   Updated: 2022/09/30 19:59:32 by ky05h1n          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ typedef struct n_red
 		ARG,
 		HRDOC,
 	} e_red_typ;
-
 	char	*file;
 }	t_red;
 
@@ -40,6 +39,18 @@ void	parser_check_command(t_token *st_list);
 void	parser_scan_cmd(t_token *st_list);
 
 void	parser_check_first_token(t_parser *st_list);
+
+char	**parser_get_tab(t_parser *st_list);
+
+char	**cmd_tab(char **cmd_table, char *newcmd);
+
+char	*get_char(char *str, char c);
+
+int		tdm(char **arr);
+
+int		check1(char c, int sig);
+
+int		check(char c);
 
 /*---------------list & red functions---------------*/
 
