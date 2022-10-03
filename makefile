@@ -14,7 +14,7 @@ NAME = minishell
 
 CC = gcc
 
-CFLAG = -Wall -Werror -Wextra -lreadline -fsanitize=thread -g
+CFLAG = -Wall -Werror -Wextra -lreadline -fsanitize=address -g
 
 SRS = main/get_prompt.c parser/parser.c lexer/lexer.c main/main.c main/init_nodes.c lexer/token.c lexer/lexer_utils.c lexer/lexer_utils_ll.c \
 	parser/start_parsing.c \
@@ -44,6 +44,6 @@ re : fclean all ./minishell
 
 push : 
 	@git add .
-	@git commit -m "expanding dollar not finished yet :("
+	@git commit -m "expanding dollar almost finished"
 	@git push -f
 	

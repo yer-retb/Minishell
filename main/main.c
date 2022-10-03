@@ -14,51 +14,52 @@
 
 int	main(int ac, char **av, char **env)
 {
-	char		*cmd;
-	t_lexer		*lexer;
-	t_token		*token;
-	t_parser	*head;
-	char		**my_env;
 
-	head = NULL;
+	char		*cmd;
+	char		**my_env;
+	t_test		*test;
+
+	test = malloc(sizeof(t_test));
+	test->head = NULL;
 	(void) ac;
 	(void) av;
 	int i = 0;
 	my_env = NULL;
 	while(env[i])
 		i++;
-	my_env = malloc(sizeof (char*) * i);
+	my_env = malloc(sizeof (char*) * (i + 1));
 	i = 0;
 	while(env[i])
 	{
 		my_env[i] = ft_strdup(env[i]);
+		printf("%s\n", env[i]);
 		i++;
 	}
+	my_env[i] = NULL;
 	while (TRUE)
 	{
 		cmd = get_prompt();
 		if (ft_strcmp(cmd, "exit") == 0)
 			exit(1);
-		if (ft_strcmp(cmd, "clear") == 0)
-			clear_prompt();
-		lexer = init_lexer(cmd);
-		token = NULL;
+		// if (ft_strcmp(cmd, "clear") == 0)
+		// 	clear_prompt();
+		test->lexer = init_lexer(cmd);
+		test->token = NULL;
 		if (fork() == 0)
 		{
-			token = lexer_get_next_token(lexer);
-			while (token != NULL)
+			test->token = lexer_get_next_token(test->lexer);
+			while (test->token != NULL)
 			{
-				add_list_at_back(&head, init_node(token));
-				token = lexer_get_next_token(lexer);
+				add_list_at_back(&test->head, init_node(test->token));
+				test->token = lexer_get_next_token(test->lexer);
 			}
-			parser_get(head, my_env);
-			while (head)
+			parser_get(test->head, my_env);
+			while (test->head)
 			{
 				printf("type = %d value = %s\n",
-					head->token_struct->e_type, head->token_struct->value);
-				head = head->next_token;
+					test->head->token_struct->e_type, test->head->token_struct->value);
+				test->head = test->head->next_token;
 			}
-
 			/********* hada matedich 3lih *********/
 			// save = init_list(cmd);
 			// ls = get_next_list(save);
@@ -73,10 +74,7 @@ int	main(int ac, char **av, char **env)
 			// freii hna
 			exit(1);
 		}
-
 		wait(NULL);
-		free(lexer->content);
-		free(lexer);
 	}
 }
 

@@ -1,0 +1,10 @@
+README.md
+include
+lexer
+libft
+ls
+main
+makefile
+minishell
+minishell.dSYM
+parser

@@ -13,6 +13,7 @@
 #ifndef INCLUDE_H
 # define INCLUDE_H
 
+
 //*********SYSTEM*********//
 # include <stdio.h>
 # include <unistd.h>
@@ -28,5 +29,13 @@
 # include "functions.h"
 # include "init_nodes.h"
 # include "parser.h"
+
+typedef struct n_test
+{
+	t_lexer		*lexer;
+	t_token		*token;
+	t_parser	*head;
+
+} t_test;
 
 #endif

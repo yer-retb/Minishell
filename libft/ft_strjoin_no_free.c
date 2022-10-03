@@ -10,7 +10,6 @@ char	*ft_strjoin_no_free(char *s1, char *s2)
 	if (!s1)
 	{
 		final = ft_strdup(s2);
-		free (s2);
 		return (final);
 	}
 	i = 0;

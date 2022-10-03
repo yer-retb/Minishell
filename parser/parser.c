@@ -37,46 +37,71 @@ void	parser_check_syntax(t_parser *head)
 	}
 }
 
-char	*ft_switch(char *str, char **env)
+char	*merge_str(char *str, char *ptr)
 {
-	int		i;
-	char	*s1;
 
-	s1 = str;
-	i = ft_strlen(s1);
-	s1 = ft_strjoin_no_free(s1, "=");
-	while (env[i])
+}
+
+char	*get_env(char *ptr, char **env)
+{
+	int i = 0;
+
+	while(env[i] != NULL)
 	{
-		if (!(ft_strncmp(s1, env[i], ft_strlen(s1))))
+		if (ft_strncmp(ptr, env[i], ft_strlen(ptr)) == 0)
 		{
-			printf("hi\n");
-			s1 = ft_strnstr(env[i], s1, ft_strlen(env[i]));
-			return (s1);
+			ptr = ft_strjoin_no_free(ptr, "=");
+			ptr = ft_strnstr(env[i], ptr, ft_strlen(env[i]));
+			return (ptr);
 		}
 		i++;
 	}
-	printf("### %s\n", str);
-	return (str);
+	return ("NULL");
 }
 
 char	*detect_doller(char *str, char **env)
 {
-	int i;
-	char *s1;
+	int		i = 0;
+	char	*ptr = NULL;
 
-	i = 0;
-	s1 = malloc(sizeof (char) * ft_strlen(str));
-	if (!s1)
-		return (NULL);
-	if (str[0] == '$' && ft_isalpha(str[1]))
+	while (str[i])
 	{
-		while (str[i] && ft_isalnum(str[i + 1]))
+		if (str[i] && str[i] == '\'')
 		{
-			s1[i] = str[i + 1];
 			i++;
+			while (str[i] && str[i] != '\'')
+				i++;
 		}
-		s1[i] = '\0';
-		return (ft_switch(s1, env));
+		else if (str[i] == '$' && ft_isalpha(str[i + 1]))
+		{
+			i++;
+			while (str[i] && ft_isalnum(str[i]))
+				ptr = get_char(ptr, str[i++]);
+			ptr = get_env(ptr, env);
+			str = merge_str(str, ptr);
+			printf("expanded : %s\n", ptr);
+			ptr = NULL;
+		}
+		else if (str[i] == '\"')
+		{
+			i++;
+			while (str[i] && str[i] != '\"')
+			{
+				if (str[i] == '$' && ft_isalpha(str[i + 1]))
+				{
+					i++;
+					while (str[i] && ft_isalnum(str[i]))
+						ptr = get_char(ptr, str[i++]);
+					ptr = get_env(ptr, env);
+					str = merge_str(str, ptr);
+					ptr = NULL;
+				}
+				i++;
+			}
+		}
+		if (str[i] != '\0' && str[i] != '$')
+			i++;
+		
 	}
 	return (str);
 }
@@ -86,23 +111,24 @@ void	expand_dollar(t_parser *head, char **env)
 	while (head)
 		{
 			head->token_struct->value = detect_doller(head->token_struct->value, env);
-			// printf("->> %s\n", head->token_struct->value);
 			head = head->next_token;
 		}
 }
 
 void	parser_get(t_parser *st_list, char **env)
 {
-	char **tab;
-	int		i = 0;
+	char	**tab;
+	int		i = -1;
+	
 	if (!st_list)
 		return ;
 	(void)tab;
+	(void)env;
 	if (st_list->token_struct->e_type == TOKEN_PIPE)
 		msg_syntax_error(st_list->token_struct->value);
 	parser_check_syntax(st_list);
 	expand_dollar(st_list, env);
 	tab = parser_get_tab(st_list);
-	while(tab[i])
-		printf("%s\n", tab[i++]);
+	while(tab[++i])
+		printf("%s\n", tab[i]);
 }

@@ -37,7 +37,7 @@ char	*get_char(char *str, char c)
 		str[1] = '\0';
 		return (str);
 	}
-	strnw = malloc((strlen(str) + 2) * sizeof(char));
+	strnw = malloc((ft_strlen(str) + 2) * sizeof(char));
 	while (str[i])
 	{
 		strnw[i] = str[i];
@@ -81,6 +81,7 @@ char	**parser_get_tab(t_parser *st_list)
 
 	cmd_table = malloc(1 * sizeof(char *));
 	cmd_table[0] = NULL;
+	newcmd = NULL;
 	head = st_list;
 	i = 0;
 	while (head)
