@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 04:39:39 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/20 04:52:09 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/03 21:10:55 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*collect_string(t_lexer *lexer, char t)
 	while (TRUE)
 	{
 		if (lexer->c == '\0')
-			msg_error();
+			return (msg_error());
 		str = lexer_get_c_as_str(lexer);
 		value = ft_strjoin(value, str);
 		lexer_advence(lexer);

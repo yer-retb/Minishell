@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:08:33 by enja              #+#    #+#             */
-/*   Updated: 2022/09/30 19:59:32 by ky05h1n          ###   ########.fr       */
+/*   Updated: 2022/10/03 21:18:36 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct n_list
 	t_red	*red;
 }	t_list;
 
-void	parser_get(t_parser *st_list, char **env);
+void	*parser_get(t_parser *st_list, char **env);
 
 void	parser_check_command(t_token *st_list);
 

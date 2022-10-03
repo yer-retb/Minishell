@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:04:15 by enja              #+#    #+#             */
-/*   Updated: 2022/09/30 23:50:30 by ky05h1n          ###   ########.fr       */
+/*   Updated: 2022/10/03 21:41:57 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
-void	parser_check_syntax(t_parser *head)
-{
+void	*parser_check_syntax(t_parser *head)
+{	
+	if (head->token_struct->e_type == TOKEN_PIPE)
+		msg_syntax_error(head->token_struct->value);
 	while (head)
 	{
 		if (head->token_struct->e_type == TOKEN_STR)
@@ -21,7 +23,7 @@ void	parser_check_syntax(t_parser *head)
 			if (head->next_token)
 				head = head->next_token;
 			else
-				return ;
+				return ("TRUE");
 		}
 		if (head->token_struct->e_type != TOKEN_STR)
 		{
@@ -32,9 +34,10 @@ void	parser_check_syntax(t_parser *head)
 			head->next_token->token_struct->e_type == TOKEN_STR)
 				head = head->next_token;
 			else
-				msg_syntax_error(head->token_struct->value);
+				return (msg_syntax_error(head->token_struct->value));
 		}
 	}
+	return ("TRUE");
 }
 
 char	*merge_str(char *str, char *ptr)
@@ -115,20 +118,22 @@ void	expand_dollar(t_parser *head, char **env)
 		}
 }
 
-void	parser_get(t_parser *st_list, char **env)
+void	*parser_get(t_parser *st_list, char **env)
 {
 	char	**tab;
 	int		i = -1;
 	
 	if (!st_list)
-		return ;
+		return (NULL);
 	(void)tab;
 	(void)env;
 	if (st_list->token_struct->e_type == TOKEN_PIPE)
 		msg_syntax_error(st_list->token_struct->value);
-	parser_check_syntax(st_list);
+	if (!parser_check_syntax(st_list))
+		return (NULL);
 	expand_dollar(st_list, env);
 	tab = parser_get_tab(st_list);
 	while(tab[++i])
 		printf("%s\n", tab[i]);
+	return (tab);
 }
