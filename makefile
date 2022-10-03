@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+         #
+#    By: enja <enja@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/16 00:40:44 by yer-retb          #+#    #+#              #
-#    Updated: 2022/09/30 21:57:22 by ky05h1n          ###   ########.fr        #
+#    Updated: 2022/10/03 21:43:07 by enja             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ clean :
 re : fclean all ./minishell 
 
 push : 
+	rm -rf minishell.dSYM
 	@git add .
 	@git commit -m "expanding dollar almost finished"
 	@git push -f
