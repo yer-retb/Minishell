@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:04:15 by enja              #+#    #+#             */
-/*   Updated: 2022/10/04 02:37:57 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/04 22:08:31 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	*parser_check_syntax(t_parser *head)
 {	
 	if (head->token_struct->e_type == TOKEN_PIPE)
-		msg_syntax_error(head->token_struct->value);
+		return (msg_syntax_error(head->token_struct->value));
 	while (head)
 	{
 		if (head->token_struct->e_type == TOKEN_STR)
@@ -57,8 +57,8 @@ char	*rejoin_tab(char **tab)
 
 char	*join_env(char **tab, char *ptr)
 {
-	int i;
-	char *pt;
+	int		i;
+	char	*pt;
 
 	i = 0;
 	while (tab[i])
@@ -81,9 +81,9 @@ char	*join_env(char **tab, char *ptr)
 
 char	*merge_str(char *str, char *ptr)
 {
-	char *st = NULL;
-	char *fnl;
-	char **tabst = malloc(1 * sizeof(char *));
+	char	*st = NULL;
+	char	*fnl;
+	char	**tabst = malloc(1 * sizeof(char *));
 	tabst[0] = NULL;
 	int i = 0;
 
@@ -107,7 +107,6 @@ char	*merge_str(char *str, char *ptr)
 	}
 	fnl = join_env(tabst, ptr);
 	return (fnl);
-	
 }
 
 char	*get_env(char *ptr, char **env)
@@ -174,17 +173,17 @@ char	*detect_doller(char *str, char **env)
 				i++;
 			}
 		}
-		if (str[i] != '\0' && str[i] != '$')
+		if (str[i] != '\0')
 			i++;		
 	}
-	printf("%s\n", str);
+	// printf("%s\n", str);
 	return (str);
 }
 
 void	expand_dollar(t_parser *head, char **env)
 {
 	while (head)
-		{
+		{ 
 			head->token_struct->value = detect_doller(head->token_struct->value, env);
 			head = head->next_token;
 		}
@@ -193,19 +192,17 @@ void	expand_dollar(t_parser *head, char **env)
 void	*parser_get(t_parser *st_list, char **env)
 {
 	char	**tab;
-	// int		i = -1;
+	int		i = -1;
 	
 	if (!st_list)
 		return (NULL);
 	(void)tab;
 	(void)env;
-	if (st_list->token_struct->e_type == TOKEN_PIPE)
-		msg_syntax_error(st_list->token_struct->value);
 	if (!parser_check_syntax(st_list))
 		return (NULL);
 	expand_dollar(st_list, env);
 	tab = parser_get_tab(st_list);
-	// while(tab[++i])
-	// 	printf("%s\n", tab[i]);
+	while(tab[++i])
+		printf("%s\n", tab[i]);
 	return (tab);
 }
