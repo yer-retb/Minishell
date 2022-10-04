@@ -177,7 +177,7 @@ char	*detect_doller(char *str, char **env)
 		if (str[i] != '\0' && str[i] != '$')
 			i++;		
 	}
-	printf("%s\n", str);
+	// printf("%s\n", str);
 	return (str);
 }
 
@@ -193,19 +193,17 @@ void	expand_dollar(t_parser *head, char **env)
 void	*parser_get(t_parser *st_list, char **env)
 {
 	char	**tab;
-	// int		i = -1;
+	int		i = -1;
 	
 	if (!st_list)
 		return (NULL);
-	(void)tab;
-	(void)env;
 	if (st_list->token_struct->e_type == TOKEN_PIPE)
 		msg_syntax_error(st_list->token_struct->value);
 	if (!parser_check_syntax(st_list))
 		return (NULL);
 	expand_dollar(st_list, env);
 	tab = parser_get_tab(st_list);
-	// while(tab[++i])
-	// 	printf("%s\n", tab[i]);
+	while(tab[++i])
+		printf("%s\n", tab[i]);
 	return (tab);
 }
