@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:04:15 by enja              #+#    #+#             */
-/*   Updated: 2022/10/04 02:18:45 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/04 02:37:57 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,8 @@ char	*rejoin_tab(char **tab)
 char	*join_env(char **tab, char *ptr)
 {
 	int i;
-	int m;
-
-	m = 0;
 	char *pt;
+
 	i = 0;
 	while (tab[i])
 	{
@@ -79,12 +77,6 @@ char	*join_env(char **tab, char *ptr)
 	}
 	pt = rejoin_tab(tab);
 	return (pt);
-	i = 0;
-	// while (pt[i])
-	// {
-	// 	printf("--> %s\n", tab[i]);
-	// 	i++;
-	// }	
 }
 
 char	*merge_str(char *str, char *ptr)
@@ -92,12 +84,9 @@ char	*merge_str(char *str, char *ptr)
 	char *st = NULL;
 	char *fnl;
 	char **tabst = malloc(1 * sizeof(char *));
-	(void)fnl;
 	tabst[0] = NULL;
-	(void)ptr;
-	// printf("------> [ %s ]\n------> [ %s ]\n", str, ptr);
 	int i = 0;
-	
+
 	while (str[i])
 	{
 		if (str[i] == '$')
@@ -117,14 +106,6 @@ char	*merge_str(char *str, char *ptr)
 		}
 	}
 	fnl = join_env(tabst, ptr);
-	i = 0;
-	// while (tabst[i])
-	// {
-	// 	printf("--> %s\n", tabst[i]);
-	// 	i++;
-	// }
-	// if (!ptr)
-	// 	printf("no\n");
 	return (fnl);
 	
 }
@@ -168,7 +149,6 @@ char	*detect_doller(char *str, char **env)
 			str = merge_str(str, ptr);
 			if (!str)
 				return (ft_strdup(""));
-			// printf("expanded : %s\n", ptr);
 			i = 0;
 			if (ptr != NULL)
 				ptr = NULL;
@@ -184,7 +164,6 @@ char	*detect_doller(char *str, char **env)
 					while (str[i] && ft_isalnum(str[i]))
 						ptr = get_char(ptr, str[i++]);
 					ptr = get_env(ptr, env);
-					// printf("expanded : %s\n", ptr);
 					str = merge_str(str, ptr);
 					if (!str)
 						return (ft_strdup(""));
