@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:04:15 by enja              #+#    #+#             */
-/*   Updated: 2022/10/03 21:41:57 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/04 02:18:45 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,93 @@ void	*parser_check_syntax(t_parser *head)
 	return ("TRUE");
 }
 
+char	*rejoin_tab(char **tab)
+{
+	int		i;
+	char	*pt;
+
+	i = 0;
+	while (tab[i])
+	{
+		if (tab[i][0] != '\0')
+			pt = ft_strjoin_no_free(pt, tab[i]);
+		i++;
+	}
+	return (pt);
+}
+
+char	*join_env(char **tab, char *ptr)
+{
+	int i;
+	int m;
+
+	m = 0;
+	char *pt;
+	i = 0;
+	while (tab[i])
+	{
+		if (tab[i][0] == '$' && ptr)
+		{
+			tab[i] = ptr;
+			break ;
+		}
+		else if (tab[i][0] == '$' && ptr == NULL)
+		{
+			tab[i] = ft_strdup("");
+			break ;
+		}
+		i++;
+	}
+	pt = rejoin_tab(tab);
+	return (pt);
+	i = 0;
+	// while (pt[i])
+	// {
+	// 	printf("--> %s\n", tab[i]);
+	// 	i++;
+	// }	
+}
+
 char	*merge_str(char *str, char *ptr)
 {
-
+	char *st = NULL;
+	char *fnl;
+	char **tabst = malloc(1 * sizeof(char *));
+	(void)fnl;
+	tabst[0] = NULL;
+	(void)ptr;
+	// printf("------> [ %s ]\n------> [ %s ]\n", str, ptr);
+	int i = 0;
+	
+	while (str[i])
+	{
+		if (str[i] == '$')
+		{
+			st = get_char(st, str[i++]);
+			while (str[i] && ft_isalnum(str[i]))
+				st = get_char(st, str[i++]);
+			tabst = cmd_tab(tabst, st);
+			st = NULL;
+		}
+		else
+		{
+			while (str[i] && str[i] != '$')
+				st = get_char(st, str[i++]);
+			tabst = cmd_tab(tabst, st);
+			st = NULL;
+		}
+	}
+	fnl = join_env(tabst, ptr);
+	i = 0;
+	// while (tabst[i])
+	// {
+	// 	printf("--> %s\n", tabst[i]);
+	// 	i++;
+	// }
+	// if (!ptr)
+	// 	printf("no\n");
+	return (fnl);
+	
 }
 
 char	*get_env(char *ptr, char **env)
@@ -59,7 +143,7 @@ char	*get_env(char *ptr, char **env)
 		}
 		i++;
 	}
-	return ("NULL");
+	return (NULL);
 }
 
 char	*detect_doller(char *str, char **env)
@@ -75,37 +159,46 @@ char	*detect_doller(char *str, char **env)
 			while (str[i] && str[i] != '\'')
 				i++;
 		}
-		else if (str[i] == '$' && ft_isalpha(str[i + 1]))
+		else if (str[i] && str[i] == '$' && ft_isalpha(str[i + 1]))
 		{
 			i++;
 			while (str[i] && ft_isalnum(str[i]))
 				ptr = get_char(ptr, str[i++]);
 			ptr = get_env(ptr, env);
 			str = merge_str(str, ptr);
-			printf("expanded : %s\n", ptr);
-			ptr = NULL;
+			if (!str)
+				return (ft_strdup(""));
+			// printf("expanded : %s\n", ptr);
+			i = 0;
+			if (ptr != NULL)
+				ptr = NULL;
 		}
-		else if (str[i] == '\"')
+		else if (str[i] && str[i] == '\"')
 		{
 			i++;
 			while (str[i] && str[i] != '\"')
 			{
-				if (str[i] == '$' && ft_isalpha(str[i + 1]))
+				if (str[i] && str[i] == '$' && ft_isalpha(str[i + 1]))
 				{
 					i++;
 					while (str[i] && ft_isalnum(str[i]))
 						ptr = get_char(ptr, str[i++]);
 					ptr = get_env(ptr, env);
+					// printf("expanded : %s\n", ptr);
 					str = merge_str(str, ptr);
-					ptr = NULL;
+					if (!str)
+						return (ft_strdup(""));
+					i = 0;
+					if (ptr != NULL)
+						ptr = NULL;
 				}
 				i++;
 			}
 		}
 		if (str[i] != '\0' && str[i] != '$')
-			i++;
-		
+			i++;		
 	}
+	printf("%s\n", str);
 	return (str);
 }
 
@@ -121,7 +214,7 @@ void	expand_dollar(t_parser *head, char **env)
 void	*parser_get(t_parser *st_list, char **env)
 {
 	char	**tab;
-	int		i = -1;
+	// int		i = -1;
 	
 	if (!st_list)
 		return (NULL);
@@ -133,7 +226,7 @@ void	*parser_get(t_parser *st_list, char **env)
 		return (NULL);
 	expand_dollar(st_list, env);
 	tab = parser_get_tab(st_list);
-	while(tab[++i])
-		printf("%s\n", tab[i]);
+	// while(tab[++i])
+	// 	printf("%s\n", tab[i]);
 	return (tab);
 }

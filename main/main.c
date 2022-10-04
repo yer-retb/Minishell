@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 05:50:34 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/10/03 20:59:34 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/03 21:57:27 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ int	main(int ac, char **av, char **env)
 	my_env = NULL;
 	while(env[i])
 		i++;
-	my_env = malloc(sizeof (char*) * i);
+	my_env = malloc(sizeof (char*) * (i + 1));
 	i = 0;
 	while(env[i])
 	{
 		my_env[i] = ft_strdup(env[i]);
 		i++;
 	}
+	my_env[i] = NULL;
 	while (TRUE)
 	{
 		cmd = get_prompt();

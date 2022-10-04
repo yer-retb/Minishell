@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:08:33 by enja              #+#    #+#             */
-/*   Updated: 2022/10/03 21:18:36 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/04 01:04:27 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int		tdm(char **arr);
 int		check1(char c, int sig);
 
 int		check(char c);
+
+char	*merge_str(char *str, char *ptr);
 
 /*---------------list & red functions---------------*/
 
