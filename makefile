@@ -6,7 +6,7 @@
 #    By: enja <enja@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/16 00:40:44 by yer-retb          #+#    #+#              #
-#    Updated: 2022/10/03 21:43:07 by enja             ###   ########.fr        #
+#    Updated: 2022/10/05 12:58:04 by enja             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,10 @@ NAME = minishell
 
 CC = gcc
 
-CFLAG = -Wall -Wextra -Werror -lreadline -fsanitize=address -g
+CFLAG = -Wall -Wextra -Werror -lreadline #-fsanitize=address -g
 
 SRS = main/get_prompt.c parser/parser.c lexer/lexer.c main/main.c main/init_nodes.c lexer/token.c lexer/lexer_utils.c lexer/lexer_utils_ll.c \
-	parser/start_parsing.c parser/expand_doller.c parser/parser_parse_tab2.c\
+	parser/start_parsing.c parser/expand_doller.c parser/parser_parse_tab2.c main/init_sh.c \
 	libft/ft_memmove.c libft/ft_isalpha.c libft/ft_isdigit.c libft/ft_isalnum.c libft/ft_isascii.c \
 	libft/ft_isprint.c libft/ft_strlen.c libft/ft_memset.c libft/ft_bzero.c libft/ft_memcpy.c libft/ft_toupper.c \
 	libft/ft_tolower.c libft/ft_strlcpy.c libft/ft_strlcat.c libft/ft_strchr.c libft/ft_strrchr.c libft/ft_atoi.c \

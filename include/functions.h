@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 01:45:10 by enja              #+#    #+#             */
-/*   Updated: 2022/10/03 21:06:31 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/05 12:48:10 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,14 @@
 # define TOKEN_APPEND	5
 # define TOKEN_FLAG		6
 
-char	*get_prompt(void);
-void	clear_prompt(void);
-int		is_rederection(char c);
-void	*msg_error(void);
-void	*msg_cmd_error(char *msg);
-void	*msg_syntax_error(char *msg);
+char		*get_prompt(void);
+void		clear_prompt(void);
+int			is_rederection(char c);
+void		*msg_error(void);
+void		*msg_cmd_error(char *msg);
+void		*msg_syntax_error(char *msg);
+char		**init_env(char **env, char **my_env);
+t_parser	*start_lexing(char *cmd, t_token *tk, t_parser *hd);
+void		init_shell(char **env);
+
 #endif

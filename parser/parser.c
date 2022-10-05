@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:04:15 by enja              #+#    #+#             */
-/*   Updated: 2022/10/04 22:08:31 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/05 12:28:41 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,18 @@ void	*parser_check_syntax(t_parser *head)
 	return ("TRUE");
 }
 
-char	*doller_quats(char *str, char *ptr, char **env, int *x, char c)
+char	*doller_quats(char *str, char *ptr, char **env, int *x)
 {
 	int	i;
 
 	i = *x;
-	if (c == '\'')
+	if (str[i] == '\'')
 	{
 		i++;
 		while (str[i] && str[i] != '\'')
 			i++;
 	}
-	else if (c == '\"')
+	else if (str[i] == '\"')
 	{
 		i++;
 		while (str[i] && str[i] != '\"')
@@ -75,11 +75,11 @@ char	*detect_doller(char *str, char **env)
 	while (str[i])
 	{
 		if (str[i] && str[i] == '\'')
-			str = doller_quats(str, ptr, env, &i, '\'');
+			str = doller_quats(str, ptr, env, &i);
 		else if (str[i] && str[i] == '$' && ft_isalpha(str[i + 1]))
 			str = norm_doller(&i, str, ptr, env);
 		else if (str[i] && str[i] == '\"')
-			str = doller_quats(str, ptr, env, &i, '\"');
+			str = doller_quats(str, ptr, env, &i);
 		else if (str[i] != '\0')
 			i++;
 	}
@@ -108,7 +108,5 @@ void	*parser_get(t_parser *st_list, char **env)
 		return (NULL);
 	expand_dollar(st_list, env);
 	tab = init_tab_parser(st_list);
-	while (tab[++i])
-		printf("%s\n", tab[i]);
 	return (tab);
 }
