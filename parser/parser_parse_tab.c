@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_parse_tab.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ky05h1n <ky05h1n@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:41:23 by ky05h1n           #+#    #+#             */
-/*   Updated: 2022/09/30 22:04:11 by ky05h1n          ###   ########.fr       */
+/*   Updated: 2022/10/05 09:20:15 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ char	*get_char(char *str, char c)
 	}
 	strnw[i++] = c;
 	strnw[i] = '\0';
+	free(str);
 	return (strnw);
 }
 
@@ -54,7 +55,7 @@ char	**cmd_tab(char **cmd_table, char *newcmd)
 	char	**newtable;
 
 	i = 0;
-	if (tdm(cmd_table) == 0)
+	if (!cmd_table)
 	{
 		cmd_table = malloc(2 * sizeof(char *));
 		cmd_table[0] = newcmd;
@@ -72,55 +73,44 @@ char	**cmd_tab(char **cmd_table, char *newcmd)
 	return (newtable);
 }
 
-char	**parser_get_tab(t_parser *st_list)
+char	**init_tab_parser(t_parser *st_list)
 {
 	int			i;
 	char		*newcmd;
 	char		**cmd_table;
 	t_parser	*head;
 
-	cmd_table = malloc(1 * sizeof(char *));
-	cmd_table[0] = NULL;
+	cmd_table = NULL;
 	newcmd = NULL;
 	head = st_list;
 	i = 0;
+	return (parser_get_tab(head, cmd_table, newcmd, i));
+}
+
+char	**parser_get_tab(t_parser *head, char **cmd_table, char *newcmd, int i)
+{
 	while (head)
 	{
-		if (head->token_struct->value[i] == '\"' || head->token_struct->value[i] == '\'')
+		if (head->token_struct->value[i] == '\"' || \
+			head->token_struct->value[i] == '\'')
 		{
-			if (head->token_struct->value[i] == '\"')
-			{
-				i++;
-				while (head->token_struct->value[i] && head->token_struct->value[i] != '\"')
-					newcmd = get_char(newcmd, head->token_struct->value[i++]);
-			}
-			else if(head->token_struct->value[i] == '\'')
-			{
-				i++;
-				while(head->token_struct->value[i] && head->token_struct->value[i] != '\'')
-					newcmd = get_char(newcmd, head->token_struct->value[i++]);
-			}
+			newcmd = get_tab_handler(newcmd, head->token_struct->value, &i);
 			i++;
 			if (head->token_struct->value[i] == '\0')
 			{
-				cmd_table = cmd_tab(cmd_table, newcmd);
+				cmd_table = get_tab_handler_3(cmd_table, &newcmd, &i);
 				head = head->next_token;
-				newcmd = NULL;
-				i = 0;
 			}
 		}
 		else
 		{
-			while (head->token_struct->value[i] && head->token_struct->value[i] != '\"' && head->token_struct->value[i] != '\'')
-				newcmd = get_char(newcmd, head->token_struct->value[i++]);
+			newcmd = get_tab_handler(newcmd, head->token_struct->value, &i);
 			if (head->token_struct->value[i] == '\0')
 			{
-				cmd_table = cmd_tab(cmd_table, newcmd);
+				cmd_table = get_tab_handler_3(cmd_table, &newcmd, &i);
 				head = head->next_token;
-				newcmd = NULL;
-				i = 0;
 			}
 		}
 	}
-	return(cmd_table);
+	return (cmd_table);
 }

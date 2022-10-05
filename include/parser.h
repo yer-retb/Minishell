@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:08:33 by enja              #+#    #+#             */
-/*   Updated: 2022/10/04 01:04:27 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/05 01:15:45 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	parser_scan_cmd(t_token *st_list);
 
 void	parser_check_first_token(t_parser *st_list);
 
-char	**parser_get_tab(t_parser *st_list);
+char	**parser_get_tab(t_parser *head, char **cmd_table, char *newcmd, int i);
 
 char	**cmd_tab(char **cmd_table, char *newcmd);
 
@@ -53,6 +53,22 @@ int		check1(char c, int sig);
 int		check(char c);
 
 char	*merge_str(char *str, char *ptr);
+
+char	*get_tab_handler_2(char *newcmd, char *value, int *i, char t);
+
+char	*get_tab_handler(char *newcmd, char *value, int *i);
+
+char	**get_tab_handler_3(char **cmd_table, char **newcmd, int *i);
+
+char	**init_tab_parser(t_parser *st_list);
+
+char	*rejoin_tab(char **tab);
+
+char	*join_env(char **tab, char *ptr);
+
+char	*get_env(char *ptr, char **env);
+
+char	*norm_doller(int *x, char *str, char *ptr, char **env);
 
 /*---------------list & red functions---------------*/
 
