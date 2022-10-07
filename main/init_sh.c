@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:21:43 by enja              #+#    #+#             */
-/*   Updated: 2022/10/07 02:54:27 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/07 20:00:39 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,20 +88,20 @@ void	init_shell(char **my_env)
 			continue ;
 		}
 		tab = parser_get(head, my_env);
-		t_parser *tmp;
-
 		if (!tab)
 		{
-			while (head)
-			{
-				free(head->token_struct);
-				head = head->next_token;
-				tmp = nhd->next_token;
-				free(head);
-				head= tmp;
-			}
-			free(head);
 			free(cmd);
+			nhd = head;
+			t_parser *tmp;
+			while (nhd)
+			{
+				free(nhd->token_struct->value);
+				free(nhd->token_struct);
+				tmp = nhd->next_token;
+				free(nhd);
+				nhd = tmp;
+			}
+			free(nhd);
 			continue ;
 		}
 		nhd = head;
@@ -111,7 +111,7 @@ void	init_shell(char **my_env)
 		// 		head->token_struct->e_type, head->token_struct->value);
 		// 	head = head->next_token;
 		// }
-		
+		t_parser *tmp;
 		while (nhd)
 		{
 			free(nhd->token_struct->value);
@@ -127,6 +127,7 @@ void	init_shell(char **my_env)
 		while (tab[i])
 			free(tab[i++]);
 		free(tab);
+		printf("lkher %p\n", tab);
 		free(cmd);
 		i = 0;
 	}

@@ -6,7 +6,7 @@
 #    By: enja <enja@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/16 00:40:44 by yer-retb          #+#    #+#              #
-#    Updated: 2022/10/06 18:41:15 by enja             ###   ########.fr        #
+#    Updated: 2022/10/07 20:56:45 by enja             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,6 @@ re : fclean all ./minishell
 push : 
 	rm -rf minishell.dSYM
 	@git add .
-	@git commit -m "expanding dollar almost finished"
+	@git commit -m "fixing leaks"
 	@git push -f
 	

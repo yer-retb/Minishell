@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:41:23 by ky05h1n           #+#    #+#             */
-/*   Updated: 2022/10/05 09:20:15 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/07 20:04:54 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ char	**cmd_tab(char **cmd_table, char *newcmd)
 	}
 	newtable[i++] = newcmd;
 	newtable[i] = NULL;
+	free(cmd_table);
 	return (newtable);
 }
 

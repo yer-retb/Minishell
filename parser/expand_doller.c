@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:04:23 by enja              #+#    #+#             */
-/*   Updated: 2022/10/07 03:03:38 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/07 18:40:26 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,11 +146,8 @@ char	*norm_doller(int *x, char *str, char *ptr, char **env)
 	printf("%p\n", ptr);
 	// printf("%p\n", str);
 	str = merge_str(str, ptr);
-	if (ptr != NULL)
-		free(ptr);
+	free(ptr);
 	ptr = NULL;
-	if (!str)
-		return (ft_strdup(""));
 	i = 0;
 	*x = i;
 	return (str);
