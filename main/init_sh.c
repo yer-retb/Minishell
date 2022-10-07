@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:21:43 by enja              #+#    #+#             */
-/*   Updated: 2022/10/05 13:00:33 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/07 02:54:27 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,16 @@ t_parser	*start_lexing(char *cmd, t_token *tk, t_parser *hd)
 	lexer = init_lexer(cmd);
 	tk = lexer_get_next_token(lexer);
 	if (!tk)
+	{
+		free(lexer);
 		return (NULL);
+	}
 	while (tk != NULL)
 	{
 		add_list_at_back(&hd, init_node(tk));
 		tk = lexer_get_next_token(lexer);
 	}
+	free(lexer);
 	return (hd);
 }
 
@@ -68,28 +72,55 @@ void	init_shell(char **my_env)
 		}
 		head = start_lexing(cmd, token, head);
 		if (!head)
+		{
+			free(cmd);
+			nhd = head;
+			t_parser *tmp;
+			while (nhd)
+			{
+				free(nhd->token_struct->value);
+				free(nhd->token_struct);
+				tmp = nhd->next_token;
+				free(nhd);
+				nhd = tmp;
+			}
+			free(nhd);
 			continue ;
+		}
 		tab = parser_get(head, my_env);
+		t_parser *tmp;
+
 		if (!tab)
 		{
 			while (head)
 			{
 				free(head->token_struct);
 				head = head->next_token;
+				tmp = nhd->next_token;
+				free(head);
+				head= tmp;
 			}
+			free(head);
+			free(cmd);
+			continue ;
 		}
 		nhd = head;
-		while (head)
-		{
-			printf("type = %d value = %s\n",
-				head->token_struct->e_type, head->token_struct->value);
-			head = head->next_token;
-		}
+		// while (head)
+		// {
+		// 	printf("type = %d value = %s\n",
+		// 		head->token_struct->e_type, head->token_struct->value);
+		// 	head = head->next_token;
+		// }
+		
 		while (nhd)
 		{
+			free(nhd->token_struct->value);
 			free(nhd->token_struct);
-			nhd = nhd->next_token;
+			tmp = nhd->next_token;
+			free(nhd);
+			nhd = tmp;
 		}
+		free(nhd);
 		while (tab[i])
 			printf("%s\n", tab[i++]);
 		i = 0;

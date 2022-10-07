@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:04:15 by enja              #+#    #+#             */
-/*   Updated: 2022/10/05 12:28:41 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/06 23:58:24 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,10 @@ char	*detect_doller(char *str, char **env)
 		else if (str[i] && str[i] == '$' && ft_isalpha(str[i + 1]))
 			str = norm_doller(&i, str, ptr, env);
 		else if (str[i] && str[i] == '\"')
+		{
 			str = doller_quats(str, ptr, env, &i);
+			i++;
+		}
 		else if (str[i] != '\0')
 			i++;
 	}
