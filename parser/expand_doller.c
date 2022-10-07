@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:04:23 by enja              #+#    #+#             */
-/*   Updated: 2022/10/07 18:40:26 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/07 23:11:08 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ char	*rejoin_tab(char **tab)
 
 	i = 0;
 	pt = NULL;
-	while (tab[i])
+	while (tab && tab[i])
 	{
 		if (tab[i][0] != '\0')
 			pt = ft_strjoin_no_free(pt, tab[i]);
 		i++;
 	}
 	i = 0;
-	// printf("%p\n", tab);d;
+	free(tab);
 	return (pt);
 }
 
@@ -73,7 +73,7 @@ char	*join_env(char **tab, char *ptr)
 		}
 		else if (tab[i][0] == '$' && ptr == NULL)
 		{
-			tab[i] = 0;
+			tab[i] = NULL;
 			break ;
 		}
 		i++;
@@ -123,13 +123,13 @@ char	*get_env(char *ptr, char **env)
 		if (ft_strncmp(ptr, env[i], ft_strlen(ptr)) == 0)
 		{
 			ptr = ft_strjoin_no_free(ptr, "=");
-			// printf("%p\n", ptr);
 			ptr = moded_strnstr(env[i], ptr, ft_strlen(env[i]));
-			// printf("%p\n", ptr);
+			printf("-- >%p\n", ptr);
 			return (ptr);
 		}
 		i++;
 	}
+	printf("-- >%p\n", ptr);
 	free(ptr);
 	return (NULL);
 }
@@ -143,10 +143,9 @@ char	*norm_doller(int *x, char *str, char *ptr, char **env)
 	while (str[i] && ft_isalnum(str[i]))
 		ptr = get_char(ptr, str[i++]);
 	ptr = get_env(ptr, env);
-	printf("%p\n", ptr);
-	// printf("%p\n", str);
 	str = merge_str(str, ptr);
-	free(ptr);
+	if (!str)
+		return (ft_strdup(""));
 	ptr = NULL;
 	i = 0;
 	*x = i;

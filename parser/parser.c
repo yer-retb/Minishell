@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:04:15 by enja              #+#    #+#             */
-/*   Updated: 2022/10/06 23:58:24 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/07 23:42:49 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	*detect_doller(char *str, char **env)
 
 	i = 0;
 	ptr = NULL;
-	while (str[i])
+	while (str && str[i])
 	{
 		if (str[i] && str[i] == '\'')
 			str = doller_quats(str, ptr, env, &i);
@@ -83,7 +83,7 @@ char	*detect_doller(char *str, char **env)
 			str = doller_quats(str, ptr, env, &i);
 			i++;
 		}
-		else if (str[i] != '\0')
+		else if (str && str[i])
 			i++;
 	}
 	return (str);

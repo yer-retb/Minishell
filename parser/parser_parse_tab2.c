@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 00:55:46 by enja              #+#    #+#             */
-/*   Updated: 2022/10/07 19:56:54 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/07 21:33:30 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ char	*get_tab_handler(char *newcmd, char *value, int *i)
 char	**get_tab_handler_3(char **cmd_table, char **newcmd, int *i)
 {
 	cmd_table = cmd_tab(cmd_table, *newcmd);
-	printf("hada %p\n", newcmd);
 	*newcmd = NULL;
 	*i = 0;
 	return (cmd_table);

@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:21:43 by enja              #+#    #+#             */
-/*   Updated: 2022/10/07 20:00:39 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/08 00:07:59 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	init_shell(char **my_env)
 			exit(1);
 		if (ft_strcmp(cmd, "clear") == 0)
 		{
+			free(cmd);
 			clear_prompt();
 			continue ;
 		}
@@ -127,7 +128,6 @@ void	init_shell(char **my_env)
 		while (tab[i])
 			free(tab[i++]);
 		free(tab);
-		printf("lkher %p\n", tab);
 		free(cmd);
 		i = 0;
 	}
