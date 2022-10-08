@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 02:16:35 by enja              #+#    #+#             */
-/*   Updated: 2022/10/08 00:05:15 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/08 00:09:36 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_token	*collect_cmd(t_lexer *lexer)
 		if (lexer->c == '\'' || lexer->c == '\"')
 		{
 			ptr = collect_string(lexer, lexer->c);
-			//printf("%s\n",ptr);
 			if (!ptr)
 			{
 				free(value);

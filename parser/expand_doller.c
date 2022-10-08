@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:04:23 by enja              #+#    #+#             */
-/*   Updated: 2022/10/07 23:11:08 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/08 05:25:00 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*rejoin_tab(char **tab)
 	while (tab && tab[i])
 	{
 		if (tab[i][0] != '\0')
-			pt = ft_strjoin_no_free(pt, tab[i]);
+			pt = ft_strjoin(pt, tab[i]);
 		i++;
 	}
 	i = 0;
@@ -68,11 +68,13 @@ char	*join_env(char **tab, char *ptr)
 	{
 		if (tab[i][0] == '$' && ptr)
 		{
+			free(tab[i]);
 			tab[i] = ptr;
 			break ;
 		}
 		else if (tab[i][0] == '$' && ptr == NULL)
 		{
+			free(tab[i]);
 			tab[i] = NULL;
 			break ;
 		}
@@ -112,7 +114,6 @@ char	*merge_str(char *str, char *ptr)
 	return (join_env(tabst, ptr));
 }
 
-
 char	*get_env(char *ptr, char **env)
 {
 	int	i;
@@ -124,12 +125,10 @@ char	*get_env(char *ptr, char **env)
 		{
 			ptr = ft_strjoin_no_free(ptr, "=");
 			ptr = moded_strnstr(env[i], ptr, ft_strlen(env[i]));
-			printf("-- >%p\n", ptr);
 			return (ptr);
 		}
 		i++;
 	}
-	printf("-- >%p\n", ptr);
 	free(ptr);
 	return (NULL);
 }
@@ -137,15 +136,25 @@ char	*get_env(char *ptr, char **env)
 char	*norm_doller(int *x, char *str, char *ptr, char **env)
 {
 	int	i;
+	char *new;
 
+	new = NULL;
 	i = *x;
 	i++;
 	while (str[i] && ft_isalnum(str[i]))
 		ptr = get_char(ptr, str[i++]);
+	printf("%p\n", str);
+	printf("her\n");
 	ptr = get_env(ptr, env);
+	if (!ptr)
+	{
+		while(str[i])
+			new = get_char(new, str[i++]);
+		*x = 0;
+		free(str);
+		return(new);
+	}
 	str = merge_str(str, ptr);
-	if (!str)
-		return (ft_strdup(""));
 	ptr = NULL;
 	i = 0;
 	*x = i;
