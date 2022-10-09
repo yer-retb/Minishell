@@ -6,39 +6,11 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:04:23 by enja              #+#    #+#             */
-/*   Updated: 2022/10/08 05:25:00 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/09 02:32:58 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
-
-char	*moded_strnstr(char *str, char *needle, int len)
-{
-	int		i;
-	int		j;
-	char	*s;
-
-	i = 0;
-	while (needle[i] == '\0')
-		return ((char *)str);
-	while ((str[i]) && (i < len))
-	{
-		j = 0;
-		while (str[i + j] == needle[j] && i + j < len)
-		{
-			j++;
-			if (needle[j] == '\0')
-			{
-				s = ft_strdup((char *)&str[i + j]);
-				free(needle);
-				return (s);
-			}
-		}
-		i++;
-	}
-	free(needle);
-	return (0);
-}
 
 char	*rejoin_tab(char **tab)
 {
@@ -75,7 +47,7 @@ char	*join_env(char **tab, char *ptr)
 		else if (tab[i][0] == '$' && ptr == NULL)
 		{
 			free(tab[i]);
-			tab[i] = NULL;
+			tab[i] = "";
 			break ;
 		}
 		i++;
@@ -100,14 +72,13 @@ char	*merge_str(char *str, char *ptr)
 			st = get_char(st, str[i++]);
 			while (str[i] && ft_isalnum(str[i]))
 				st = get_char(st, str[i++]);
-			tabst = cmd_tab(tabst, st);
 		}
 		else
 		{
 			while (str[i] && str[i] != '$')
 				st = get_char(st, str[i++]);
-			tabst = cmd_tab(tabst, st);
 		}
+		tabst = cmd_tab(tabst, st);
 		st = NULL;
 	}
 	free(str);
@@ -136,24 +107,12 @@ char	*get_env(char *ptr, char **env)
 char	*norm_doller(int *x, char *str, char *ptr, char **env)
 {
 	int	i;
-	char *new;
 
-	new = NULL;
 	i = *x;
 	i++;
 	while (str[i] && ft_isalnum(str[i]))
 		ptr = get_char(ptr, str[i++]);
-	printf("%p\n", str);
-	printf("her\n");
 	ptr = get_env(ptr, env);
-	if (!ptr)
-	{
-		while(str[i])
-			new = get_char(new, str[i++]);
-		*x = 0;
-		free(str);
-		return(new);
-	}
 	str = merge_str(str, ptr);
 	ptr = NULL;
 	i = 0;

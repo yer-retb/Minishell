@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:41:23 by ky05h1n           #+#    #+#             */
-/*   Updated: 2022/10/07 20:04:54 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/08 23:13:33 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char	**init_tab_parser(t_parser *st_list)
 
 char	**parser_get_tab(t_parser *head, char **cmd_table, char *newcmd, int i)
 {
-	while (head)
+	while (head && head->token_struct->value)
 	{
 		if (head->token_struct->value[i] == '\"' || \
 			head->token_struct->value[i] == '\'')
