@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin_no_free.c                               :+:      :+:    :+:   */
+/*   parser_exec.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 18:05:33 by enja              #+#    #+#             */
-/*   Updated: 2022/10/10 01:20:55 by enja             ###   ########.fr       */
+/*   Created: 2022/10/09 05:32:19 by enja              #+#    #+#             */
+/*   Updated: 2022/10/10 00:22:51 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PARSER_EXEC_H
+# define PARSER_EXEC_H
 
-char	*ft_strjoin_no_free(char *s1, char *s2)
+typedef struct t_data
 {
-	char	*final;
-	int		len;
-	int		n;
-	int		i;
+	int				in;
+	int				out;
+	char			*path;
+	char			*args;
+	struct t_data	*next_data;
+}	t_data;
 
-	if (!s1)
-		return (s2);
-	if (!s2)
-		return (s1);
-	i = 0;
-	n = 0;
-	len = ft_strlen(s1) + ft_strlen(s2);
-	final = malloc(len + 1);
-	while (s1[i])
-	{
-		final[i] = s1[i];
-		i++;
-	}
-	while (s2[n])
-	{
-		final[i++] = s2[n++];
-	}
-	// free(s1);
-	final[i] = '\0';
-	return (final);
-}
+t_data	*init_data(void);
+void	parser_exec_preparation(char **tab);
+int		check_pipe1(char *tab);
+void	add_data(t_data **save, t_data *data);
+#endif

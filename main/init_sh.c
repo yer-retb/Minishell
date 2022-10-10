@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:21:43 by enja              #+#    #+#             */
-/*   Updated: 2022/10/09 01:53:59 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/10 02:25:55 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,12 @@ void	init_shell(char **my_env)
 			continue ;
 		}
 		nhd = head;
-		while (head)
-		{
-			printf("type = %d value = %s\n",
-				head->token_struct->e_type, head->token_struct->value);
-			head = head->next_token;
-		}
+		// while (head)
+		// {
+		// 	printf("type = %d value = %s\n",
+		// 		head->token_struct->e_type, head->token_struct->value);
+		// 	head = head->next_token;
+		// }
 		t_parser *tmp;
 		while (nhd)
 		{
@@ -122,9 +122,10 @@ void	init_shell(char **my_env)
 			nhd = tmp;
 		}
 		free(nhd);
-		while (tab[i])
-			printf("%s\n", tab[i++]);
+		// while (tab[i])
+		// 	printf("%s\n", tab[i++]);
 		i = 0;
+		parser_exec_preparation(tab);
 		while (tab[i])
 			free(tab[i++]);
 		free(tab);

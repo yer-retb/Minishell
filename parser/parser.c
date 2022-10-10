@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:04:15 by enja              #+#    #+#             */
-/*   Updated: 2022/10/09 01:53:01 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/09 04:01:42 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ char	*doller_quats(char *str, char *ptr, char **env, int *x)
 		i++;
 		while (str[i] && str[i] != '\'')
 			i++;
+		i++;
 	}
 	else if (str[i] == '\"')
 	{
