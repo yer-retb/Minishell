@@ -6,16 +6,28 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 22:44:51 by enja              #+#    #+#             */
-/*   Updated: 2022/10/05 10:19:26 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/22 00:50:58 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
-void	*msg_error(void)
+void	*msg_error1(void)
 {
 	printf("minishell : syntax error\n");
 	return (NULL);
+}
+
+t_token	*msg_error(int e_type, char *val, char *value)
+{
+	t_token	*token;
+
+	printf("minishell : syntax error\n");
+	free(value);
+	token = malloc(sizeof(t_token));
+	token->e_type = e_type;
+	token->value = val;
+	return (token);
 }
 
 void	*msg_cmd_error(char *msg)

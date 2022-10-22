@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 04:48:47 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/10/10 02:31:46 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/21 15:31:11 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@
 # include "token.h"
 # include "lexer.h"
 # include "../libft/libft.h"
+# include "parser_exec.h"
 # include "init_nodes.h"
 # include "parser.h"
 # include "functions.h"
-# include "parser_exec.h"
 
 typedef struct n_test
 {

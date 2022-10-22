@@ -6,108 +6,118 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 04:51:45 by enja              #+#    #+#             */
-/*   Updated: 2022/10/10 02:30:04 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/22 01:30:26 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
-#include <sys/wait.h>
-t_data	*init_data(void)
-{
-	t_data	*data;
 
-	data = malloc(sizeof(t_data));
-	if (data == NULL)
-		return (NULL);
-	return (data);
+int	check(char *str)
+{
+	if (ft_strcmp(str, ">") && ft_strcmp(str, "<") && \
+		ft_strcmp(str, ">>") && ft_strcmp(str, "<<"))
+		return (1);
+	return (0);
 }
 
-void	add_data(t_data **save, t_data *data)
+t_bige_node	*asing_tk2(t_psr *hd, t_bige_node *bignode)
 {
-	t_data	*head;
+	bignode = malloc(sizeof(t_bige_node));
+	bignode->psr = hd;
+	bignode->psr_next = NULL;
+	return (bignode);
+}
+
+t_tkn	*asing_tk(t_tkn *tkn, char *val, int type)
+{
+	tkn = malloc(sizeof(t_tkn));
+	tkn->e_type = type;
+	tkn->val = val;
+	return (tkn);
+}
+
+void	add_list_at_back3(t_bige_node **save, t_bige_node *node)
+{
+	t_bige_node	*head;
 
 	head = *save;
 	if (head == NULL)
 	{
-		*save = data;
+		*save = node;
 		return ;
 	}
-	while (head->next_data)
+	while (head->psr_next)
 	{
-		head = head->next_data;
+		head = head->psr_next;
 	}
-	head->next_data = data;
-	data->next_data = NULL;
+	head->psr_next = node;
+	node->psr_next = NULL;
 }
 
-int	check_pipe(char **tab)
+t_bige_node	*parser_tokenazer(char **tab, t_psr *hd)
 {
-	int	i;
-
+	int		i;
+	t_tkn	*tk = NULL;
+	t_psr	*head;
+	t_bige_node *bignode = NULL;
+	t_bige_node *save;
 	i = 0;
-	while (tab[i])
+	while(tab[i])
 	{
-		if (tab[i][0] == '|')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-char	**assing_atrr(char **tab, t_data *data)
-{
-	char *path = "/bin/";
-	char **command = NULL;
-	int	i;
-
-	(void)data;
-	tab[0] = ft_strjoin_no_free(path, tab[0]);
-	i = 0;
-	while (tab[i])
-	{
-		if (tab[i][0] == '>' || tab[i][0] == '<')
-			break ;
-		else
-			command = cmd_tab(command, tab[i]);
-		i++;
-	}
-	i = 0;
-	// while (command[i])
-	// 	printf("%s\n", command[i++]);
-	return(command);
-}
-
-void	execute(char **cmd, char *intfile)
-{
-	int fd;
-	
-	fd = open(intfile, O_CREAT | O_RDWR , 0777);
-	
-	if (fork() == 0)
-	{
-		dup2(fd, STDOUT_FILENO);
-		close(fd);
-		execve(cmd[0], cmd, NULL);
-	}
-	while (waitpid(-1,NULL,0) == -1);
-
-}
-void	parser_exec_preparation(char **tab)
-{
-	int	i;
-	t_data *data;
-	char **cmd;
-
-	data = init_data();
-	i = 0;
-	while (tab[i])
-	{
-		if (tab[i][0] == '>')
+		if (ft_strcmp(tab[i], ">") == 0)
+			add_list_at_back2(&hd, init_node2(asing_tk(tk, tab[++i], INF)));
+		else if (ft_strcmp(tab[i], ">>") == 0)
+			add_list_at_back2(&hd, init_node2(asing_tk(tk, tab[++i], APD)));
+		else if (ft_strcmp(tab[i], "<<") == 0)
+			add_list_at_back2(&hd, init_node2(asing_tk(tk, tab[++i], HRD)));
+		else if (ft_strcmp(tab[i], "<") == 0)
+			add_list_at_back2(&hd, init_node2(asing_tk(tk, tab[++i], OUTF)));
+		else if (tab[i][0] == '|')
 		{
-			cmd = assing_atrr(tab, data);
-			execute(cmd, tab[i + 1]);
+			add_list_at_back3(&bignode, asing_tk2(hd, bignode));
+			hd = NULL;
 		}
+		else
+			add_list_at_back2(&hd, init_node2(asing_tk(tk, tab[i], ARG)));
 		i++;
-		write(2,"daadsa\n",8);
+	}
+	add_list_at_back3(&bignode, asing_tk2(hd, bignode));
+	// if (!bignode)
+	// 	bignode = asing_tk2(hd, bignode);
+	i = 0;
+	save = bignode;
+	head = bignode->psr;
+	while (save)
+	{
+		while(save->psr)
+		{
+			if (save->psr->tkn_st->e_type == ARG)
+			{
+				save->psr->tkn_st->e_type = CMD;
+				break ;
+			}
+			save->psr = save->psr->nx_tkn;
+		}
+		save = save->psr_next;
+	}
+	bignode->psr = head;
+	return(bignode);
+}
+
+void	parser_exec_preparation(char **tab, t_psr *hd)
+{
+	t_bige_node *bignode;
+	bignode = parser_tokenazer(tab, hd);
+	
+	while (bignode)
+	{
+		if (!bignode->psr)
+			printf("heilll\n");
+		while (bignode->psr)
+		{
+			printf("value = [ %s ] token = [ %d ]\n", bignode->psr->tkn_st->val, bignode->psr->tkn_st->e_type);
+			 bignode->psr = bignode->psr->nx_tkn;
+		}
+		bignode = bignode->psr_next;
 	}
 }

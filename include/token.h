@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 02:15:58 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/09/20 04:52:50 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/22 00:20:20 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct n_token
 		TOKEN_OUT,
 		TOKEN_HRDOC,
 		TOKEN_APPEND,
+		EROR,
 	} e_type;
 	char	*value;
 }	t_token;

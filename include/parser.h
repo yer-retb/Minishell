@@ -6,31 +6,31 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:08:33 by enja              #+#    #+#             */
-/*   Updated: 2022/10/05 01:15:45 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/21 16:20:32 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-typedef struct n_red
-{
-	enum
-	{
-		CMD,
-		ARG,
-		HRDOC,
-	} e_red_typ;
-	char	*file;
-}	t_red;
+// typedef struct n_red
+// {
+// 	enum
+// 	{
+// 		CMD,
+// 		ARG,
+// 		HRDOC,
+// 	} e_red_typ;
+// 	char	*file;
+// }	t_red;
 
-typedef struct n_list
-{
-	char	*command;
-	char	c;
-	int		i;
-	t_red	*red;
-}	t_list;
+// typedef struct n_list
+// {
+// 	char	*command;
+// 	char	c;
+// 	int		i;
+// 	t_red	*red;
+// }	t_list;
 
 void	*parser_get(t_parser *st_list, char **env);
 
@@ -48,9 +48,9 @@ char	*get_char(char *str, char c);
 
 int		tdm(char **arr);
 
-int		check1(char c, int sig);
+// int		check1(char c, int sig);
 
-int		check(char c);
+// int		check(char c);
 
 char	*merge_str(char *str, char *ptr);
 
@@ -72,22 +72,22 @@ char	*norm_doller(int *x, char *str, char *ptr, char **env);
 
 /*---------------list & red functions---------------*/
 
-t_list	*init_list(char *cmd);
+// t_list	*init_list(char *cmd);
 
-t_red	*my_cmd(int typ, char *file);
+// t_red	*my_cmd(int typ, char *file);
 
-void	list_advence(t_list *list);
+// void	list_advence(t_list *list);
 
-void	list_skip_space(t_list *list);
+// void	list_skip_space(t_list *list);
 
-t_red	*get_next_list(t_list *list);
+// t_red	*get_next_list(t_list *list);
 
-t_red	*list_collect(t_list *list, char d);
+// t_red	*list_collect(t_list *list, char d);
 
-t_red	*list_cmd_collect(t_list *list);
+// t_red	*list_cmd_collect(t_list *list);
 
-int		remove_quats(t_list *list, char *d);
+// int		remove_quats(t_list *list, char *d);
 
-char	*list_get_c_as_str(t_list *list);
+// char	*list_get_c_as_str(t_list *list);
 
 #endif

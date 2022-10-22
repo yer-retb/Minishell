@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:21:43 by enja              #+#    #+#             */
-/*   Updated: 2022/10/10 02:25:55 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/22 00:53:10 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_parser	*start_lexing(char *cmd, t_token *tk, t_parser *hd)
 	hd = NULL;
 	lexer = init_lexer(cmd);
 	tk = lexer_get_next_token(lexer);
-	if (!tk)
+	if (tk && tk->e_type == EROR)
 	{
 		free(lexer);
 		return (NULL);
@@ -46,6 +46,12 @@ t_parser	*start_lexing(char *cmd, t_token *tk, t_parser *hd)
 	{
 		add_list_at_back(&hd, init_node(tk));
 		tk = lexer_get_next_token(lexer);
+		if (tk && tk->e_type == EROR)
+		{
+			free(lexer);
+			// printf("minishell : syntax error\n");
+			return (NULL);
+		}
 	}
 	free(lexer);
 	return (hd);
@@ -57,6 +63,7 @@ void	init_shell(char **my_env)
 	t_token		*token;
 	t_parser	*head;
 	t_parser	*nhd;
+	t_psr		*nhead = NULL;
 	char		**tab;
 	int i = 0;
 	token = NULL;
@@ -125,7 +132,9 @@ void	init_shell(char **my_env)
 		// while (tab[i])
 		// 	printf("%s\n", tab[i++]);
 		i = 0;
-		parser_exec_preparation(tab);
+		parser_exec_preparation(tab, nhead);
+		// while (tab[i])
+		// 	printf("%s\n",tab[i++]);
 		while (tab[i])
 			free(tab[i++]);
 		free(tab);
