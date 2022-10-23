@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 02:06:14 by enja              #+#    #+#             */
-/*   Updated: 2022/10/21 14:36:51 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/23 02:02:29 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,7 @@ void	add_list_at_back2(t_psr **save, t_psr *node)
 		return ;
 	}
 	while (head->nx_tkn)
-	{
 		head = head->nx_tkn;
-	}
 	head->nx_tkn = node;
 	node->nx_tkn = NULL;
 }

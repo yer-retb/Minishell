@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:04:15 by enja              #+#    #+#             */
-/*   Updated: 2022/10/09 04:01:42 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/22 11:23:45 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,3 +114,4 @@ void	*parser_get(t_parser *st_list, char **env)
 	tab = init_tab_parser(st_list);
 	return (tab);
 }
+   
