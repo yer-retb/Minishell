@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:21:43 by enja              #+#    #+#             */
-/*   Updated: 2022/10/22 00:53:10 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/23 10:17:07 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	init_shell(char **my_env)
 	t_parser	*nhd;
 	t_psr		*nhead = NULL;
 	char		**tab;
+	t_data		*data;
+	
 	int i = 0;
 	token = NULL;
 	while (TRUE)
@@ -132,7 +134,8 @@ void	init_shell(char **my_env)
 		// while (tab[i])
 		// 	printf("%s\n", tab[i++]);
 		i = 0;
-		parser_exec_preparation(tab, nhead);
+		data = parser_exec_preparation(tab, nhead);
+		builtins(my_env, data);
 		// while (tab[i])
 		// 	printf("%s\n",tab[i++]);
 		while (tab[i])

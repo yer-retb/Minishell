@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:55:10 by enja              #+#    #+#             */
-/*   Updated: 2022/10/23 02:27:41 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/23 10:13:43 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,23 @@ int	number_of_arg(t_psr *head)
 	{
 		save = save->nx_tkn;
 		i++;
-		printf("%d\n",i);
 	}
-	
 	return (i);
 }
 
-void    check_file(char *str)
+void	check_file(char *str)
 {
-    int fd;
-    fd = access(str, F_OK);
-    if (fd == -1)
-        printf("Minishell: %s: no such file or directory\n", str);
+	int	fd;
+
+	fd = access(str, F_OK);
+	if (fd == -1)
+		printf("Minishell: %s: no such file or directory\n", str);
 }
 
 t_red	*red_list(int type, char *val)
 {
 	t_red	*red;
+
 	red = malloc(sizeof(t_red));
 	red->next = NULL;
 	if (type == INF)

@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 04:51:45 by enja              #+#    #+#             */
-/*   Updated: 2022/10/23 02:37:20 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/23 10:39:38 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,54 +99,56 @@ int	count_node(t_bige_node *node)
 	return (i);
 }
 
-void	parser_exec_preparation(char **tab, t_psr *hd)
+void	*parser_exec_preparation(char **tab, t_psr *hd)
 {
 	t_bige_node *bignode;
 	t_bige_node	*tmp;
-	// t_data		*data;
-	// int			i;
-	// int			j;
+	t_data		*data;
+	int			i;
+	int			j;
 	// int			 k = 0;
 	bignode = parser_tokenazer(tab, hd); 
 	tmp = bignode;
-	while (tmp)
-	{
-		while (tmp->psr)
-		{
-			printf("value = [ %s ] token = [ %d ]\n", tmp->psr->tkn_st->val, tmp->psr->tkn_st->e_type);
-			 tmp->psr = tmp->psr->nx_tkn;
-		}
-		tmp = tmp->psr_next;
-	}
+	// while (tmp)
+	// {
+	// 	while (tmp->psr)
+	// 	{
+	// 		printf("value = [ %s ] token = [ %d ]\n", tmp->psr->tkn_st->val, tmp->psr->tkn_st->e_type);
+	// 		 tmp->psr = tmp->psr->nx_tkn;
+	// 	}
+	// 	tmp = tmp->psr_next;
+	// }
 
-	// 	i = count_node(bignode);
-	// 	j = 0;
-	// 	data = malloc(sizeof(t_data) * i);
-	// 	while (bignode)
-	// 	{
-	// 		data[j] = big_data(bignode->psr);
-	// 		bignode = bignode->psr_next;
-	// 		j++;
-	// 	}
-	// 	j = 0;
-	// 	while (k < i)
-	// 	{
-	// 		j = 0;
-	// 		while (data[k].str && data[k].str[j])
-	// 		{
-	// 			printf("CMD[%d] : %s\n", j, data[k].str[j]);
-	// 			j++;
-	// 		}
-	// 		k++;
-	// 	}
-	// 	k = 0;
-	// 	while (k < i)
-	// 	{
-	// 		while (data[k].red)
-	// 		{
-	// 			printf("-> RED %s\n", data[k].red->file);
-	// 			data[k].red = data[k].red->next;
-	// 		}
-	// 		k++;
-	// 	}
+	i = count_node(bignode);
+	j = 0;
+	data = malloc(sizeof(t_data) * i);
+	while (bignode)
+	{
+		data[j] = big_data(bignode->psr);
+		bignode = bignode->psr_next;
+		j++;
 	}
+	return (data);
+	/*
+	j = 0;
+	while (k < i)
+	{
+		j = 0;
+		while (data[k].str && data[k].str[j])
+		{
+			printf("CMD[%d] : %s\n", j, data[k].str[j]);
+			j++;
+		}
+		k++;
+	}
+	k = 0;
+	while (k < i)
+	{
+		while (data[k].red)
+		{
+			printf("-> RED %s\n", data[k].red->file);
+			data[k].red = data[k].red->next;
+		}
+		k++;
+	}*/
+}

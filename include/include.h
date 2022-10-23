@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 04:48:47 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/10/22 08:25:15 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/23 10:45:33 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include "parser.h"
 # include "functions.h"
 # include "data.h"
+# include "builtins.h"
 
 typedef struct n_test
 {

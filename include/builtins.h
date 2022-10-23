@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data.h                                             :+:      :+:    :+:   */
+/*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 05:48:16 by enja              #+#    #+#             */
-/*   Updated: 2022/10/23 10:42:29 by enja             ###   ########.fr       */
+/*   Created: 2022/10/23 08:26:18 by enja              #+#    #+#             */
+/*   Updated: 2022/10/23 10:53:40 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_H
-# define DATA_H
+#ifndef	BUILLTINS_H
+# define BUILLTINS_H
 
-typedef struct n_red
-{
-	int				fd;
-	char			*file;
-	struct n_red	*next;
-}				t_red;
+void	builtins(char **env, t_data *data);
+void	built_pwd(char **env);
+void	built_cd(char **env, char *str);
 
-typedef struct n_data
-{
-	char	**str;
-	t_red	*red;
-}	t_data;
-
-t_data	big_data(t_psr *node);
-void	make_data(t_bige_node *bignode);
-int		node_size(t_bige_node *bignode);
-void	check_file(char *str);
-
-#endif
+# endif

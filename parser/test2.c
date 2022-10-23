@@ -26,6 +26,7 @@ int	node_size(t_bige_node *bignode)
 	}
 	return (i);
 }
+
 void    check_fdfdfile(char *str)
 {
     int fd;
