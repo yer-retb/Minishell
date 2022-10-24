@@ -6,7 +6,7 @@
 #    By: enja <enja@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/16 00:40:44 by yer-retb          #+#    #+#              #
-#    Updated: 2022/10/23 12:58:00 by enja             ###   ########.fr        #
+#    Updated: 2022/10/24 09:45:34 by enja             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRS = main/get_prompt.c parser/parser.c lexer/lexer.c main/main.c main/init_node
 	libft/ft_strnstr.c libft/ft_strncmp.c libft/ft_memchr.c libft/ft_memcmp.c libft/ft_calloc.c libft/ft_strdup.c libft/ft_substr.c \
 	libft/ft_split.c libft/ft_strjoin.c libft/ft_strtrim.c libft/ft_itoa.c libft/ft_strmapi.c libft/ft_striteri.c libft/ft_strjoin_no_free.c \
 	libft/ft_putchar_fd.c libft/ft_strcmp.c libft/ft_putstr_fd.c libft/ft_putendl_fd.c libft/ft_putnbr_fd.c main/error_msg.c parser/parser_parse_tab.c \
-	builtins/builtins.c\
+	builtins/builtins.c builtins/envirement.c\
 
 all : $(NAME)
 

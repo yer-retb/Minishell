@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 04:48:47 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/10/23 10:45:33 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/24 14:25:12 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h>
+# include <string.h>
 
 //*********USEER*********//
 # include "token.h"
