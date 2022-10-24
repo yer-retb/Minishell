@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:55:10 by enja              #+#    #+#             */
-/*   Updated: 2022/10/23 10:13:43 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/24 00:50:48 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_red	*red_list(int type, char *val)
 	else if (type == OUTF)
 	{
 		red->file = val;
-		red->fd = open(val, O_CREAT | O_RDWR, 0644);
+		red->fd = open(val, O_CREAT | O_RDWR | O_TRUNC , 0644);
 	}
 	else if (type == HRD)
 	{
@@ -61,8 +61,9 @@ t_red	*red_list(int type, char *val)
 	else if (type == APD)
 	{
 		red->file = val;
-		red->fd = open(val, O_CREAT | O_RDWR, 0644);
+		red->fd = open(val, O_CREAT | O_APPEND | O_RDWR, 0644);
 	}
+	printf("fd ---> %d\n", red->fd);
 	return (red);
 }
 
@@ -76,8 +77,7 @@ t_data	big_data(t_psr *node)
 	tmp = NULL;
 	data.red = NULL;
 	data.str = NULL;
-	
-	// printf("[%s]\n", node->tkn_st->val);
+
 	while (node)
 	{
 		if ((node->tkn_st->e_type == CMD || node->tkn_st->e_type == ARG))
@@ -86,24 +86,28 @@ t_data	big_data(t_psr *node)
 			|| (node->tkn_st->e_type == HRD) || (node->tkn_st->e_type == APD))
 		{
 			if (!hd_red)
-			{
 				hd_red = red_list(node->tkn_st->e_type, \
 					node->tkn_st->val);
-				// printf("RED %s\n", hd_red->file);
-			}
 			else
 			{
 				tmp = hd_red;
 				while (tmp && tmp->next)
+				{
+					// close(tmp->fd);
 					tmp = tmp->next;
+				}
 				tmp->next = red_list(node->tkn_st->e_type, \
 					node->tkn_st->val);
-				// printf("RED %s\n", tmp->file);
+				data.in = tmp->next->fd;
 			}
 		}
 		node = node->nx_tkn;
 	}
 	if (hd_red)
 		data.red = hd_red;
+	// while (data.red)
+	// {
+	// 	printf("fd : %d\n file : %s\n", data.in, data.red->file);
+	// }
 	return (data);
 }

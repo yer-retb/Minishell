@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 08:30:51 by enja              #+#    #+#             */
-/*   Updated: 2022/10/23 12:50:31 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/24 00:05:37 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,31 @@ void	built_cd(char **env, char *str)
 		printf("Minishell: cd: %s: No such file or directory\n", str);
 }
 
+void    execute(t_data data)
+{
+	int sig;
+    if (fork() == 0)
+	{
+        sig = execve(data.str[0], data.str, NULL);
+		if(sig == -1)
+		{
+			printf("command not found\n");
+			exit(1);
+		}
+	}
+    while (waitpid(-1,NULL,0) == -1);
+}
+
+int	check_file2(char *str)
+{
+	int	fd;
+
+	fd = access(str, F_OK);
+	if (fd == -1)
+		return(0);
+	return (1);
+}
+
 void	built_pwd(char **env)
 {
 	int	i;
@@ -60,17 +85,26 @@ void	built_pwd(char **env)
 	}
 }
 
+void	bash_builtin(t_data data)
+{
+	if (check_file2(data.str[0]) == 1)
+		execute(data);
+	
+}
+
 void	builtins(char **env, t_data *data)
 {
 	int	i;
 
 	i = 0;
-	while (data->str[i])
+	while (i < 1)
 	{
-		if (ft_strncmp("pwd", data->str[i], 3) == 0)
+		if (ft_strncmp("pwd", data[i].str[0], 3) == 0)
 			built_pwd(env);
-		if (ft_strncmp("cd", data->str[i], 2) == 0)
+		if (ft_strncmp("cd", data[i].str[0], 2) == 0)
 			built_cd(env, data->str[i + 1]);
+		else
+			bash_builtin(data[i]);
 		i++;
 	}
 }
