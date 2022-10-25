@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 05:50:34 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/10/05 11:36:14 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/25 03:11:33 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	main(int ac, char **av, char **env)
 	// t_token		*token;
 	// t_parser	*head;
 	char		**my_env;
-
 	// head = NULL;
 	(void) ac;
 	(void) av;

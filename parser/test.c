@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:55:10 by enja              #+#    #+#             */
-/*   Updated: 2022/10/24 00:50:48 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/25 04:07:20 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ t_red	*red_list(int type, char *val)
 		red->file = val;
 		red->fd = open(val, O_CREAT | O_APPEND | O_RDWR, 0644);
 	}
-	printf("fd ---> %d\n", red->fd);
 	return (red);
 }
 

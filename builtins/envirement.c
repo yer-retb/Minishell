@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 08:27:54 by enja              #+#    #+#             */
-/*   Updated: 2022/10/24 14:39:16 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/25 03:45:19 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_env	*init_env1(char **str)
 
 	env = malloc(sizeof(t_env));
 	env->name = str[0];
-	env->path = str[1];
+	env->path =	str[1];
 	env->next = NULL;
 	return (env);
 }
@@ -55,11 +55,7 @@ t_env	*envirement_list(char **my_env)
 	{
 		tmp = ft_split(my_env[i], '=');
 		list_at_back4(&env, init_env1(tmp));
-		// while (tmp[j])
-		// 	free(tmp[j++]);
-		// free(tmp);
 		i++;
-		j = 0;
 	}
 	return (env);
 }

@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:21:43 by enja              #+#    #+#             */
-/*   Updated: 2022/10/24 14:40:44 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/25 04:16:07 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	init_shell(char **my_env)
 	
 	int i = 0;
 	token = NULL;
+	last_env = envirement_list(my_env);
 	while (TRUE)
 	{
 		cmd = get_prompt();
@@ -136,8 +137,7 @@ void	init_shell(char **my_env)
 		// 	printf("%s\n", tab[i++]);
 		i = 0;
 		data = parser_exec_preparation(tab, nhead);
-		last_env = envirement_list(my_env);
-		builtins(&last_env, data);
+		builtins(last_env, data);
 		while (tab[i])
 			free(tab[i++]);
 		free(tab);
