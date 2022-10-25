@@ -6,7 +6,7 @@
 #    By: enja <enja@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/16 00:40:44 by yer-retb          #+#    #+#              #
-#    Updated: 2022/10/25 14:17:36 by enja             ###   ########.fr        #
+#    Updated: 2022/10/25 14:20:30 by enja             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,6 @@ re : fclean all ./minishell
 push : 
 	rm -rf minishell.dSYM
 	@git add .
-	@git commit -m "$HOME problem fixed and echo"
+	@git commit -m "HOME problem fixed and echo"
 	@git push -f
 	
