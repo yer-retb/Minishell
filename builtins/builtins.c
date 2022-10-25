@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 08:30:51 by enja              #+#    #+#             */
-/*   Updated: 2022/10/25 09:19:59 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/25 14:17:01 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,3 +217,5 @@ void	builtins(t_env *env, t_data *data)
 		i++;
 	}
 }
+
+//sla7t lmochkil dila $HOME o 9adit echo 

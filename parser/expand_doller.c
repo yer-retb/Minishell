@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:04:23 by enja              #+#    #+#             */
-/*   Updated: 2022/10/25 09:36:34 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/25 14:14:32 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,12 @@ char	*get_env(char *ptr, char **env)
 	int	i;
 
 	i = 0;
+	ptr = ft_strjoin_no_free(ptr, "=");
 	while (env[i] != NULL)
 	{
 		if (ft_strncmp(ptr, env[i], ft_strlen(ptr)) == 0)
 		{
-			ptr = ft_strjoin_no_free(ptr, "=");
-			if (!ft_strncmp(ptr, env[i], ft_strlen(ptr)))
-				ptr = moded_strnstr(env[i], ptr, ft_strlen(env[i]));
-			// printf("---> %s\n", ptr);
+			ptr = moded_strnstr(env[i], ptr, ft_strlen(env[i]));
 			return (ptr);
 		}
 		i++;
