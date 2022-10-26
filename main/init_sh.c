@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:21:43 by enja              #+#    #+#             */
-/*   Updated: 2022/10/25 13:21:41 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/26 08:10:13 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ void	init_shell(char **my_env)
 	while (TRUE)
 	{
 		cmd = get_prompt();
-		if (ft_strcmp(cmd, "exit") == 0)
-			exit(1);
 		if (ft_strcmp(cmd, "clear") == 0)
 		{
 			free(cmd);

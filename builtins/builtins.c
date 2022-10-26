@@ -6,7 +6,7 @@
 /*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 08:30:51 by enja              #+#    #+#             */
-/*   Updated: 2022/10/25 14:17:01 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/26 12:56:59 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ void	built_env(t_env *envirement)
 	env = envirement;
 	while (env)
 	{
-		if (env->path)
+		if (env->name && env->path)
 			printf("%s=%s\n", env->name, env->path);
 		env = env->next;
 	}
@@ -195,6 +195,12 @@ void	built_echo(char **str)
 	}
 }
 
+void	built_exit(char **str)
+{
+	if (!str[0])
+		exit(0);
+}
+
 void	builtins(t_env *env, t_data *data)
 {
 	int	i;
@@ -212,10 +218,14 @@ void	builtins(t_env *env, t_data *data)
 			built_env(env);
 		else if (!ft_strncmp("echo", data[i].str[0], 4))
 			built_echo(data->str + 1);
+		else if (!ft_strncmp("exit", data[i].str[0], 4))
+			built_exit(data->str + 1);
+		else if (!ft_strncmp("export", data[i].str[0], 6))
+			built_export(env, data->str + 1);
 		else
 			bash_builtin(data[i], path);
 		i++;
 	}
 }
 
-//sla7t lmochkil dila $HOME o 9adit echo 
+//sla7t lmochkil dila $HOME o 9adit echo exit(ba9i fiha tkhofich) o export yalah 7etit algo ms ba9i ma implemontito 
