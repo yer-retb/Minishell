@@ -22,6 +22,7 @@ typedef struct n_env
 
 t_env	*envirement_list(char **env);
 t_env	*init_env1(char **str);
+void	delet_node(t_env **head, int pos);
 void	list_at_back4(t_env **save, t_env *node);
 void	builtins(t_env *env, t_data *data);
 void	built_pwd(t_env *env);
@@ -31,7 +32,6 @@ void	built_exit(char **str);
 void	built_echo(char **str);
 void	built_export(t_env *envirement, char **str);
 void	built_unset(t_env *envirement, char **str);
-void	delet_node(t_env **head, char *name, int pos);
 int		check_file2(char *str);
 void	execute(t_data data);
 void	bash_builtin(t_data data, char **path);

@@ -54,7 +54,10 @@ void	built_cd(t_env *envirement, char *str)
 		}
 	}
 	else
+	{
 		printf("Minishell: cd: %s: No such file or directory\n", str);
+		exit_val = 1;
+	}
 }
 
 void	execute(t_data data)
@@ -67,7 +70,7 @@ void	execute(t_data data)
 		if (sig == -1)
 		{
 			printf("Minishell: %s: command not found\n", data.str[0]);
-			exit(1);
+			exit(127);
 		}
 	}
 	while (waitpid(-1, NULL, 0) == -1);
@@ -91,6 +94,7 @@ int	check_file3(char *str)
 	if (fd == -1)
 	{
 		printf("Minishell: %s: No such file or directory\n", str);
+		exit_val = 1;
 		return(0);	
 	}
 	return (1);
@@ -199,8 +203,15 @@ void	built_echo(char **str)
 
 void	built_exit(char **str)
 {
+	int	i;
+
+	i = 0;
 	if (!str[0])
-		exit(0);
+		exit(exit_val);
+	// while (str && str[i])
+	// {
+		
+	// }
 }
 
 void	builtins(t_env *env, t_data *data)

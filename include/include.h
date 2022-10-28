@@ -34,6 +34,8 @@
 # include "builtins.h"
 # include "functions.h"
 
+int	exit_val;
+
 typedef struct n_test
 {
 	t_lexer		*lexer;

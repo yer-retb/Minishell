@@ -17,7 +17,7 @@ int	ft_isalnum2(char c)
 	if ((c >= 'a' && c <= 'z')
 		|| (c >= 'A' && c <= 'Z')
 		|| (c >= '0' && c <= '9')
-		|| (c == '_'))
+		|| (c == '_') || (c == '='))
 		return (1);
 	else
 		return (0);
@@ -34,7 +34,7 @@ int	check_string(char **str)
 		j = 0;
 		while(str[i][j])
 		{
-			if(ft_isdigit(str[i][0]))
+			if(ft_isdigit(str[i][0]) || str[i][0] == '=')
 				return (1);
 			if (!ft_isalnum2(str[i][j]))
 				return (1);
@@ -43,6 +43,27 @@ int	check_string(char **str)
 		i++;
 	}
 	return(0);
+}
+
+int	check_duplicate(t_env *envi, char **str)
+{
+	// int		i;
+	t_env	*env;
+
+	// i = 0;
+	env = envi;
+	while (env && env->next)
+	{
+		if ((ft_strcmp(env->next->name, str[0]) == 0) && !str[1])
+			return (0);
+		else if (ft_strcmp(env->next->name, str[0]) == 0)
+		{
+			delet_node (&env, 0);
+			return (1);
+		}
+		env = env->next;
+	}
+	return (1);
 }
 
 void	built_export(t_env *envirement, char **str)
@@ -69,25 +90,26 @@ void	built_export(t_env *envirement, char **str)
 		if (check_string(str))
 		{
 			printf("Minishell: export: not a valid identifier\n");
+			exit_val = 1;
 			return ;
 		}
 		while (str && str[i])
 		{
 			tmp = ft_split(str[i], '=');
-			list_at_back4(&env, init_env1(tmp));
+			if (check_duplicate(env, tmp))
+				list_at_back4(&env, init_env1(tmp));
 			i++;
 		}
 	}
 }
 
-void	delet_node(t_env **head, char *name, int pos)
+void	delet_node(t_env **head, int pos)
 {
 	t_env	*save;
 	t_env	*tmp;
 
 	save = *head;
 	tmp = *head;
-	(void)name;
 	
 	if (!head)
 		return ;
@@ -123,6 +145,7 @@ void	built_unset(t_env *envirement, char **str)
 		if (check_string(str))
 		{
 			printf("Minishell: unset: not a valid identifier\n");
+			exit_val = 1;
 			return ;
 		}
 		while (str && str[i])
@@ -133,7 +156,7 @@ void	built_unset(t_env *envirement, char **str)
 			{
 				j++;
 				if (!ft_strncmp(str[i], env->next->name, ft_strlen(str[i])))
-					delet_node(&env, env->name, j);
+					delet_node(&env, j);
 				env = env->next;
 			}
 			i++;

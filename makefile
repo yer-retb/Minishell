@@ -31,7 +31,6 @@ all : $(NAME)
 $(NAME) : $(SRS)
 	@$(CC) $(CFLAG) $(SRS) -o $(NAME)
 	@echo "\033[42mMinishell Is Ready\033[0m"
-	./minishell 
 
 fclean : 
 	@rm -rf $(NAME)
@@ -41,7 +40,7 @@ clean :
 	@rm -rf $(NAME)
 	@echo "\033[41mCleaning Minishell\033[0m"
 	
-re : fclean all ./minishell 
+re : fclean all
 
 push : 
 	rm -rf minishell.dSYM
