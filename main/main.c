@@ -19,13 +19,15 @@ int	main(int ac, char **av, char **env)
 	// t_token		*token;
 	// t_parser	*head;
 	char		**my_env;
+	t_env		*last_env;
 	// head = NULL;
 	(void) ac;
 	(void) av;
-	(void) env;
+	// (void) env;
 	my_env = NULL;
-	my_env = init_env(env, my_env);
-	init_shell(my_env);
+	last_env = envirement_list(env);
+	my_env = init_env(last_env, my_env);
+	init_shell(my_env, last_env);
 	// while (TRUE)
 	// {
 	// 	cmd = get_prompt();

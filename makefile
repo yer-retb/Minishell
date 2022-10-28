@@ -46,6 +46,6 @@ re : fclean all ./minishell
 push : 
 	rm -rf minishell.dSYM
 	@git add .
-	@git commit -m "HOME problem fixed and echo"
+	@git commit -m "finish builtins just remain exit case"
 	@git push -f
 	

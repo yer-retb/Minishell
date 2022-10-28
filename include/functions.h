@@ -30,8 +30,8 @@ t_token		*msg_error(int e_type, char *val, char *value);
 void		*msg_error1(void);
 void		*msg_cmd_error(char *msg);
 void		*msg_syntax_error(char *msg);
-char		**init_env(char **env, char **my_env);
+char		**init_env(t_env *env, char **my_env);
 t_parser	*start_lexing(char *cmd, t_token *tk, t_parser *hd);
-void		init_shell(char **env);
+void		init_shell(char **env, t_env *last_env);
 
 #endif

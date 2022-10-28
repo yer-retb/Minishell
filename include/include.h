@@ -30,9 +30,9 @@
 # include "parser_exec.h"
 # include "init_nodes.h"
 # include "parser.h"
-# include "functions.h"
 # include "data.h"
 # include "builtins.h"
+# include "functions.h"
 
 typedef struct n_test
 {

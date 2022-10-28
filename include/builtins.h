@@ -30,6 +30,8 @@ void	built_cd(t_env *envirement, char *str);
 void	built_exit(char **str);
 void	built_echo(char **str);
 void	built_export(t_env *envirement, char **str);
+void	built_unset(t_env *envirement, char **str);
+void	delet_node(t_env **head, char *name, int pos);
 int		check_file2(char *str);
 void	execute(t_data data);
 void	bash_builtin(t_data data, char **path);

@@ -181,9 +181,11 @@ void	built_echo(char **str)
 		printf("\n");
 		return ;
 	}
-	if (!ft_strcmp("-n", str[0]))
+	if (!ft_strncmp("-n", str[0], 2))
 	{
 		i = 1;
+		while (ft_strncmp("-n", str[i], 2) == 0)
+			i++;
 		while (str[i])
 			printf(" %s", str[i++]);
 	}
@@ -212,16 +214,18 @@ void	builtins(t_env *env, t_data *data)
 	{
 		if (!ft_strncmp("cd", data[i].str[0], 2))
 			built_cd(env, data->str[i + 1]);
-		else if (!ft_strncmp("pwd", data[i].str[0], 3))
+		else if (!ft_strcmp("pwd", data[i].str[0]))
 			built_pwd(env);
-		else if (!ft_strncmp("env", data[i].str[0], 3))
+		else if (!ft_strcmp("env", data[i].str[0]))
 			built_env(env);
-		else if (!ft_strncmp("echo", data[i].str[0], 4))
+		else if (!ft_strcmp("echo", data[i].str[0]))
 			built_echo(data->str + 1);
-		else if (!ft_strncmp("exit", data[i].str[0], 4))
+		else if (!ft_strcmp("exit", data[i].str[0]))
 			built_exit(data->str + 1);
-		else if (!ft_strncmp("export", data[i].str[0], 6))
+		else if (!ft_strcmp("export", data[i].str[0]))
 			built_export(env, data->str + 1);
+		else if (!ft_strcmp("unset", data[i].str[0]))
+			built_unset(env, data->str + 1);
 		else
 			bash_builtin(data[i], path);
 		i++;

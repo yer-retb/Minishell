@@ -12,19 +12,26 @@
 
 #include "../include/include.h"
 
-char	**init_env(char **env, char **my_env)
+char	**init_env(t_env *last_env, char **my_env)
 {
-	int	i;
+	int		i;
+	t_env	*env;
 
+	env = last_env;
 	i = 0;
-	while (env[i])
+	while (env)
+	{
 		i++;
+		env = env->next;
+	}
+	env = last_env;
 	my_env = malloc(sizeof (char *) * (i + 1));
 	i = 0;
-	while (env[i])
+	while (env)
 	{
-		my_env[i] = ft_strdup(env[i]);
+		my_env[i] = ft_strjoin_no_free(ft_strjoin_no_free(env->name, "="), env->path);
 		i++;
+		env = env->next;
 	}
 	my_env[i] = NULL;
 	return (my_env);
@@ -57,7 +64,7 @@ t_parser	*start_lexing(char *cmd, t_token *tk, t_parser *hd)
 	return (hd);
 }
 
-void	init_shell(char **my_env)
+void	init_shell(char **my_env, t_env *last_env)
 {
 	char		*cmd;
 	t_token		*token;
@@ -66,13 +73,12 @@ void	init_shell(char **my_env)
 	t_psr		*nhead = NULL;
 	char		**tab;
 	t_data		*data;
-	t_env		*last_env;
 	
 	int i = 0;
 	token = NULL;
-	last_env = envirement_list(my_env);
 	while (TRUE)
 	{
+		my_env = init_env(last_env, my_env);
 		cmd = get_prompt();
 		if (ft_strcmp(cmd, "clear") == 0)
 		{
