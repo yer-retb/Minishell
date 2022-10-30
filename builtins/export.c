@@ -113,16 +113,20 @@ void	delet_node(t_env **head, int pos)
 	
 	if (!head)
 		return ;
-	else if (pos == 1)
+	else if (pos == 0)
 	{
-		*head = tmp->next;
+		*head = (*head)->next;
 		free(tmp);
 		tmp = NULL;
 	}
 	else
 	{
-		save = tmp;
-		tmp = tmp->next;
+		while (pos != 0)
+		{
+			save = tmp;
+			tmp = tmp->next;
+			pos--;
+		}
 		save->next = tmp->next;
 		free(tmp);
 		tmp = NULL;
@@ -130,14 +134,14 @@ void	delet_node(t_env **head, int pos)
 
 }
 
-void	built_unset(t_env *envirement, char **str)
+void	built_unset(t_env **envirement, char **str)
 {
 	int		i;
 	int		j;
 	t_env	*env;
 
 	i = 0;
-	env = envirement;
+	env = *envirement;
 	if (!str[0])
 		return ;
 	else
@@ -150,13 +154,17 @@ void	built_unset(t_env *envirement, char **str)
 		}
 		while (str && str[i])
 		{
-			env = envirement;
+			env = *envirement;
 			j = 0;
-			while (env && env->next)
+			while (env)
 			{
+				if (!ft_strncmp(str[i], env->name, ft_strlen(str[i])))
+				{
+					printf("%s\n", env->name);
+					delet_node(envirement, j);
+					break ;
+				}
 				j++;
-				if (!ft_strncmp(str[i], env->next->name, ft_strlen(str[i])))
-					delet_node(&env, j);
 				env = env->next;
 			}
 			i++;

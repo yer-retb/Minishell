@@ -45,6 +45,6 @@ re : fclean all
 push : 
 	rm -rf minishell.dSYM
 	@git add .
-	@git commit -m "finish builtins just remain exit case"
+	@git commit -m "finish builtins"
 	@git push -f
 	

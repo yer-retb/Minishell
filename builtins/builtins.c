@@ -120,10 +120,11 @@ void	built_pwd(t_env *envirement)
  
 void	bash_builtin(t_data data, char **path)
 {
-	int i;
-	char *cmd = "/";
+	int		i;
+	char	*cmd;
 
 	i = 0;
+	cmd = "/";
 	(void)path;
 	cmd = ft_strjoin_no_free(cmd ,data.str[0]);
 	while (path[i])
@@ -163,7 +164,7 @@ void	built_env(t_env *envirement)
 char	**get_binary_file(t_env *env)
 {
 	t_env	*save;
-	char **pathlist;
+	char	**pathlist;
 
 	save = env;
 	while (save)
@@ -173,6 +174,20 @@ char	**get_binary_file(t_env *env)
 		save = save->next;
 	}
 	return (pathlist);
+}
+
+int	its_n(char *str)
+{
+	int	i;
+
+	i = 1;
+	while (str[i])
+	{
+		if (str[i] != 'n')
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 void	built_echo(char **str)
@@ -185,12 +200,12 @@ void	built_echo(char **str)
 		printf("\n");
 		return ;
 	}
-	if (!ft_strncmp("-n", str[0], 2))
+	if (its_n(str[i]) && (!ft_strncmp("-n", str[0], 2)))
 	{
 		i = 1;
-		while (ft_strncmp("-n", str[i], 2) == 0)
+		while (str[i] && (ft_strncmp("-n", str[i], 2) == 0) && its_n(str[i]))
 			i++;
-		while (str[i])
+		while (str && str[i])
 			printf(" %s", str[i++]);
 	}
 	else
@@ -201,40 +216,75 @@ void	built_echo(char **str)
 	}
 }
 
+void	print_exit_error(char *str, int ex)
+{
+	
+	printf("exit\nMinishel: exit: %s: numeric argument required\n", str);
+	exit(ex);
+}
+
+int	ft_if_isalpha(char **str)
+{
+	int	i;
+	int j;
+
+	i = 0;
+	while (str[i])
+	{
+		j = 0;
+		while (str[i][j])
+		{
+			if (!ft_isdigit(str[0][j]))
+				print_exit_error(str[0], 255);
+			j++;
+		}
+		i++;
+	}
+	if (i == 1)
+		i = 0;
+	return (i);
+}
+
 void	built_exit(char **str)
 {
 	int	i;
+	int	num;
 
 	i = 0;
 	if (!str[0])
 		exit(exit_val);
-	// while (str && str[i])
-	// {
-		
-	// }
+	if (ft_if_isalpha(str) > 0)
+	{
+		printf("exit\nMinishell: exit: too many arguments\n");
+		return ;
+	}
+	num = ft_atoi(str[0]);
+	exit_val = num % 256;
+	printf("exit\n");
+	exit(exit_val);
 }
 
-void	builtins(t_env *env, t_data *data)
+void	builtins(t_env **env, t_data *data)
 {
-	int	i;
+	int		i;
 	char	**path;
 
-	path = get_binary_file(env);
+	path = get_binary_file(*env);
 	i = 0;
 	while (i < 1 && data[0].str)
 	{
 		if (!ft_strncmp("cd", data[i].str[0], 2))
-			built_cd(env, data->str[i + 1]);
+			built_cd(*env, data->str[i + 1]);
 		else if (!ft_strcmp("pwd", data[i].str[0]))
-			built_pwd(env);
+			built_pwd(*env);
 		else if (!ft_strcmp("env", data[i].str[0]))
-			built_env(env);
+			built_env(*env);
 		else if (!ft_strcmp("echo", data[i].str[0]))
 			built_echo(data->str + 1);
 		else if (!ft_strcmp("exit", data[i].str[0]))
 			built_exit(data->str + 1);
 		else if (!ft_strcmp("export", data[i].str[0]))
-			built_export(env, data->str + 1);
+			built_export(*env, data->str + 1);
 		else if (!ft_strcmp("unset", data[i].str[0]))
 			built_unset(env, data->str + 1);
 		else
@@ -243,4 +293,4 @@ void	builtins(t_env *env, t_data *data)
 	}
 }
 
-//sla7t lmochkil dila $HOME o 9adit echo exit(ba9i fiha tkhofich) o export yalah 7etit algo ms ba9i ma implemontito 
+// salit ga3 builtins

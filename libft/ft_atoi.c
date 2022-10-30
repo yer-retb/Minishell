@@ -12,31 +12,31 @@
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char *s)
 {
-	int	sign;
-	int	value;
-	int	range;
+	unsigned long	rsl;
+	int				sn;
+	int				i;
 
-	sign = 1;
-	value = 0;
-	range = 0;
-	while ((*str == ' ' || *str == '\f') || (*str == '\n' || *str == '\r')
-		|| (*str == '\t' || *str == '\v'))
-		str++;
-	if (*str == '-')
-		sign = -1;
-	if (*str == '-' || *str == '+')
-		++str;
-	while (*str >= '0' && *str <= '9')
+	sn = 1;
+	i = 0;
+	rsl = 0;
+	while ((s[i] == 32) || (s[i] >= 9 && s[i] <= 13))
+		i++;
+	if ((s[i] == '-') || (s[i] == '+'))
 	{
-		value = value * 10 + (*str - '0');
-		str++;
-		range++;
-		if (range >= 20 && sign == -1)
-			return (0);
-		if (range >= 20 && sign == 1)
-			return (-1);
+		if (s[i] == '-')
+			sn = -1;
+		i++;
 	}
-	return (value * sign);
+	while (s[i] && (s[i] >= '0' && s[i] <= '9'))
+	{
+		rsl = rsl * 10 + s[i] - '0';
+		i++;
+	}
+	if (rsl >= 9223372036854775807 && sn == -1)
+		print_exit_error(s, 255);
+	else if (rsl >= 9223372036854775807 && sn == 1)
+		print_exit_error(s, 255);
+	return (sn * rsl);
 }

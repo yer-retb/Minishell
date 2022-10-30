@@ -85,28 +85,32 @@ t_data	big_data(t_psr *node)
 			|| (node->tkn_st->e_type == HRD) || (node->tkn_st->e_type == APD))
 		{
 			if (!hd_red)
+			{
 				hd_red = red_list(node->tkn_st->e_type, \
 					node->tkn_st->val);
+				data.in = hd_red->fd;
+			}
 			else
 			{
 				tmp = hd_red;
 				while (tmp && tmp->next)
 				{
-					// close(tmp->fd);
+					close(tmp->fd);
 					tmp = tmp->next;
 				}
 				tmp->next = red_list(node->tkn_st->e_type, \
 					node->tkn_st->val);
-				data.in = tmp->next->fd;
+				data.in = tmp->fd;
 			}
 		}
 		node = node->nx_tkn;
 	}
 	if (hd_red)
 		data.red = hd_red;
-	// while (data.red)
-	// {
-	// 	printf("fd : %d\n file : %s\n", data.in, data.red->file);
-	// }
+	while (data.red)
+	{
+		printf("fd : %d     {%s} \n", data.in, data.red->file);
+		data.red = data.red->next;
+	}
 	return (data);
 }

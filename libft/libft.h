@@ -24,7 +24,7 @@ void			*ft_memset(void *b, int c, int len);
 void			*ft_memcpy(void *dst, const void *src, int n);
 void			*ft_memmove(void *dst, const void *src, int len);
 void			*ft_memchr(const void *s, int c, int n);
-int				ft_atoi(const char *str);
+int				ft_atoi(char *str);
 int				ft_memcmp(const void *s1, const void *s2, int n);
 int				ft_isascii(int a);
 int				ft_isprint(int a);
@@ -54,4 +54,5 @@ void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 char			*ft_strjoin_no_free(char *s1, char *s2);
 char			*moded_strnstr(char *str, char *needle, int len);
+void	print_exit_error(char *str, int ex);
 #endif

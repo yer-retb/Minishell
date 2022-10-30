@@ -68,7 +68,7 @@ void	init_shell(char **my_env, t_env *last_env)
 {
 	char		*cmd;
 	t_token		*token;
-	t_parser	*head;
+	t_parser	*head = NULL;
 	t_parser	*nhd;
 	t_psr		*nhead = NULL;
 	char		**tab;
@@ -141,7 +141,7 @@ void	init_shell(char **my_env, t_env *last_env)
 		// 	printf("%s\n", tab[i++]);
 		i = 0;
 		data = parser_exec_preparation(tab, nhead);
-		builtins(last_env, data);
+		builtins(&last_env, data);
 		while (tab[i])
 			free(tab[i++]);
 		free(tab);
