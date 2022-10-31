@@ -224,8 +224,6 @@ void	built_echo(char **str)
 	}
 }
 
-//echo $HOME"$HOME"'$"HOME"'
-
 void	print_exit_error(char *str, int ex)
 {
 	
