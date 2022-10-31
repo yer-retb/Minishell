@@ -110,7 +110,7 @@ char	*norm_doller(int *x, char *str, char *ptr, char **env)
 
 	i = *x;
 	i++;
-	while (str[i] && ft_isalnum(str[i]))
+	while (str[i] && (ft_isalnum(str[i])))
 		ptr = get_char(ptr, str[i++]);
 	ptr = get_env(ptr, env);
 	str = merge_str(str, ptr);

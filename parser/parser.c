@@ -77,14 +77,14 @@ char	*detect_doller(char *str, char **env)
 	{
 		if (str[i] && str[i] == '\'')
 			str = doller_quats(str, ptr, env, &i);
-		else if (str[i] && str[i] == '$' && ft_isalpha(str[i + 1]))
+		else if (str[i] && str[i] == '$' && (ft_isalpha(str[i + 1])))
 			str = norm_doller(&i, str, ptr, env);
 		else if (str[i] && str[i] == '$' && ft_isdigit(str[i + 1]))
 			str = ft_strdup(str + 2);
 		else if (str[i] && str[i] == '\"')
 		{
 			str = doller_quats(str, ptr, env, &i);
-			i++;
+			//i++;
 		}
 		else if (str && str[i])
 			i++;

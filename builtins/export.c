@@ -23,23 +23,17 @@ int	ft_isalnum2(char c)
 		return (0);
 }
 
-int	check_string(char **str)
+int	check_string(char *str)
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	while(str[i])
 	{
-		j = 0;
-		while(str[i][j])
-		{
-			if(ft_isdigit(str[i][0]) || str[i][0] == '=')
-				return (1);
-			if (!ft_isalnum2(str[i][j]))
-				return (1);
-			j++;
-		}
+		if(ft_isdigit(str[0]) || str[0] == '=')
+			return (1);
+		if (!ft_isalnum2(str[i]))
+			return (1);
 		i++;
 	}
 	return(0);
@@ -47,21 +41,22 @@ int	check_string(char **str)
 
 int	check_duplicate(t_env *envi, char **str)
 {
-	// int		i;
 	t_env	*env;
+	int		i;
 
-	// i = 0;
 	env = envi;
-	while (env && env->next)
+	i = 0;
+	while (env)
 	{
-		if ((ft_strcmp(env->next->name, str[0]) == 0) && !str[1])
+		if ((ft_strcmp(env->name, str[0]) == 0) && !str[1])
 			return (0);
-		else if (ft_strcmp(env->next->name, str[0]) == 0)
+		else if (ft_strcmp(env->name, str[0]) == 0)
 		{
-			delet_node (&env, 0);
+			delet_node(&envi, i);
 			return (1);
 		}
 		env = env->next;
+		i++;
 	}
 	return (1);
 }
@@ -87,16 +82,24 @@ void	built_export(t_env *envirement, char **str)
 	}
 	else 
 	{
-		if (check_string(str))
-		{
-			printf("Minishell: export: not a valid identifier\n");
-			exit_val = 1;
-			return ;
-		}
 		while (str && str[i])
 		{
+			if (str[i][0] == '=')
+			{
+				printf("Minishell: export: not a valid identifier\n");
+				exit_val = 1;
+				i++;
+				continue ;
+			}
 			tmp = ft_split(str[i], '=');
-			if (check_duplicate(env, tmp))
+			if (check_string(tmp[0]))
+			{
+				printf("Minishell: export: not a valid identifier\n");
+				exit_val = 1;
+			}
+			if (!tmp[1])
+				tmp[1] = ft_strdup("");
+			if (check_duplicate(env, tmp) && (!check_string(tmp[0])))
 				list_at_back4(&env, init_env1(tmp));
 			i++;
 		}
@@ -146,11 +149,10 @@ void	built_unset(t_env **envirement, char **str)
 		return ;
 	else
 	{
-		if (check_string(str))
+		if (check_string(str[0]))
 		{
 			printf("Minishell: unset: not a valid identifier\n");
 			exit_val = 1;
-			return ;
 		}
 		while (str && str[i])
 		{
@@ -160,7 +162,6 @@ void	built_unset(t_env **envirement, char **str)
 			{
 				if (!ft_strncmp(str[i], env->name, ft_strlen(str[i])))
 				{
-					printf("%s\n", env->name);
 					delet_node(envirement, j);
 					break ;
 				}

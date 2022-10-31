@@ -206,15 +206,25 @@ void	built_echo(char **str)
 		while (str[i] && (ft_strncmp("-n", str[i], 2) == 0) && its_n(str[i]))
 			i++;
 		while (str && str[i])
+		{
+			if (!ft_strcmp("$?", str[i]))
+				str[i] = ft_strdup(ft_itoa(exit_val));
 			printf(" %s", str[i++]);
+		}
 	}
 	else
 	{
 		while (str[i])
+		{
+			if (!ft_strcmp("$?", str[i]))
+				str[i] = ft_strdup(ft_itoa(exit_val));
 			printf("%s ", str[i++]);
+		}
 		printf("\n");
 	}
 }
+
+//echo $HOME"$HOME"'$"HOME"'
 
 void	print_exit_error(char *str, int ex)
 {
