@@ -31,6 +31,7 @@ char	*get_prompt(void)
 		sig = 0;
 	}
 	cmd = readline("\033[0;32m[\033[0m Minishell \033[0;32m]~>\033[0m ");
-	add_history(cmd);
+	if (cmd[0] != '\0')
+		add_history(cmd);
 	return (cmd);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 08:26:18 by enja              #+#    #+#             */
-/*   Updated: 2022/10/26 09:01:28 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/31 23:26:49 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ int		check_file2(char *str);
 void	execute(t_data data);
 void	bash_builtin(t_data data, char **path);
 char	**get_binary_file(t_env *env);
+int		herdoc(char *str);
 
 # endif

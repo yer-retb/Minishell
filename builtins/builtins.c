@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 08:30:51 by enja              #+#    #+#             */
-/*   Updated: 2022/10/26 12:56:59 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/31 23:41:24 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,33 @@ void	bash_builtin(t_data data, char **path)
 {
 	int		i;
 	char	*cmd;
+	t_red	*tmp;
+	int fd;
 
 	i = 0;
+	fd = -1;
+	if (data.red && data.red->type == 5)
+	{
+		tmp = data.red;
+		while (tmp)
+		{
+			if (tmp->type == 5)
+				fd = herdoc(tmp->file);
+			tmp = tmp->next;
+		}
+	}
+	if (data.red)
+	{
+		printf("%d\n", fd);
+		tmp = data.red;
+		while (tmp)
+		{
+			if (tmp->type == 4)
+				dup2(0, data.in);
+			tmp = tmp->next;
+		}
+		
+	}
 	cmd = "/";
 	(void)path;
 	cmd = ft_strjoin_no_free(cmd ,data.str[0]);
@@ -279,7 +304,7 @@ void	builtins(t_env **env, t_data *data)
 
 	path = get_binary_file(*env);
 	i = 0;
-	while (i < 1 && data[0].str)
+	while (i < 1 && data[0].str )
 	{
 		if (!ft_strncmp("cd", data[i].str[0], 2))
 			built_cd(*env, data->str[i + 1]);

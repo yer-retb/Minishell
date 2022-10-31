@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data.h                                             :+:      :+:    :+:   */
+/*   herdoc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 05:48:16 by enja              #+#    #+#             */
-/*   Updated: 2022/10/31 22:58:59 by yer-retb         ###   ########.fr       */
+/*   Created: 2022/10/31 22:50:29 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/10/31 23:29:08 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_H
-# define DATA_H
+#include "../include/include.h"
 
-typedef struct n_red
+int	herdoc(char *str)
 {
-	int				type;
-	int				fd;
-	char			*file;
-	struct n_red	*next;
-}				t_red;
+	char *cmd;
+	int fd[2];
 
-typedef struct n_data
-{
-	char	**str;
-	t_red	*red;
-	int		in;
-	int		out;
-}	t_data;
-
-t_data	big_data(t_psr *node);
-void	make_data(t_bige_node *bignode);
-int		node_size(t_bige_node *bignode);
-void	check_file(char *str);
-int		check_file2(char *str);
-
-#endif
+	pipe(fd);
+	cmd = NULL;
+	cmd = readline(">");
+	while (ft_strcmp(cmd, str) != 0)
+	{
+		write(fd[1], cmd, ft_strlen(cmd));
+		write(fd[1], "\n", 1);
+		cmd = readline(">");
+	}
+	close(fd[1]);
+	return (fd[0]);
+}

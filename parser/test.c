@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:55:10 by enja              #+#    #+#             */
-/*   Updated: 2022/10/25 04:07:20 by enja             ###   ########.fr       */
+/*   Updated: 2022/10/31 23:35:55 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,25 @@ t_red	*red_list(int type, char *val)
 	red->next = NULL;
 	if (type == INF)
 	{
+		red->type = type;
 		red->file = val;
 		check_file(val);
 		red->fd = open(val, O_RDONLY);
 	}
 	else if (type == OUTF)
 	{
+		red->type = type;
 		red->file = val;
 		red->fd = open(val, O_CREAT | O_RDWR | O_TRUNC , 0644);
 	}
 	else if (type == HRD)
 	{
+		red->type = type;
 		red->file = val;
-		red->fd = open(val, O_RDWR, 0644);
 	}
 	else if (type == APD)
 	{
+		red->type = type;
 		red->file = val;
 		red->fd = open(val, O_CREAT | O_APPEND | O_RDWR, 0644);
 	}
@@ -95,7 +98,7 @@ t_data	big_data(t_psr *node)
 				tmp = hd_red;
 				while (tmp && tmp->next)
 				{
-					close(tmp->fd);
+					// close(tmp->fd);
 					tmp = tmp->next;
 				}
 				tmp->next = red_list(node->tkn_st->e_type, \
@@ -107,10 +110,5 @@ t_data	big_data(t_psr *node)
 	}
 	if (hd_red)
 		data.red = hd_red;
-	while (data.red)
-	{
-		printf("fd : %d     {%s} \n", data.in, data.red->file);
-		data.red = data.red->next;
-	}
 	return (data);
 }
