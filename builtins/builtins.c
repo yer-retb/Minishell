@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 08:30:51 by enja              #+#    #+#             */
-/*   Updated: 2022/10/31 23:41:24 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/01 17:58:04 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,38 +139,38 @@ void	bash_builtin(t_data data, char **path)
 	}
 	if (data.red)
 	{
-		printf("%d\n", fd);
 		tmp = data.red;
 		while (tmp)
 		{
 			if (tmp->type == 4)
-				dup2(0, data.in);
+				dup2(data.in, 1);
 			tmp = tmp->next;
 		}
-		
 	}
-	cmd = "/";
-	(void)path;
-	cmd = ft_strjoin_no_free(cmd ,data.str[0]);
-	while (path[i])
+	if (data.str)
 	{
-		cmd = ft_strjoin_no_free(path[i], cmd);
-		if (check_file2(cmd) == 1)
+		cmd = "/";
+		cmd = ft_strjoin_no_free(cmd ,data.str[0]);
+		while (path[i])
 		{
-			data.str[0] = cmd;
+			cmd = ft_strjoin_no_free(path[i], cmd);
+			if (check_file2(cmd) == 1)
+			{
+				data.str[0] = cmd;
+				execute(data);
+				return;
+			}
+			else
+			{
+				free(cmd);
+				cmd = "/";
+				cmd = ft_strjoin_no_free(cmd ,data.str[0]);
+			}
+			i++;
+		}
+		if (check_file3(data.str[0]) == 1)
 			execute(data);
-			return;
-		}
-		else
-		{
-			free(cmd);
-			cmd = "/";
-			cmd = ft_strjoin_no_free(cmd ,data.str[0]);
-		}
-		i++;
 	}
-	if (check_file3(data.str[0]) == 1)
-		execute(data);
 }
 
 void	built_env(t_env *envirement)
@@ -304,21 +304,21 @@ void	builtins(t_env **env, t_data *data)
 
 	path = get_binary_file(*env);
 	i = 0;
-	while (i < 1 && data[0].str )
+	while (i < 1)
 	{
-		if (!ft_strncmp("cd", data[i].str[0], 2))
+		if (data[i].str && !ft_strncmp("cd", data[i].str[0], 2))
 			built_cd(*env, data->str[i + 1]);
-		else if (!ft_strcmp("pwd", data[i].str[0]))
+		else if (data[i].str && !ft_strcmp("pwd", data[i].str[0]))
 			built_pwd(*env);
-		else if (!ft_strcmp("env", data[i].str[0]))
+		else if (data[i].str && !ft_strcmp("env", data[i].str[0]))
 			built_env(*env);
-		else if (!ft_strcmp("echo", data[i].str[0]))
+		else if (data[i].str && !ft_strcmp("echo", data[i].str[0]))
 			built_echo(data->str + 1);
-		else if (!ft_strcmp("exit", data[i].str[0]))
+		else if (data[i].str && !ft_strcmp("exit", data[i].str[0]))
 			built_exit(data->str + 1);
-		else if (!ft_strcmp("export", data[i].str[0]))
+		else if (data[i].str && !ft_strcmp("export", data[i].str[0]))
 			built_export(*env, data->str + 1);
-		else if (!ft_strcmp("unset", data[i].str[0]))
+		else if (data[i].str && !ft_strcmp("unset", data[i].str[0]))
 			built_unset(env, data->str + 1);
 		else
 			bash_builtin(data[i], path);
