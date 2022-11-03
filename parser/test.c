@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:55:10 by enja              #+#    #+#             */
-/*   Updated: 2022/11/03 12:42:20 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/03 22:44:20 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,20 @@ int	number_of_arg(t_psr *head)
 	return (i);
 }
 
-void	check_file(char *str)
+int	check_file(char *str)
 {
 	int	fd;
 
 	fd = access(str, F_OK);
 	if (fd == -1)
+	{
 		printf("Minishell: %s: no such file or directory\n", str);
+		return (0);
+	}
+	return (1);
 }
 
-t_red	*red_list(int type, char *val)
+t_red	*red_list(int type, char *val, int *flag)
 {
 	t_red	*red;
 
@@ -46,7 +50,8 @@ t_red	*red_list(int type, char *val)
 	{
 		red->type = type;
 		red->file = val;
-		check_file(val);
+		if (!check_file(val))
+			*flag = -1;
 		red->fd = open(val, O_RDONLY);
 	}
 	else if (type == OUTF)
@@ -54,6 +59,7 @@ t_red	*red_list(int type, char *val)
 		red->type = type;
 		red->file = val;
 		red->fd = open(val, O_CREAT | O_RDWR | O_TRUNC , 0644);
+		
 	}
 	else if (type == HRD)
 	{
@@ -64,7 +70,7 @@ t_red	*red_list(int type, char *val)
 	{
 		red->type = type;
 		red->file = val;
-		red->fd = open(val, O_CREAT | O_APPEND | O_RDWR, 0644);
+		red->fd = open(val, O_CREAT | O_RDWR | O_APPEND, 0644);
 	}
 	return (red);
 }
@@ -79,8 +85,9 @@ t_data	big_data(t_psr *node)
 	tmp = NULL;
 	data.red = NULL;
 	data.str = NULL;
+	data.flag = 0;
 
-	while (node)
+	while (node && (data.flag == 0))
 	{
 		if ((node->tkn_st->e_type == CMD || node->tkn_st->e_type == ARG))
 			data.str = cmd_tab(data.str, node->tkn_st->val);
@@ -90,8 +97,11 @@ t_data	big_data(t_psr *node)
 			if (!hd_red)
 			{
 				hd_red = red_list(node->tkn_st->e_type, \
-					node->tkn_st->val);
-				data.in = hd_red->fd;
+					node->tkn_st->val, &data.flag);
+				if(hd_red->type == OUTF || hd_red->type == APD)
+					data.in = hd_red->fd;
+				else if(hd_red->type == INF)
+					data.out = hd_red->fd;
 			}
 			else
 			{
@@ -102,8 +112,11 @@ t_data	big_data(t_psr *node)
 					tmp = tmp->next;
 				}
 				tmp->next = red_list(node->tkn_st->e_type, \
-					node->tkn_st->val);
-				data.in = tmp->next->fd;
+					node->tkn_st->val, &data.flag);
+				if(tmp->next->type == OUTF || tmp->next->type == APD)
+					data.in = tmp->next->fd;
+				else if(tmp->next->type == INF)
+					data.out = tmp->next->fd;
 			}
 		}
 		node = node->nx_tkn;

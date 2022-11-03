@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_exec_preparation.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 04:51:45 by enja              #+#    #+#             */
-/*   Updated: 2022/10/25 02:55:35 by enja             ###   ########.fr       */
+/*   Updated: 2022/11/03 23:06:48 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,19 +106,9 @@ void	*parser_exec_preparation(char **tab, t_psr *hd)
 	t_data		*data;
 	int			i;
 	int			j;
-	// int			 k = 0;
+
 	bignode = parser_tokenazer(tab, hd); 
 	tmp = bignode;
-	// while (tmp)
-	// {
-	// 	while (tmp->psr)
-	// 	{
-	// 		printf("value = [ %s ] token = [ %d ]\n", tmp->psr->tkn_st->val, tmp->psr->tkn_st->e_type);
-	// 		 tmp->psr = tmp->psr->nx_tkn;
-	// 	}
-	// 	tmp = tmp->psr_next;
-	// }
-
 	i = count_node(bignode);
 	j = 0;
 	data = malloc(sizeof(t_data) * i);
@@ -128,27 +118,7 @@ void	*parser_exec_preparation(char **tab, t_psr *hd)
 		bignode = bignode->psr_next;
 		j++;
 	}
+	data[0].size = i;
 	return (data);
-	/*
-	j = 0;
-	while (k < i)
-	{
-		j = 0;
-		while (data[k].str && data[k].str[j])
-		{
-			printf("CMD[%d] : %s\n", j, data[k].str[j]);
-			j++;
-		}
-		k++;
-	}
-	k = 0;
-	while (k < i)
-	{
-		while (data[k].red)
-		{
-			printf("-> RED %s\n", data[k].red->file);
-			data[k].red = data[k].red->next;
-		}
-		k++;
-	}*/
+
 }

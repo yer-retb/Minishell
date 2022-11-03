@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 08:30:51 by enja              #+#    #+#             */
-/*   Updated: 2022/11/03 19:07:38 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/03 23:05:34 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,16 @@ void	bash_builtin(t_data data, char **path)
 			tmp = data.red;
 			while (tmp)
 			{
-				if (tmp->type == 4)
+				if (tmp->type == OUTF || tmp->type == APD)
+				{
 					dup2(data.in, STDOUT_FILENO);
 					close(data.in);
+				}
+				else if (tmp->type == INF)
+				{
+					dup2(data.out, STDIN_FILENO);
+					close(data.out);
+				}
 				tmp = tmp->next;
 			}
 		}
@@ -108,12 +115,13 @@ void	bash_builtin(t_data data, char **path)
 				i++;
 			}
 			if (check_file3(data.str[0]) == 1)
-			{
 				execute(data);
-				while (waitpid(-1, NULL, 0) == -1);
-			}
 		}
+		
 	}
+	else
+		while (waitpid(-1, NULL, 0) == -1);
+
 }
 
 char	**get_binary_file(t_env *env)
@@ -138,7 +146,7 @@ void	builtins(t_env **env, t_data *data)
 
 	path = get_binary_file(*env);
 	i = 0;
-	while (i < 1)
+	while (i < data[0].size && (data->flag == 0))
 	{
 		if (data[i].str && !ft_strncmp("cd", data[i].str[0], 2))
 			built_cd(*env, data->str[i + 1]);
