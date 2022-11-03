@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 08:30:51 by enja              #+#    #+#             */
-/*   Updated: 2022/11/01 17:58:04 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/03 12:28:40 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	execute(t_data data)
 
 	if (fork() == 0)
 	{
+		dup2(data.in, STDOUT_FILENO);
+		close(data.in);
 		sig = execve(data.str[0], data.str, NULL);
 		if (sig == -1)
 		{
@@ -143,7 +145,7 @@ void	bash_builtin(t_data data, char **path)
 		while (tmp)
 		{
 			if (tmp->type == 4)
-				dup2(data.in, 1);
+				// dup2(data.in, STDOUT_FILENO);
 			tmp = tmp->next;
 		}
 	}
@@ -158,6 +160,7 @@ void	bash_builtin(t_data data, char **path)
 			{
 				data.str[0] = cmd;
 				execute(data);
+				close(data.in);
 				return;
 			}
 			else
