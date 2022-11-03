@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 08:30:51 by enja              #+#    #+#             */
-/*   Updated: 2022/11/03 23:05:34 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/03 23:08:26 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	bash_builtin(t_data data, char **path)
 
 	i = 0;
 	fd = -1;
+	
 	if (fork() == 0)
 	{
 		if (data.red && data.red->type == 5)
@@ -167,5 +168,3 @@ void	builtins(t_env **env, t_data *data)
 		i++;
 	}
 }
-
-// salit ga3 builtins
