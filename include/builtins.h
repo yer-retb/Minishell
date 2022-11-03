@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 08:26:18 by enja              #+#    #+#             */
-/*   Updated: 2022/11/01 17:09:48 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/03 19:01:01 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,15 @@ void	built_echo(char **str);
 void	built_export(t_env *envirement, char **str);
 void	built_unset(t_env **envirement, char **str);
 int		check_file2(char *str);
+int		check_file3(char *str);
 void	execute(t_data data);
 void	bash_builtin(t_data data, char **path);
 char	**get_binary_file(t_env *env);
 int		herdoc(char *str);
+int		its_n(char *str);
+int		ft_if_isalpha(char **str);
+int		check_duplicate(t_env *envi, char **str);
+void	delet_node(t_env **head, int pos);
+int		check_string(char *str);
 
 # endif

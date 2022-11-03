@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_prompt.c                                       :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 22:42:36 by enja              #+#    #+#             */
-/*   Updated: 2022/11/03 19:09:36 by yer-retb         ###   ########.fr       */
+/*   Created: 2022/11/03 18:51:57 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/11/03 18:52:11 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
-void	clear_prompt(void)
+void	built_env(t_env *envirement)
 {
-	const char	*clear_ansi;
+	t_env	*env;
 
-	clear_ansi = "\e[1;1H\e[2J";
-	write(1, clear_ansi, 11);
-}
-
-char	*get_prompt(void)
-{
-	char		*cmd;
-	static int	sig = 1;
-
-	if (sig == 1)
+	env = envirement;
+	while (env)
 	{
-		clear_prompt();
-		sig = 0;
+		if (env->name && env->path)
+			printf("%s=%s\n", env->name, env->path);
+		env = env->next;
 	}
-	cmd = readline("\033[0;32m[\033[0m Minishell \033[0;32m]~>\033[0m ");
-	add_history(cmd);
-	return (cmd);
 }

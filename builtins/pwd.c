@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_prompt.c                                       :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 22:42:36 by enja              #+#    #+#             */
-/*   Updated: 2022/11/03 19:09:36 by yer-retb         ###   ########.fr       */
+/*   Created: 2022/11/03 18:52:48 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/11/03 18:53:00 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
-void	clear_prompt(void)
+void	built_pwd(t_env *envirement)
 {
-	const char	*clear_ansi;
+	char	*buf;
+	t_env	*env;
 
-	clear_ansi = "\e[1;1H\e[2J";
-	write(1, clear_ansi, 11);
-}
-
-char	*get_prompt(void)
-{
-	char		*cmd;
-	static int	sig = 1;
-
-	if (sig == 1)
+	env = envirement;
+	buf = NULL;
+	while (env)
 	{
-		clear_prompt();
-		sig = 0;
+		if (ft_strncmp("PWD", env->name, 3) == 0)
+		{
+			env->path = getcwd(buf, 0);
+			printf("%s\n", env->path);
+		}
+		env = env->next;
 	}
-	cmd = readline("\033[0;32m[\033[0m Minishell \033[0;32m]~>\033[0m ");
-	add_history(cmd);
-	return (cmd);
 }
