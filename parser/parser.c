@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:04:15 by enja              #+#    #+#             */
-/*   Updated: 2022/10/25 13:20:52 by enja             ###   ########.fr       */
+/*   Updated: 2022/11/04 02:13:42 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,15 @@ char	*doller_quats(char *str, char *ptr, char **env, int *x)
 		while (str[i] && str[i] != '\"')
 		{
 			if (str[i] && str[i] == '$' && ft_isalpha(str[i + 1]))
+			{
 				str = norm_doller(&i, str, ptr, env);
+				*x = i;
+				return (str);
+			}
 			i++;
 		}
+		if (str[i])
+			i++;
 	}
 	*x = i;
 	return (str);
@@ -82,23 +88,31 @@ char	*detect_doller(char *str, char **env)
 		else if (str[i] && str[i] == '$' && ft_isdigit(str[i + 1]))
 			str = ft_strdup(str + 2);
 		else if (str[i] && str[i] == '\"')
-		{
 			str = doller_quats(str, ptr, env, &i);
-			//i++;
-		}
 		else if (str && str[i])
 			i++;
 	}
+	printf("{%s}\n", str);
 	return (str);
 }
 
 void	expand_dollar(t_parser *head, char **env)
 {
+	t_parser *save;
+	int tp;
+	char *tmp;
+	save = head;
 	while (head)
 	{
+		tmp = ft_strdup(head->token_struct->value);
+		tp = save->token_struct->e_type;
 		head->token_struct->value
 			= detect_doller(head->token_struct->value, env);
+		if (tp == TOKEN_HRDOC && ft_strcmp(tmp, head->token_struct->value) != 0)
+			head->token_struct->value = tmp;
+		save = head;
 		head = head->next_token;
+		free(tmp);
 	}
 }
 

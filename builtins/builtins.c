@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 08:30:51 by enja              #+#    #+#             */
-/*   Updated: 2022/11/03 23:08:26 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/04 00:13:30 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,22 @@ void	bash_builtin(t_data data, char **path)
 			{
 				if (tmp->type == OUTF || tmp->type == APD)
 				{
-					dup2(data.in, STDOUT_FILENO);
+					if (data.str)
+						dup2(data.in, STDOUT_FILENO);
 					close(data.in);
 				}
 				else if (tmp->type == INF)
 				{
-					dup2(data.out, STDIN_FILENO);
-					close(data.out);
+					if (data.str)
+					{
+						dup2(data.out, STDIN_FILENO);
+						close(data.out);
+					}
+					else
+					{
+						close(data.out);
+						exit(exit_val);
+					}
 				}
 				tmp = tmp->next;
 			}
