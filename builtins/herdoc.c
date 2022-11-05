@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   herdoc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 22:50:29 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/10/31 23:29:08 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/05 01:43:40 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	herdoc(char *str)
 {
-	char *cmd;
-	int fd[2];
+	char	*cmd;
+	int		fd[2];
 
 	pipe(fd);
 	cmd = NULL;
-	cmd = readline(">");
+	cmd = readline("heredoc>");
 	while (ft_strcmp(cmd, str) != 0)
 	{
 		write(fd[1], cmd, ft_strlen(cmd));

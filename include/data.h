@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:48:16 by enja              #+#    #+#             */
-/*   Updated: 2022/11/03 23:02:58 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/05 01:50:47 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ t_data	big_data(t_psr *node);
 void	make_data(t_bige_node *bignode);
 int		node_size(t_bige_node *bignode);
 int		check_file(char *str);
-int		check_file2(char *str); 
+// int		check_file2(char *str); 
 
 #endif

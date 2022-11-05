@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 08:26:18 by enja              #+#    #+#             */
-/*   Updated: 2022/11/03 19:01:01 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/05 02:58:42 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ void	built_exit(char **str);
 void	built_echo(char **str);
 void	built_export(t_env *envirement, char **str);
 void	built_unset(t_env **envirement, char **str);
-int		check_file2(char *str);
-int		check_file3(char *str);
+char	*check_command(char **files, char *cmd);
+int		check_path(char *str);
+int		scan_path(char *cmd);
 void	execute(t_data data);
 void	bash_builtin(t_data data, char **path);
 char	**get_binary_file(t_env *env);

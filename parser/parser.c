@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:04:15 by enja              #+#    #+#             */
-/*   Updated: 2022/11/04 02:13:42 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/05 01:41:00 by enja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,27 +92,21 @@ char	*detect_doller(char *str, char **env)
 		else if (str && str[i])
 			i++;
 	}
-	printf("{%s}\n", str);
 	return (str);
 }
 
 void	expand_dollar(t_parser *head, char **env)
 {
-	t_parser *save;
-	int tp;
-	char *tmp;
-	save = head;
+	int tmp;
 	while (head)
 	{
-		tmp = ft_strdup(head->token_struct->value);
-		tp = save->token_struct->e_type;
-		head->token_struct->value
-			= detect_doller(head->token_struct->value, env);
-		if (tp == TOKEN_HRDOC && ft_strcmp(tmp, head->token_struct->value) != 0)
-			head->token_struct->value = tmp;
-		save = head;
+		if (tmp != TOKEN_HRDOC)
+		{
+			head->token_struct->value
+				= detect_doller(head->token_struct->value, env);
+		}
+		tmp = head->token_struct->e_type;
 		head = head->next_token;
-		free(tmp);
 	}
 }
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+         #
+#    By: enja <enja@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/16 00:40:44 by yer-retb          #+#    #+#              #
-#    Updated: 2022/11/03 18:56:46 by yer-retb         ###   ########.fr        #
+#    Updated: 2022/11/05 02:57:36 by enja             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRS = main/get_prompt.c parser/parser.c lexer/lexer.c main/main.c main/init_node
 	libft/ft_split.c libft/ft_strjoin.c libft/ft_strtrim.c libft/ft_itoa.c libft/ft_strmapi.c libft/ft_striteri.c libft/ft_strjoin_no_free.c \
 	libft/ft_putchar_fd.c libft/ft_strcmp.c libft/ft_putstr_fd.c libft/ft_putendl_fd.c libft/ft_putnbr_fd.c main/error_msg.c parser/parser_parse_tab.c \
 	builtins/builtins.c builtins/envirement.c builtins/export.c builtins/herdoc.c builtins/cd.c builtins/env.c builtins/exit.c builtins/pwd.c\
-	builtins/unset.c builtins/echo.c
+	builtins/unset.c builtins/echo.c  builtins/builtins_utils.c
 all : $(NAME)
 
 $(NAME) : $(SRS)
