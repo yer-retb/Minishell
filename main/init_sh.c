@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_sh.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:21:43 by enja              #+#    #+#             */
-/*   Updated: 2022/10/26 08:10:13 by enja             ###   ########.fr       */
+/*   Updated: 2022/11/08 00:06:24 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,11 @@ void	init_shell(char **my_env, t_env *last_env)
 	{
 		my_env = init_env(last_env, my_env);
 		cmd = get_prompt();
+		if(cmd == NULL)
+		{
+			free(cmd);
+			exit(0); // must set the last exit value;
+		}
 		if (ft_strcmp(cmd, "clear") == 0)
 		{
 			free(cmd);

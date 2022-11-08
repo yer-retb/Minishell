@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 05:50:34 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/10/25 03:11:33 by enja             ###   ########.fr       */
+/*   Updated: 2022/11/07 16:19:51 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,12 @@ int	main(int ac, char **av, char **env)
 	(void) ac;
 	(void) av;
 	// (void) env;
+	if(!env[0])
+		printf("ffffff\n");
 	my_env = NULL;
 	last_env = envirement_list(env);
-	my_env = init_env(last_env, my_env);
+	if(last_env)
+		printf("EEEEE\n");
 	init_shell(my_env, last_env);
 	// while (TRUE)
 	// {

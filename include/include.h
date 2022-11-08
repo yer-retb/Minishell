@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 04:48:47 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/03 19:13:54 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:12:03 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,15 @@
 # include "builtins.h"
 # include "functions.h"
 
-int	exit_val;
+typedef struct n_gb
+{
+	int ft1;
+	int ft2;
+	int **pipes;
+	int	exit_val;
+}t_gb;
+
+t_gb	gb;
 
 typedef struct n_test
 {

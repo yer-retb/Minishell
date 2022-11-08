@@ -1,0 +1,11 @@
+Makefile
+README.md
+builtins
+fd
+include
+lexer
+libft
+main
+minishell
+minishell.dSYM
+parser

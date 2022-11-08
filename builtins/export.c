@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 08:50:49 by enja              #+#    #+#             */
-/*   Updated: 2022/11/03 18:54:40 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:11:57 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	built_export(t_env *envirement, char **str)
 			if (str[i][0] == '=')
 			{
 				printf("Minishell: export: not a valid identifier\n");
-				exit_val = 1;
+				gb.exit_val = 1;
 				i++;
 				continue ;
 			}
@@ -73,7 +73,7 @@ void	built_export(t_env *envirement, char **str)
 			if (check_string(tmp[0]))
 			{
 				printf("Minishell: export: not a valid identifier\n");
-				exit_val = 1;
+				gb.exit_val = 1;
 			}
 			if (!tmp[1])
 				tmp[1] = ft_strdup("");

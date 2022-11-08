@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:53:51 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/03 18:54:48 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:11:57 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	built_unset(t_env **envirement, char **str)
 		if (check_string(str[0]))
 		{
 			printf("Minishell: unset: not a valid identifier\n");
-			exit_val = 1;
+			gb.exit_val = 1;
 		}
 		while (str && str[i])
 		{

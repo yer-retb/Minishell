@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:52:23 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/04 00:05:59 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:11:57 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,15 @@ void	built_exit(char **str)
 	if (!str[0])
 	{
 		printf("exit\n");
-		exit(exit_val);
+		exit(gb.exit_val);
 	}
-	if (ft_if_isalpha(str) > 0)
+	else if (ft_if_isalpha(str) > 0)
 	{
 		printf("exit\nMinishell: exit: too many arguments\n");
 		return ;
 	}
 	num = ft_atoi(str[0]);
-	exit_val = num % 256;
+	gb.exit_val = num % 256;
 	printf("exit\n");
-	exit(exit_val);
+	exit(gb.exit_val);
 }

@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:51:23 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/03 18:51:39 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:11:57 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ void	built_cd(t_env *envirement, char *str)
 	else
 	{
 		printf("Minishell: cd: %s: No such file or directory\n", str);
-		exit_val = 1;
+		gb.exit_val = 1;
 	}
 }

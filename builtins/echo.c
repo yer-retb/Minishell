@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:53:07 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/03 19:07:11 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:11:57 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	built_echo(char **str)
 		while (str && str[i])
 		{
 			if (!ft_strcmp("$?", str[i]))
-				str[i] = ft_strdup(ft_itoa(exit_val));
+				str[i] = ft_strdup(ft_itoa(gb.exit_val));
 			printf(" %s", str[i++]);
 		}
 	}
@@ -53,7 +53,7 @@ void	built_echo(char **str)
 		while (str[i])
 		{
 			if (!ft_strcmp("$?", str[i]))
-				str[i] = ft_strdup(ft_itoa(exit_val));
+				str[i] = ft_strdup(ft_itoa(gb.exit_val));
 			printf("%s ", str[i++]);
 		}
 		printf("\n");

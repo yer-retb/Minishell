@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 08:26:18 by enja              #+#    #+#             */
-/*   Updated: 2022/11/05 02:58:42 by enja             ###   ########.fr       */
+/*   Updated: 2022/11/06 17:37:30 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ int		ft_if_isalpha(char **str);
 int		check_duplicate(t_env *envi, char **str);
 void	delet_node(t_env **head, int pos);
 int		check_string(char *str);
+void	get_file_descr(t_data *data);
 
 # endif
