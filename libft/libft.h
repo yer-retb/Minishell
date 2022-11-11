@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 09:08:11 by zy0tsh1           #+#    #+#             */
-/*   Updated: 2022/10/09 02:32:05 by enja             ###   ########.fr       */
+/*   Updated: 2022/11/11 00:32:25 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 char			*ft_strjoin_no_free(char *s1, char *s2);
 char			*moded_strnstr(char *str, char *needle, int len);
-void	print_exit_error(char *str, int ex);
+void			print_exit_error(char *str, int ex);
+void			*save_malloc(int size);
 #endif

@@ -6,13 +6,13 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:21:43 by enja              #+#    #+#             */
-/*   Updated: 2022/11/08 00:06:24 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/11 00:18:35 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
-char	**init_env(t_env *last_env, char **my_env)
+char	**init_env(t_env *last_env)
 {
 	int		i;
 	t_env	*env;
@@ -25,16 +25,17 @@ char	**init_env(t_env *last_env, char **my_env)
 		env = env->next;
 	}
 	env = last_env;
-	my_env = malloc(sizeof (char *) * (i + 1));
+	g_b.my_env = malloc(sizeof (char *) * (i + 1));
 	i = 0;
 	while (env)
 	{
-		my_env[i] = ft_strjoin_no_free(ft_strjoin_no_free(env->name, "="), env->path);
+		g_b.my_env[i] = ft_strjoin_no_free \
+			(ft_strjoin_no_free(env->name, "="), env->path);
 		i++;
 		env = env->next;
 	}
-	my_env[i] = NULL;
-	return (my_env);
+	g_b.my_env[i] = NULL;
+	return (g_b.my_env);
 }
 
 t_parser	*start_lexing(char *cmd, t_token *tk, t_parser *hd)
@@ -56,7 +57,6 @@ t_parser	*start_lexing(char *cmd, t_token *tk, t_parser *hd)
 		if (tk && tk->e_type == EROR)
 		{
 			free(lexer);
-			// printf("minishell : syntax error\n");
 			return (NULL);
 		}
 	}
@@ -64,7 +64,7 @@ t_parser	*start_lexing(char *cmd, t_token *tk, t_parser *hd)
 	return (hd);
 }
 
-void	init_shell(char **my_env, t_env *last_env)
+void	init_shell(t_env *last_env)
 {
 	char		*cmd;
 	t_token		*token;
@@ -73,30 +73,24 @@ void	init_shell(char **my_env, t_env *last_env)
 	t_psr		*nhead = NULL;
 	char		**tab;
 	t_data		*data;
-	
+
 	int i = 0;
 	token = NULL;
 	while (TRUE)
 	{
-		my_env = init_env(last_env, my_env);
+		g_b.my_env = init_env(last_env);
 		cmd = get_prompt();
-		if(cmd == NULL)
+		if (cmd == NULL)
 		{
 			free(cmd);
-			exit(0); // must set the last exit value;
-		}
-		if (ft_strcmp(cmd, "clear") == 0)
-		{
-			free(cmd);
-			clear_prompt();
-			continue ;
+			exit (0); // must set the last exit value;
 		}
 		head = start_lexing(cmd, token, head);
 		if (!head)
 		{
 			free(cmd);
 			nhd = head;
-			t_parser *tmp;
+			t_parser	*tmp;
 			while (nhd)
 			{
 				free(nhd->token_struct->value);
@@ -108,12 +102,12 @@ void	init_shell(char **my_env, t_env *last_env)
 			free(nhd);
 			continue ;
 		}
-		tab = parser_get(head, my_env);
+		tab = parser_get(head, g_b.my_env);
 		if (!tab)
 		{
 			free(cmd);
 			nhd = head;
-			t_parser *tmp;
+			t_parser	*tmp;
 			while (nhd)
 			{
 				free(nhd->token_struct->value);
@@ -126,13 +120,7 @@ void	init_shell(char **my_env, t_env *last_env)
 			continue ;
 		}
 		nhd = head;
-		// while (head)
-		// {
-		// 	printf("type = %d value = %s\n",
-		// 		head->token_struct->e_type, head->token_struct->value);
-		// 	head = head->next_token;
-		// }
-		t_parser *tmp;
+		t_parser	*tmp;
 		while (nhd)
 		{
 			free(nhd->token_struct->value);
@@ -142,8 +130,6 @@ void	init_shell(char **my_env, t_env *last_env)
 			nhd = tmp;
 		}
 		free(nhd);
-		// while (tab[i])
-		// 	printf("%s\n", tab[i++]);
 		i = 0;
 		data = parser_exec_preparation(tab, nhead);
 		builtins(&last_env, data);

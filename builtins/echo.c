@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:53:07 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/07 15:11:57 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/10 22:46:54 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,36 +26,44 @@ int	its_n(char *str)
 	return (1);
 }
 
-void	built_echo(char **str)
+void	echo_utils(char **str, int fd)
+{
+	int	i;
+
+	i = 1;
+	while (str[i] && (ft_strncmp("-n", str[i], 2) == 0) && its_n(str[i]))
+		i++;
+	while (str && str[i])
+	{
+		if (!ft_strcmp("$?", str[i]))
+			str[i] = ft_strdup(ft_itoa(g_b.exit_val));
+		ft_putchar_fd(' ', fd);
+		ft_putstr_fd(str[i++], fd);
+	}
+}
+
+void	built_echo(char **str, int fd)
 {
 	int	i;
 
 	i = 0;
 	if (!str[0])
 	{
-		printf("\n");
+		ft_putchar_fd('\n', fd);
 		return ;
 	}
 	if (its_n(str[i]) && (!ft_strncmp("-n", str[0], 2)))
-	{
-		i = 1;
-		while (str[i] && (ft_strncmp("-n", str[i], 2) == 0) && its_n(str[i]))
-			i++;
-		while (str && str[i])
-		{
-			if (!ft_strcmp("$?", str[i]))
-				str[i] = ft_strdup(ft_itoa(gb.exit_val));
-			printf(" %s", str[i++]);
-		}
-	}
+		echo_utils(str, fd);
 	else
 	{
 		while (str[i])
 		{
 			if (!ft_strcmp("$?", str[i]))
-				str[i] = ft_strdup(ft_itoa(gb.exit_val));
-			printf("%s ", str[i++]);
+				str[i] = ft_strdup(ft_itoa(g_b.exit_val));
+			ft_putstr_fd(str[i++], fd);
+			if (str[i])
+				ft_putchar_fd(' ', fd);
 		}
-		printf("\n");
+		ft_putchar_fd('\n', fd);
 	}
 }

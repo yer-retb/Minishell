@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 01:45:10 by enja              #+#    #+#             */
-/*   Updated: 2022/10/22 00:42:44 by enja             ###   ########.fr       */
+/*   Updated: 2022/11/10 23:26:00 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,13 @@
 # define EROR			7
 
 char		*get_prompt(void);
-void		clear_prompt(void);
 int			is_rederection(char c);
 t_token		*msg_error(int e_type, char *val, char *value);
 void		*msg_error1(void);
 void		*msg_cmd_error(char *msg);
 void		*msg_syntax_error(char *msg);
-char		**init_env(t_env *env, char **my_env);
+char		**init_env(t_env *env);
 t_parser	*start_lexing(char *cmd, t_token *tk, t_parser *hd);
-void		init_shell(char **env, t_env *last_env);
+void		init_shell(t_env *last_env);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/16 00:40:44 by yer-retb          #+#    #+#              #
-#    Updated: 2022/11/08 04:02:11 by yer-retb         ###   ########.fr        #
+#    Updated: 2022/11/10 23:28:34 by yer-retb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 
 CC = gcc
 
-CFLAG = -Wall -Wextra -Werror -lreadline -fsanitize=address -g
+CFLAG = -Wall -Wextra -Werror -lreadline #-fsanitize=address -g
 
 SRS = main/get_prompt.c parser/parser.c lexer/lexer.c main/main.c main/init_nodes.c lexer/token.c lexer/lexer_utils.c lexer/lexer_utils_ll.c \
 	parser/expand_doller.c parser/parser_parse_tab2.c main/init_sh.c parser/test.c \
@@ -25,7 +25,7 @@ SRS = main/get_prompt.c parser/parser.c lexer/lexer.c main/main.c main/init_node
 	libft/ft_split.c libft/ft_strjoin.c libft/ft_strtrim.c libft/ft_itoa.c libft/ft_strmapi.c libft/ft_striteri.c libft/ft_strjoin_no_free.c \
 	libft/ft_putchar_fd.c libft/ft_strcmp.c libft/ft_putstr_fd.c libft/ft_putendl_fd.c libft/ft_putnbr_fd.c main/error_msg.c parser/parser_parse_tab.c \
 	builtins/builtins.c builtins/envirement.c builtins/export.c builtins/herdoc.c builtins/cd.c builtins/env.c builtins/exit.c builtins/pwd.c\
-	builtins/unset.c builtins/echo.c builtins/builtins_utils.c builtins/file_descrepter.c
+	builtins/unset.c builtins/echo.c builtins/builtins_utils.c builtins/builtins_utils_ll.c
 all : $(NAME)
 
 $(NAME) : $(SRS)

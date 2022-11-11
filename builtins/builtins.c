@@ -6,56 +6,11 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 08:30:51 by enja              #+#    #+#             */
-/*   Updated: 2022/11/08 03:48:55 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/11 00:23:29 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
-
-void	excut_herdoc(t_data data)
-{
-	t_red	*tmp;
-	int fd;
-
-	fd = -1;
-	if (data.red && data.red->type == 5)
-	{
-		tmp = data.red;
-		while (tmp)
-		{
-			if (tmp->type == 5)
-				fd = herdoc(tmp->file);
-			tmp = tmp->next;
-		}
-	}
-}
-
-void	ft_excut_built(t_data data)
-{
-	t_red	*tmp;	
-
-	if (data.red)
-	{
-		tmp = data.red;
-		while (tmp)
-		{
-			if (tmp->type == OUTF || tmp->type == APD)
-			{
-				printf("in %d\n", data.out);
-				if (data.str)
-					dup2(data.out, STDOUT_FILENO);
-				close(data.out);
-			}
-			else if (tmp->type == INF)
-			{
-				printf("out %d\n", data.in);
-				if (data.str)
-					dup2(data.in, STDIN_FILENO);
-			}
-			tmp = tmp->next;
-		}
-	}
-}
 
 void	ft_excut_cmd(t_data data, char **path)
 {
@@ -82,15 +37,15 @@ void	ft_excut_cmd(t_data data, char **path)
 	}
 }
 
-void	bash_builtin(t_data data, char **path)
+void	bash_builtin(t_data data, char **path, int *prosid)
 {
-	int id;
+	int	id;
 
 	id = fork();
+	*prosid = id;
 	if (id == 0)
 	{
 		excut_herdoc(data);
-		// ft_excut_built(data);
 		ft_excut_cmd(data, path);
 	}
 }
@@ -110,92 +65,96 @@ char	**get_binary_file(t_env *env)
 	return (pathlist);
 }
 
-void swap(int *a, int *b)
+void	swap(int *a, int *b)
 {
-	int tmp;
+	int	tmp;
 
 	tmp = *a;
 	*a = *b;
 	*b = tmp;
 }
 
-void	ft_all_builtins(t_env **env, t_data data, char **path)
+void	ft_all_builtins(t_env **env, t_data data, char **path, int *prosid)
 {
 	if (data.str && !ft_strncmp("cd", data.str[0], 2))
 		built_cd(*env, *(data.str + 1));
 	else if (data.str && !ft_strcmp("pwd", data.str[0]))
 		built_pwd(*env);
 	else if (data.str && !ft_strcmp("env", data.str[0]))
-		built_env(*env);
+		built_env(*env, data.out);
 	else if (data.str && !ft_strcmp("echo", data.str[0]))
-		built_echo(data.str + 1);
+		built_echo(data.str + 1, data.out);
 	else if (data.str && !ft_strcmp("exit", data.str[0]))
 		built_exit(data.str + 1);
 	else if (data.str && !ft_strcmp("export", data.str[0]))
-		built_export(*env, data.str + 1);
+		built_export(*env, data.str + 1, data.out);
 	else if (data.str && !ft_strcmp("unset", data.str[0]))
 		built_unset(env, data.str + 1);
 	else
-		bash_builtin(data, path);
+		bash_builtin(data, path, prosid);
 }
 
 void	builtins(t_env **env, t_data *data)
 {
 	int		i;
 	char	**path;
+	int		stat;
+	int		*proid;
 
-	
-	gb.ft1 = 0;
-	gb.ft2 = 1;
+	proid = malloc(sizeof(int) * data[0].size);
+	g_b.ft1 = 0;
+	g_b.ft2 = 1;
+	stat = 0;
 	path = get_binary_file(*env);
 	i = 0;
-	gb.pipes = malloc(sizeof(int *) * 2);
-	while(i < 2)
+	g_b.pipes = malloc(sizeof(int *) * 2);
+	while (i < 2)
 	{
-		gb.pipes[i] = malloc(sizeof(int) * 2);
-		pipe(gb.pipes[i]);
+		g_b.pipes[i] = malloc(sizeof(int) * 2);
+		pipe(g_b.pipes[i]);
 		i++;
 	}
 	i = 0;
 	if (data->out < 2 && data[0].size > 1)
-		data->out = gb.pipes[gb.ft1][1];
-	swap(&gb.ft1, &gb.ft2);
+		data->out = g_b.pipes[g_b.ft1][1];
+	swap(&g_b.ft1, &g_b.ft2);
 	while (i < data[0].size - 1 && (data->flag == 0))
 	{
-		ft_all_builtins(env, data[i], path);
+		ft_all_builtins(env, data[i], path, &proid[i]);
 		i++;
-		close(gb.pipes[gb.ft1][0]);
-		close(gb.pipes[gb.ft1][1]);
-		pipe(gb.pipes[gb.ft1]);
+		close(g_b.pipes[g_b.ft1][0]);
+		close(g_b.pipes[g_b.ft1][1]);
+		pipe(g_b.pipes[g_b.ft1]);
 		if (data[i].in < 2)
-			data[i].in = gb.pipes[gb.ft2][0];
+			data[i].in = g_b.pipes[g_b.ft2][0];
 		if (data[i].out < 2 && i < data[0].size - 1)
-			data[i].out = gb.pipes[gb.ft1][1];
-		swap(&gb.ft1, &gb.ft2);
+			data[i].out = g_b.pipes[g_b.ft1][1];
+		swap(&g_b.ft1, &g_b.ft2);
 	}
-	ft_all_builtins(env, data[i], path);
+	ft_all_builtins(env, data[i], path, &proid[i]);
 	i = 0;
-
 	// closed opened files
-	for(int i = 0; i < data->size; i++)
+	while (i < data->size)
 	{
 		if (data[i].in > 2)
 			close(data[i].in);
 		if (data[i].out > 2)
 			close(data[i].out);
+		i++;
 	}
-
 	//close pipes
 	while (i < 2)
 	{
-		close(gb.pipes[i][1]);
-		close(gb.pipes[i][0]);
+		close(g_b.pipes[i][1]);
+		close(g_b.pipes[i][0]);
 		i++;
 	}
 	i = 0;
-	while(i < data[0].size)
+	while (i < data[0].size)
 	{
-		waitpid(-1, 0, 0);
+		waitpid(proid[i], &stat, 0);
+		if (WIFEXITED(stat))
+			g_b.exit_val = (WEXITSTATUS(stat));
 		i++;
 	}
 }

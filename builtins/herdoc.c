@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 22:50:29 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/05 16:47:29 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/10 23:34:20 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,23 @@ int	herdoc(char *str)
 	}
 	close(fd[1]);
 	return (fd[0]);
+}
+
+void	excut_herdoc(t_data data)
+{
+	t_red	*tmp;
+	int		fd;
+
+	fd = -1;
+	if (data.red && data.red->type == 5)
+	{
+		tmp = data.red;
+		while (tmp)
+		{
+			if (tmp->type == 5)
+				fd = herdoc(tmp->file);
+			tmp = tmp->next;
+		}
+		exit(g_b.exit_val);
+	}
 }

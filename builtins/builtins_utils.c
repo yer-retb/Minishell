@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 00:37:42 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/08 01:44:45 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/10 22:46:54 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ void	execute(t_data data)
 		close(data.in);
 	if (data.out > 1)
 		close(data.out);
-	while(i < 2)
+	while (i < 2)
 	{
-		close(gb.pipes[i][1]);
-		close(gb.pipes[i][0]);
+		close(g_b.pipes[i][1]);
+		close(g_b.pipes[i][0]);
 		i++;
 	}
-
-	if(execve(data.str[0], data.str, NULL) == -1)
+	if (execve(data.str[0], data.str, g_b.my_env) == -1)
 		exit(127);
+	exit(g_b.exit_val);
 }
 
 int	scan_path(char *cmd)
@@ -78,4 +78,16 @@ int	check_path(char *str)
 		exit(1);
 	}
 	return (1);
+}
+
+void	print_fd(int args_num, int fd, ...)
+{
+	va_list	ap;
+	int		i;
+
+	i = -1;
+	va_start (ap, fd);
+	while (++i < args_num)
+		ft_putstr_fd(va_arg(ap, char *), fd);
+	va_end(ap);
 }

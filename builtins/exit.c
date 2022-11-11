@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:52:23 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/07 15:11:57 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/10 22:46:54 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_if_isalpha(char **str)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	while (str[i])
@@ -25,7 +25,7 @@ int	ft_if_isalpha(char **str)
 		{
 			if (!ft_isdigit(str[0][j]))
 				print_exit_error(str[0], 255);
-			j++; 
+			j++;
 		}
 		i++;
 	}
@@ -35,8 +35,7 @@ int	ft_if_isalpha(char **str)
 }
 
 void	print_exit_error(char *str, int ex)
-{
-	
+{	
 	printf("exit\nMinishel: exit: %s: numeric argument required\n", str);
 	exit(ex);
 }
@@ -50,7 +49,7 @@ void	built_exit(char **str)
 	if (!str[0])
 	{
 		printf("exit\n");
-		exit(gb.exit_val);
+		exit(g_b.exit_val);
 	}
 	else if (ft_if_isalpha(str) > 0)
 	{
@@ -58,7 +57,7 @@ void	built_exit(char **str)
 		return ;
 	}
 	num = ft_atoi(str[0]);
-	gb.exit_val = num % 256;
+	g_b.exit_val = num % 256;
 	printf("exit\n");
-	exit(gb.exit_val);
+	exit(g_b.exit_val);
 }

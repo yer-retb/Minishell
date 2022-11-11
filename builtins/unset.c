@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:53:51 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/07 15:11:57 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/10 23:22:56 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	delet_node(t_env **head, int pos)
 
 	save = *head;
 	tmp = *head;
-	
 	if (!head)
 		return ;
 	else if (pos == 0)
@@ -62,7 +61,6 @@ void	delet_node(t_env **head, int pos)
 		free(tmp);
 		tmp = NULL;
 	}
-
 }
 
 void	built_unset(t_env **envirement, char **str)
@@ -71,32 +69,25 @@ void	built_unset(t_env **envirement, char **str)
 	int		j;
 	t_env	*env;
 
-	i = 0;
+	i = -1;
 	env = *envirement;
 	if (!str[0])
 		return ;
-	else
+	if (check_string(str[0]))
+		export_print_error("unset");
+	while (str && str[++i])
 	{
-		if (check_string(str[0]))
+		env = *envirement;
+		j = 0;
+		while (env)
 		{
-			printf("Minishell: unset: not a valid identifier\n");
-			gb.exit_val = 1;
-		}
-		while (str && str[i])
-		{
-			env = *envirement;
-			j = 0;
-			while (env)
+			if (!ft_strncmp(str[i], env->name, ft_strlen(str[i])))
 			{
-				if (!ft_strncmp(str[i], env->name, ft_strlen(str[i])))
-				{
-					delet_node(envirement, j);
-					break ;
-				}
-				j++;
-				env = env->next;
+				delet_node(envirement, j);
+				break ;
 			}
-			i++;
+			j++;
+			env = env->next;
 		}
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envirement.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 08:27:54 by enja              #+#    #+#             */
-/*   Updated: 2022/10/25 03:45:19 by enja             ###   ########.fr       */
+/*   Updated: 2022/11/11 00:18:35 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_env	*init_env1(char **str)
 
 	env = malloc(sizeof(t_env));
 	env->name = str[0];
-	env->path =	str[1];
+	env->path = str[1];
 	env->next = NULL;
 	return (env);
 }
@@ -51,6 +51,13 @@ t_env	*envirement_list(char **my_env)
 	i = 0;
 	j = 0;
 	env = NULL;
+	if (!my_env)
+	{
+		env->name = ft_strdup("");
+		env->path = ft_strdup("");
+		env->next = NULL;
+		return (env);
+	}
 	while (my_env && my_env[i])
 	{
 		tmp = ft_split(my_env[i], '=');

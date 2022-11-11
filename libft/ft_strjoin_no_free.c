@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin_no_free.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:05:33 by enja              #+#    #+#             */
-/*   Updated: 2022/10/10 01:20:55 by enja             ###   ########.fr       */
+/*   Updated: 2022/11/11 00:18:35 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ char	*ft_strjoin_no_free(char *s1, char *s2)
 	{
 		final[i++] = s2[n++];
 	}
-	// free(s1);
 	final[i] = '\0';
 	return (final);
 }

@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:48:16 by enja              #+#    #+#             */
-/*   Updated: 2022/11/07 00:06:28 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/10 22:39:14 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,6 @@ typedef struct n_data
 	int		size;
 	int		flag;
 }	t_data;
-
-
-
-
 
 t_data	big_data(t_psr *node);
 void	make_data(t_bige_node *bignode);
