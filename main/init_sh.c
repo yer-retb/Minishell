@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:21:43 by enja              #+#    #+#             */
-/*   Updated: 2022/11/11 04:54:35 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/11 18:28:53 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,26 @@ t_parser	*start_lexing(char *cmd, t_token *tk, t_parser *hd)
 	return (hd);
 }
 
+void	loop_shell()
+{
+	
+}
+
 void	init_shell(t_env *last_env)
 {
 	char		*cmd;
 	t_token		*token;
-	t_parser	*head = NULL;
+	t_parser	*head;
 	t_parser	*nhd;
-	t_psr		*nhead = NULL;
+	t_psr		*nhead;
 	char		**tab;
 	t_data		*data;
+	int			i;
 
-	int i = 0;
+	i = 0;
 	token = NULL;
+	head = NULL;
+	nhead = NULL;
 	while (TRUE)
 	{
 		g_b.my_env = init_env(last_env);
@@ -83,7 +91,7 @@ void	init_shell(t_env *last_env)
 		if (cmd == NULL)
 		{
 			free(cmd);
-			exit (0); // must set the last exit value;
+			exit (g_b.exit_val);
 		}
 		head = start_lexing(cmd, token, head);
 		if (!head)

@@ -6,61 +6,22 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 04:51:45 by enja              #+#    #+#             */
-/*   Updated: 2022/11/11 04:55:16 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/11 20:15:52 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
-int	check(char *str)
-{
-	if (ft_strcmp(str, ">") && ft_strcmp(str, "<") && \
-		ft_strcmp(str, ">>") && ft_strcmp(str, "<<"))
-		return (1);
-	return (0);
-}
-
-t_bige_node	*asing_tk2(t_psr *hd, t_bige_node *bignode)
-{
-	bignode = malloc(sizeof(t_bige_node));
-	bignode->psr = hd;
-	bignode->psr_next = NULL;
-	return (bignode);
-}
-
-t_tkn	*asing_tk(t_tkn *tkn, char *val, int type)
-{
-	tkn = malloc(sizeof(t_tkn));
-	tkn->e_type = type;
-	tkn->val = val;
-	return (tkn);
-}
-
-void	add_list_at_back3(t_bige_node **save, t_bige_node *node)
-{
-	t_bige_node	*head;
-
-	head = *save;
-	if (head == NULL)
-	{
-		*save = node;
-		return ;
-	}
-	while (head->psr_next)
-	{
-		head = head->psr_next;
-	}
-	head->psr_next = node;
-	node->psr_next = NULL;
-}
-
 t_bige_node	*parser_tokenazer(char **tab, t_psr *hd)
 {
-	int		i;
-	t_tkn	*tk = NULL;
-	t_bige_node *bignode = NULL;
+	int			i;
+	t_tkn		*tk;
+	t_bige_node	*bignode;
+
 	i = 0;
-	while(tab[i])
+	tk = NULL;
+	bignode = NULL;
+	while (tab[i])
 	{
 		if (ft_strcmp(tab[i], ">") == 0)
 			add_list_at_back2(&hd, init_node2(asing_tk(tk, tab[++i], OUTF)));
@@ -80,7 +41,7 @@ t_bige_node	*parser_tokenazer(char **tab, t_psr *hd)
 		i++;
 	}
 	add_list_at_back3(&bignode, asing_tk2(hd, bignode));
-	return(bignode);
+	return (bignode);
 }
 
 int	count_node(t_bige_node *node)
@@ -101,13 +62,13 @@ int	count_node(t_bige_node *node)
 
 void	*parser_exec_preparation(char **tab, t_psr *hd)
 {
-	t_bige_node *bignode;
+	t_bige_node	*bignode;
 	t_bige_node	*tmp;
 	t_data		*data;
 	int			i;
 	int			j;
 
-	bignode = parser_tokenazer(tab, hd); 
+	bignode = parser_tokenazer(tab, hd);
 	tmp = bignode;
 	i = count_node(bignode);
 	j = 0;
@@ -120,5 +81,4 @@ void	*parser_exec_preparation(char **tab, t_psr *hd)
 	}
 	data[0].size = i;
 	return (data);
-
 }

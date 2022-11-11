@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:55:10 by enja              #+#    #+#             */
-/*   Updated: 2022/11/11 04:55:27 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/11 20:18:57 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,25 @@ int	check_file(char *str)
 	return (1);
 }
 
+void	ambiguous_redirect(void)
+{
+	g_b.exit_val = 1;
+	print_fd(1, 2, "Minishell: ambiguous redirect\n");
+}
+
 t_red	*red_list(int type, char *val, int *flag)
 {
 	t_red	*red;
 
 	red = malloc(sizeof(t_red));
 	red->next = NULL;
-	if (type == INF)
+	printf("--> %s\n", val);
+	if (!val)
+	{
+		*flag = -1;
+		ambiguous_redirect();
+	}
+	else if (type == INF && *flag == 0)
 	{
 		red->type = type;
 		red->file = val;
@@ -55,24 +67,23 @@ t_red	*red_list(int type, char *val, int *flag)
 			*flag = -1;
 		red->fd = open(val, O_RDONLY);
 	}
-	else if (type == OUTF)
+	else if (type == OUTF && *flag == 0)
 	{
 		red->type = type;
 		red->file = val;
 		red->fd = open(val, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	}
-	else if (type == HRD)
+	else if (type == HRD && *flag == 0)
 	{
 		red->type = type;
 		red->file = val;
 	}
-	else if (type == APD)
+	else if (type == APD && *flag == 0)
 	{
 		red->type = type;
 		red->file = val;
 		red->fd = open(val, O_CREAT | O_RDWR | O_APPEND, 0644);
 	}
-	printf("----> %d\n", red->fd);
 	return (red);
 }
 
@@ -93,7 +104,7 @@ t_data	big_data(t_psr *node)
 	{
 		if ((node->tkn_st->e_type == CMD || node->tkn_st->e_type == ARG))
 			data.str = cmd_tab(data.str, node->tkn_st->val);
-		else if ((node->tkn_st->e_type == INF) || (node->tkn_st->e_type == OUTF) \
+		else if ((node->tkn_st->e_type == INF) || (node->tkn_st->e_type == OUTF)
 			|| (node->tkn_st->e_type == HRD) || (node->tkn_st->e_type == APD))
 		{
 			if (!hd_red)

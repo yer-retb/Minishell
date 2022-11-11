@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 08:26:18 by enja              #+#    #+#             */
-/*   Updated: 2022/11/11 00:28:47 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/11 18:19:04 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ void	delet_node(t_env **head, int pos);
 int		check_string(char *str);
 void	get_file_descr(t_data *data);
 void	export_print_error(char *str);
+void	swap(int *a, int *b);
+void	ft_excut_cmd(t_data data, char **path);
 
 #endif

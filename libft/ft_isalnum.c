@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 22:21:54 by enja              #+#    #+#             */
-/*   Updated: 2021/11/20 17:59:56 by enja             ###   ########.fr       */
+/*   Updated: 2022/11/11 18:21:36 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
+
 int	ft_isalnum(char c)
 {
 	if ((c >= 'a' && c <= 'z')
