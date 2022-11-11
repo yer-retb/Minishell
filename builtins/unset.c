@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:53:51 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/10 23:22:56 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/11 01:37:58 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	built_unset(t_env **envirement, char **str)
 		j = 0;
 		while (env)
 		{
-			if (!ft_strncmp(str[i], env->name, ft_strlen(str[i])))
+			if (!ft_strncmp(str[i], env->name, ft_strlen(env->name)))
 			{
 				delet_node(envirement, j);
 				break ;

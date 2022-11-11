@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 08:30:51 by enja              #+#    #+#             */
-/*   Updated: 2022/11/11 00:23:29 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/11 04:54:46 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	bash_builtin(t_data data, char **path, int *prosid)
 
 	id = fork();
 	*prosid = id;
+	excut_herdoc(data);
 	if (id == 0)
 	{
-		excut_herdoc(data);
 		ft_excut_cmd(data, path);
 	}
 }
