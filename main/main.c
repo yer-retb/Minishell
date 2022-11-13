@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 05:50:34 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/11 00:20:30 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/13 16:34:45 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	*save_malloc(int size)
 
 int	main(int ac, char **av, char **env)
 {
+	// signal(SIGQUIT,SIG_IGN);
+	// signal(SIGINT,SIG_IGN);
 	t_env		*last_env;
 
 	(void) ac;

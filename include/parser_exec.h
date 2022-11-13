@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 05:32:19 by enja              #+#    #+#             */
-/*   Updated: 2022/11/11 20:12:33 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/12 00:11:46 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ typedef struct n_big_node
 	struct n_big_node	*psr_next;
 }t_bige_node;
 
-void		*parser_exec_preparation(char **tab, t_psr *hd);
-// t_bige_node	*parser_tokenazer(char **tab, t_psr *hd, t_tkn *tk, t_bige_node *b);
 int			check(char *str);
-t_bige_node	*asing_tk2(t_psr *hd, t_bige_node *bignode);
-t_tkn		*asing_tk(t_tkn *tkn, char *val, int type);
+void		*parser_exec_preparation(char **tab, t_psr *hd);
 void		add_list_at_back3(t_bige_node **save, t_bige_node *node);
+t_tkn		*asing_tk(t_tkn *tkn, char *val, int type);
+t_bige_node	*parser_tokenazer(char **tab, t_psr *hd, t_tkn *tk, t_bige_node *b);
+t_bige_node	*asing_tk2(t_psr *hd, t_bige_node *bignode);
 
 #endif

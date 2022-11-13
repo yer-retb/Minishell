@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:21:43 by enja              #+#    #+#             */
-/*   Updated: 2022/11/11 18:28:53 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/12 22:27:41 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,6 @@ t_parser	*start_lexing(char *cmd, t_token *tk, t_parser *hd)
 	}
 	free(lexer);
 	return (hd);
-}
-
-void	loop_shell()
-{
-	
 }
 
 void	init_shell(t_env *last_env)
@@ -140,6 +135,8 @@ void	init_shell(t_env *last_env)
 		free(nhd);
 		i = 0;
 		data = parser_exec_preparation(tab, nhead);
+		excut_herdoc(data);
+		printf("->> %d\n", (*data).in);
 		builtins(&last_env, data);
 		while (tab[i])
 			free(tab[i++]);

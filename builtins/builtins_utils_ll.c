@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 23:28:03 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/11 18:17:55 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/12 22:32:12 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ void	ft_excut_cmd(t_data data, char **path)
 		}
 		else if (check_path(data.str[0]))
 			execute(data);
+	}
+	else
+	{
+		write (2, "ll\n", 3);
+		if (data.in != 0)
+			close(data.in);
 	}
 }
 

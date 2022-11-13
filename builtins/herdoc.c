@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 22:50:29 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/11 01:55:16 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/12 22:54:25 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,46 @@
 int	herdoc(char *str)
 {
 	char	*cmd;
-	int		fd[2];
+	int		fdd[2];
 
-	pipe(fd);
+	if (pipe(fdd) == -1)
+	{
+		printf ("error\n");
+		exit(g_b.exit_val);
+	}
 	cmd = NULL;
 	cmd = readline(">");
 	while (ft_strcmp(cmd, str) != 0)
 	{
-		write(fd[1], cmd, ft_strlen(cmd));
-		write(fd[1], "\n", 1);
+		write(fdd[1], cmd, ft_strlen(cmd));
+		write(fdd[1], "\n", 1);
 		free(cmd);
 		cmd = readline(">");
 	}
-	close(fd[1]);
-	return (fd[0]);
+	close (fdd[1]);
+	return (fdd[0]);
 }
 
-void	excut_herdoc(t_data data)
+void	excut_herdoc(t_data *data)
 {
 	t_red	*tmp;
+	int		i;
 
-	if (data.red && data.red->type == 5)
+	i = 0;
+	while (i < data[0].size)
 	{
-		tmp = data.red;
-		while (tmp)
+		if (data[i].red && data[i].red->type == 5)
 		{
-			if (tmp->type == 5)
-				data.out = herdoc(tmp->file);
-			tmp = tmp->next;
+			tmp = data[i].red;
+			while (tmp)
+			{
+				if (tmp->type == 5)
+				{
+					data[i].in = herdoc(tmp->file);
+				}
+				tmp = tmp->next;
+			}
 		}
-		exit(g_b.exit_val);
+		i++;
 	}
 }

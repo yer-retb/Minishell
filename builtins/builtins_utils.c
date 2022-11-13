@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 00:37:42 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/11 19:52:01 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/12 22:58:04 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ char	*check_command(char **files, char *cmd)
 		i++;
 	}
 	printf("Minishell: %s: command not found\n", cmd);
-	exit(127);
+	g_b.exit_val = 127;
+	exit(g_b.exit_val);
 	return (NULL);
 }
 
@@ -75,7 +76,8 @@ int	check_path(char *str)
 	if (fd == -1)
 	{
 		printf("Minishell: %s: No such file or directory\n", str);
-		exit(1);
+		g_b.exit_val = 1;
+		exit(g_b.exit_val);
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:55:10 by enja              #+#    #+#             */
-/*   Updated: 2022/11/11 20:18:57 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/12 22:58:41 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	check_file(char *str)
 	if (fd == -1)
 	{
 		printf("Minishell: %s: no such file or directory\n", str);
+		g_b.exit_val = 1;
 		return (0);
 	}
 	return (1);
@@ -53,7 +54,6 @@ t_red	*red_list(int type, char *val, int *flag)
 
 	red = malloc(sizeof(t_red));
 	red->next = NULL;
-	printf("--> %s\n", val);
 	if (!val)
 	{
 		*flag = -1;
@@ -77,6 +77,7 @@ t_red	*red_list(int type, char *val, int *flag)
 	{
 		red->type = type;
 		red->file = val;
+		red->fd = open("/tmp/.herdock", O_RDONLY | O_TRUNC, 0644);
 	}
 	else if (type == APD && *flag == 0)
 	{
@@ -98,7 +99,6 @@ t_data	big_data(t_psr *node)
 	data.red = NULL;
 	data.str = NULL;
 	data.flag = 0;
-	data.in = 0;
 	data.out = 1;
 	while (node && (data.flag == 0))
 	{

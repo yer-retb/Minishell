@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 08:30:51 by enja              #+#    #+#             */
-/*   Updated: 2022/11/11 19:41:13 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/12 22:33:26 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,28 @@ void	bash_builtin(t_data data, char **path, int *prosid)
 	id = fork();
 	*prosid = id;
 	if (id == 0)
-	{
-		excut_herdoc(data);
 		ft_excut_cmd(data, path);
-	}
 }
+
+// void	ft_all_builtins(t_env **env, t_data *data, char **path, int *prosid)
+// {
+// 	if ((*data).str && !ft_strncmp("cd", (*data).str[0], 2))
+// 		built_cd(*env, *((*data).str + 1));
+// 	else if ((*data).str && !ft_strcmp("pwd", (*data).str[0]))
+// 		built_pwd(*env);
+// 	else if ((*data).str && !ft_strcmp("env", (*data).str[0]))
+// 		built_env(*env, (*data).out);
+// 	else if ((*data).str && !ft_strcmp("echo", (*data).str[0]))
+// 		built_echo((*data).str + 1, (*data).out);
+// 	else if ((*data).str && !ft_strcmp("exit", (*data).str[0]))
+// 		built_exit((*data).str + 1);
+// 	else if ((*data).str && !ft_strcmp("export", (*data).str[0]))
+// 		built_export(*env, (*data).str + 1, (*data).out);
+// 	else if ((*data).str && !ft_strcmp("unset", (*data).str[0]))
+// 		built_unset(env, (*data).str + 1);
+// 	else
+// 		bash_builtin(data, path, prosid);
+// }
 
 void	ft_all_builtins(t_env **env, t_data data, char **path, int *prosid)
 {
@@ -104,7 +121,8 @@ void	builtins(t_env **env, t_data *data)
 	open_pipes(data);
 	while (i < data[0].size - 1 && (data->flag == 0))
 	{
-		ft_all_builtins(env, data[i], path, &proid[i]);
+		if (data->str)
+			ft_all_builtins(env, data[i], path, &proid[i]);
 		i++;
 		close(g_b.pipes[g_b.ft1][0]);
 		close(g_b.pipes[g_b.ft1][1]);
@@ -115,7 +133,7 @@ void	builtins(t_env **env, t_data *data)
 			data[i].out = g_b.pipes[g_b.ft1][1];
 		swap(&g_b.ft1, &g_b.ft2);
 	}
-	if (data->flag == 0)
+	if (data->flag == 0 && data->str)
 		ft_all_builtins(env, data[i], path, &proid[i]);
 	built_pipe(data, proid);
 }

@@ -6,22 +6,34 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 04:51:45 by enja              #+#    #+#             */
-/*   Updated: 2022/11/11 20:15:52 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/12 22:24:55 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
-t_bige_node	*parser_tokenazer(char **tab, t_psr *hd)
+t_bige_node	*tokenazer_utils(char **tab, t_psr *hd)
 {
-	int			i;
 	t_tkn		*tk;
 	t_bige_node	*bignode;
 
-	i = 0;
 	tk = NULL;
 	bignode = NULL;
-	while (tab[i])
+	return (parser_tokenazer(tab, hd, tk, bignode));
+}
+
+t_bige_node	*parser_tokenazer(
+				char **tab, t_psr *hd, t_tkn *tk, t_bige_node *bignode)
+{
+	int	i;
+	int	len;
+
+	len = 0;
+	i = 0;
+	while (tab && tab[i++])
+		len++;
+	i = 0;
+	while (i < len)
 	{
 		if (ft_strcmp(tab[i], ">") == 0)
 			add_list_at_back2(&hd, init_node2(asing_tk(tk, tab[++i], OUTF)));
@@ -68,7 +80,7 @@ void	*parser_exec_preparation(char **tab, t_psr *hd)
 	int			i;
 	int			j;
 
-	bignode = parser_tokenazer(tab, hd);
+	bignode = tokenazer_utils(tab, hd);
 	tmp = bignode;
 	i = count_node(bignode);
 	j = 0;
@@ -76,6 +88,7 @@ void	*parser_exec_preparation(char **tab, t_psr *hd)
 	while (bignode)
 	{
 		data[j] = big_data(bignode->psr);
+		data[j].in = 0;
 		bignode = bignode->psr_next;
 		j++;
 	}
