@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 18:05:33 by enja              #+#    #+#             */
-/*   Updated: 2022/11/11 04:55:11 by yer-retb         ###   ########.fr       */
+/*   Created: 2022/11/15 03:50:24 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/11/16 05:49:18 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_strjoin_no_free(char *s1, char *s2)
 	i = 0;
 	n = 0;
 	len = ft_strlen(s1) + ft_strlen(s2);
-	final = malloc(len + 1);
+	final = ft_malloc(len + 1);
 	while (s1[i])
 	{
 		final[i] = s1[i];

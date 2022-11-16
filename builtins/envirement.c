@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 08:27:54 by enja              #+#    #+#             */
-/*   Updated: 2022/11/11 04:55:39 by yer-retb         ###   ########.fr       */
+/*   Created: 2022/11/16 06:57:30 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/11/16 06:57:34 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_env	*init_env1(char **str)
 {
 	t_env	*env;
 
-	env = malloc(sizeof(t_env));
+	env = ft_malloc(sizeof(t_env));
 	env->name = str[0];
 	env->path = str[1];
 	env->next = NULL;

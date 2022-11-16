@@ -5,22 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 14:52:48 by enja              #+#    #+#             */
-/*   Updated: 2022/11/11 04:55:12 by yer-retb         ###   ########.fr       */
+/*   Created: 2021/11/17 17:20:48 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/11/16 05:51:01 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
-{
-	int		length;
-	char	*string;
+char	*ft_strdup(char *s1)
 
-	length = ft_strlen(s1);
-	string = malloc(length + 1 * sizeof(char));
-	if (!string)
+{
+	int		i;
+	int		j;
+	char	*p;
+
+	i = 0;
+	while (s1[i])
+		i++;
+	p = ft_malloc (i + 1);
+	if (!p)
 		return (NULL);
-	ft_strlcpy(string, s1, length + 1);
-	return (string);
+	else
+	{
+		j = 0;
+		while (j < i)
+		{
+			p[j] = s1[j];
+			j++;
+		}
+	}
+	p[j] = '\0';
+	return (p);
 }

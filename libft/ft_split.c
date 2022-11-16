@@ -5,88 +5,67 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 15:02:34 by enja              #+#    #+#             */
-/*   Updated: 2022/11/11 04:55:14 by yer-retb         ###   ########.fr       */
+/*   Created: 2021/11/20 14:09:13 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/11/16 05:49:00 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*zy_extstr(char const *s, int start, int len)
-{
-	char	*dst;
-	int		a;
+int	ft_count_words(char *s, char c)
 
-	a = 0;
-	dst = malloc(len + 1 * sizeof(char));
-	if (!dst)
-		return (NULL);
-	while (a < len)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (s[i])
 	{
-		dst[a++] = s[start++];
+		if ((i == 0 && s[i] != c) || (s[i] != c && s[i - 1] == c))
+			count++;
+		i++;
 	}
-		dst[a] = '\0';
-	return (dst);
+	return (count);
 }
 
-static int	zymm_len(const char *s, char c, int a)
-{
-	int	b;
+int	check_len(char *s, char c)
 
-	b = 0;
-	while (s[a] != c && s[a])
-	{
-		a++;
-		b++;
-	}
-	return (b);
+{
+	int	j;
+
+	j = 0;
+	while (s[j] && s[j] != c)
+		j++;
+	return (j);
 }
 
-static int	sepsign(const char *s, char sep)
-{
-	int		sepsign;
-	int		a;
+char	**ft_split(char *s, char c)
 
-	sepsign = 0;
-	a = 0;
-	while (*s == sep)
-	s++;
-	while (s[a] != '\0')
-	{
-		if (s[a] == sep && s[a + 1] != sep)
-			sepsign++;
-		a++;
-		if (s[a] == '\0' && s[a - 1] != sep)
-			sepsign++;
-	}
-	return (sepsign);
-}
-
-char	**ft_split(const char *s, char c)
 {
-	int		a;
-	int		aix;
-	char	**finaldest;
-	char	*predest;
+	char	**str;
+	int		i;
+	int		j;
+	int		nb_word;
+	int		len;
 
 	if (!s)
 		return (NULL);
-	a = 0;
-	aix = 0;
-	finaldest = malloc((sepsign(s, c) + 1) * sizeof(char *));
-	if (!finaldest)
+	nb_word = ft_count_words(s, c);
+	str = (char **)ft_malloc ((nb_word + 1) * sizeof (char *));
+	if (!str)
 		return (NULL);
-	while (s[a] != '\0')
+	j = 0;
+	i = 0;
+	while (j < nb_word)
 	{
-		while (s[a] == c)
-			a++;
-		if (s[a] != c && s[a] != '\0')
-		{
-			predest = zy_extstr(s, a, zymm_len(s, c, a));
-			a += zymm_len(s, c, a);
-			finaldest[aix++] = predest;
-		}
+		while (s[i] && s[i] == c)
+			i++;
+		len = check_len(s + i, c);
+		str[j] = ft_substr(s, i, len);
+		i += len;
+		j++;
 	}
-	finaldest[aix] = NULL;
-	return (finaldest);
+	str[j] = NULL;
+	return (str);
 }

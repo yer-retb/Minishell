@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/18 22:44:51 by enja              #+#    #+#             */
-/*   Updated: 2022/11/12 22:41:44 by yer-retb         ###   ########.fr       */
+/*   Created: 2022/11/16 07:00:39 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/11/16 07:00:40 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_token	*msg_error(int e_type, char *val, char *value)
 	printf("minishell : syntax error\n");
 	g_b.exit_val = 258;
 	free(value);
-	token = malloc(sizeof(t_token));
+	token = ft_malloc(sizeof(t_token));
 	token->e_type = e_type;
 	token->value = val;
 	return (token);

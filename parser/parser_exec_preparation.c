@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/09 04:51:45 by enja              #+#    #+#             */
-/*   Updated: 2022/11/12 22:24:55 by yer-retb         ###   ########.fr       */
+/*   Created: 2022/11/16 07:02:17 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/11/16 07:02:19 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,25 @@ t_bige_node	*tokenazer_utils(char **tab, t_psr *hd)
 	return (parser_tokenazer(tab, hd, tk, bignode));
 }
 
-t_bige_node	*parser_tokenazer(
-				char **tab, t_psr *hd, t_tkn *tk, t_bige_node *bignode)
+int	ft_len(char **tab)
 {
-	int	i;
 	int	len;
+	int	i;
 
 	len = 0;
 	i = 0;
 	while (tab && tab[i++])
 		len++;
+	return (len);
+}
+
+t_bige_node	*parser_tokenazer(
+				char **tab, t_psr *hd, t_tkn *tk, t_bige_node *bignode)
+{
+	int	i;
+
 	i = 0;
-	while (i < len)
+	while (i < ft_len(tab))
 	{
 		if (ft_strcmp(tab[i], ">") == 0)
 			add_list_at_back2(&hd, init_node2(asing_tk(tk, tab[++i], OUTF)));
@@ -84,11 +91,10 @@ void	*parser_exec_preparation(char **tab, t_psr *hd)
 	tmp = bignode;
 	i = count_node(bignode);
 	j = 0;
-	data = malloc(sizeof(t_data) * i);
+	data = ft_malloc(sizeof(t_data) * i);
 	while (bignode)
 	{
 		data[j] = big_data(bignode->psr);
-		data[j].in = 0;
 		bignode = bignode->psr_next;
 		j++;
 	}

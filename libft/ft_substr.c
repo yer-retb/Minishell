@@ -5,20 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 15:25:08 by enja              #+#    #+#             */
-/*   Updated: 2022/11/11 00:18:35 by yer-retb         ###   ########.fr       */
+/*   Created: 2021/11/17 19:58:05 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/11/16 04:09:05 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(const char *str, int start, int len)
+char	*ft_substr(char *str, int start, int len)
 {
-	char			*s;
-	char			*p;
-	int				i;
-	int				j;
-	int				s_len;
+	char	*s;
+	char	*p;
+	int		i;
+	int		j;
+	int		s_len;
 
 	s = (char *)str;
 	i = 0;

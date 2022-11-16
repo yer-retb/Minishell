@@ -5,20 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 22:21:54 by enja              #+#    #+#             */
-/*   Updated: 2022/11/11 18:21:36 by yer-retb         ###   ########.fr       */
+/*   Created: 2021/11/02 11:59:08 by yer-retb          #+#    #+#             */
+/*   Updated: 2021/11/26 18:14:14 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-int	ft_isalnum(char c)
+int	ft_isalnum(int i)
 {
-	if ((c >= 'a' && c <= 'z')
-		|| (c >= 'A' && c <= 'Z')
-		|| (c >= '0' && c <= '9'))
+	if ((i >= 'a' && i <= 'z')
+		|| (i >= 'A' && i <= 'Z') || (i >= '0' && i <= '9'))
 		return (1);
-	else
-		return (0);
+	return (0);
 }

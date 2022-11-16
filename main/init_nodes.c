@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/18 02:06:14 by enja              #+#    #+#             */
-/*   Updated: 2022/11/11 00:18:35 by yer-retb         ###   ########.fr       */
+/*   Created: 2022/11/16 07:00:53 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/11/16 07:00:54 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_parser	*init_node(t_token *token)
 {
 	t_parser	*token_st;
 
-	token_st = malloc(sizeof(t_parser));
+	token_st = ft_malloc(sizeof(t_parser));
 	if (token_st == NULL)
 		return (NULL);
 	token_st->token_struct = token;
@@ -46,7 +46,7 @@ t_psr	*init_node2(t_tkn *token)
 {
 	t_psr	*token_st;
 
-	token_st = malloc(sizeof(t_psr));
+	token_st = ft_malloc(sizeof(t_psr));
 	if (token_st == NULL)
 		return (NULL);
 	token_st->tkn_st = token;

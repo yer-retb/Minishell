@@ -6,13 +6,13 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 05:50:34 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/13 16:34:45 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/16 05:45:49 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
-void	*save_malloc(int size)
+void	*ft_malloc(int size)
 {
 	void	*tmp;
 
@@ -24,9 +24,7 @@ void	*save_malloc(int size)
 
 int	main(int ac, char **av, char **env)
 {
-	// signal(SIGQUIT,SIG_IGN);
-	// signal(SIGINT,SIG_IGN);
-	t_env		*last_env;
+	t_env	*last_env;
 
 	(void) ac;
 	(void) av;
@@ -35,6 +33,9 @@ int	main(int ac, char **av, char **env)
 	last_env = envirement_list(env);
 	init_shell(last_env);
 }
+
+// signal (SIGQUIT, SIG_IGN);
+// signal (SIGINT, SIG_IGN);
 
 // echo "| ls"
 // echo "               "'$HOME'"$PATH"'$USER'

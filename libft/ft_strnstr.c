@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 22:19:51 by enja              #+#    #+#             */
-/*   Updated: 2022/09/18 22:26:07 by enja             ###   ########.fr       */
+/*   Created: 2021/11/14 10:40:53 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/11/16 04:08:25 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *str, const char *needle, int len)
+char	*ft_strnstr(char *str, char *needle, int len)
 {
 	int	i;
 	int	j;
@@ -27,7 +27,7 @@ char	*ft_strnstr(const char *str, const char *needle, int len)
 		{
 			j++;
 			if (needle[j] == '\0')
-				return ((char *)&str[i + j]);
+				return ((char *)&str[i]);
 		}
 		i++;
 	}

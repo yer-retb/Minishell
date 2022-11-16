@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/05 10:04:23 by enja              #+#    #+#             */
-/*   Updated: 2022/11/04 01:23:11 by yer-retb         ###   ########.fr       */
+/*   Created: 2022/11/16 07:01:17 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/11/16 07:01:19 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ char	*get_env(char *ptr, char **env)
 		i++;
 	}
 	free(ptr);
-	return (NULL);
+	return (ft_strdup(""));
 }
 
 char	*norm_doller(int *x, char *str, char *ptr, char **env)

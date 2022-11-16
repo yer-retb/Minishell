@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 05:48:16 by enja              #+#    #+#             */
-/*   Updated: 2022/11/10 22:39:14 by yer-retb         ###   ########.fr       */
+/*   Created: 2022/11/16 06:58:10 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/11/16 06:58:12 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,8 @@ void	make_data(t_bige_node *bignode);
 int		node_size(t_bige_node *bignode);
 int		check_file(char *str);
 int		check_file2(char *str);
+int		check_file(char *str);
+void	ambiguous_redirect(void);
+void	put_red(t_red **red, char *str, int type);
 
 #endif

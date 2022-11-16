@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 00:37:42 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/12 22:58:04 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/15 05:01:32 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	execute(t_data data)
 	int	i;
 
 	i = 0;
-	printf("in : %d, out : %d\n", data.in, data.out);
+	if (data.in == -1 || data.out == -1)
+		exit(1);
 	dup2(data.in, 0);
 	dup2(data.out, 1);
 	if (data.in)

@@ -5,72 +5,59 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 17:35:28 by enja              #+#    #+#             */
-/*   Updated: 2022/11/11 04:55:08 by yer-retb         ###   ########.fr       */
+/*   Created: 2021/11/22 16:58:55 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/11/16 06:53:44 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	len(int n)
-{
-	int	l;
+int	count_int(long int x)
 
-	l = 0;
+{
+	int			j;
+	long int	n;
+
+	n = x;
+	j = 1;
 	if (n < 0)
 	{
-		l++;
+		n = n * -1;
+		j++;
 	}
-	while (n != 0)
+	while (n > 9)
 	{
 		n = n / 10;
-		l++;
+		j++;
 	}
-	return (l);
-}
-
-static char	*posetive(char *strp, int n)
-{
-	int		zix;
-	int		b;
-
-	zix = len(n);
-	if (!strp)
-		return (NULL);
-	zix--;
-	while (zix >= 0)
-	{
-		b = n % 10;
-		n = n / 10;
-		strp[zix] = b + 48;
-		zix--;
-	}
-	return (strp);
+	return (j);
 }
 
 char	*ft_itoa(int n)
-{
-	int		aix;
-	char	*string;
-	int		a;
 
-	if (n == 0)
-		return (string = ft_strdup("0"));
-	aix = len(n);
-	string = malloc((aix + 1) * sizeof(char));
-	if (!string)
+{
+	int			i;
+	char		*rsl;
+	int			count;
+	long int	tmp;
+
+	count = count_int(n);
+	i = 0;
+	rsl = (char *)ft_malloc(sizeof (char) * (count + 1));
+	if (!rsl)
 		return (NULL);
-	string[aix--] = '\0';
-	if (n < 0)
+	rsl[count] = '\0';
+	count--;
+	tmp = n;
+	if (tmp < 0)
+		tmp = tmp * -1;
+	while (count >= 0)
 	{
-		*string = '-';
-		while (aix > 0)
-		{
-			a = n % 10;
-			n = n / 10;
-			string[aix--] = (a * -1) + 48;
-		}
-		return (string);
+		rsl[count] = (tmp % 10) + 48;
+		tmp = tmp / 10;
+		count--;
 	}
-	return (string = posetive(string, n));
+	if (n < 0)
+		rsl[0] = '-';
+	return (rsl);
 }

@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 04:48:47 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/12 17:04:37 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/16 06:39:11 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ typedef struct n_gb
 	char	**my_env;
 	void	*save[1000000];
 	int		index;
+	int		i;
+	char	*cmd;
+	t_psr	*nhead;
 }t_gb;
 
 t_gb	g_b;
@@ -57,6 +60,6 @@ typedef struct n_test
 }	t_test;
 
 void	print_fd(int args_num, int fd, ...);
-void	*save_malloc(int size);
+void	*ft_malloc(int size);
 
 #endif

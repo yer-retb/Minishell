@@ -3,37 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enja <enja@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 16:08:50 by enja              #+#    #+#             */
-/*   Updated: 2022/09/18 22:25:19 by enja             ###   ########.fr       */
+/*   Created: 2021/11/05 11:16:12 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/11/16 04:08:16 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, int n)
+void	*ft_memmove(void *dst, const void *src, int n)
 {
-	int		a;
+	char	*str;
+	char	*d;
+	int		j;
 
-	if (dest == src || !n)
-		return (dest);
-	a = 0;
-	if (dest < src)
+	if (!dst && !src)
+		return (0);
+	str = (char *)src;
+	d = (char *)dst;
+	if (str == d)
+		return (str);
+	if (d > str)
 	{
-		while (a < n)
+		j = n - 1;
+		while (j + 1 > 0)
 		{
-			*((char *)dest + a) = *((char *)src + a);
-			a++;
+			d[j] = str[j];
+			j--;
 		}
+		return (dst);
 	}
-	else
-	{
-		while (n > 0)
-		{
-			*((char *)dest + n - 1) = *((char *)src + n - 1);
-			n--;
-		}
-	}
-	return (dest);
+	if (d < str)
+		ft_memcpy(d, str, n);
+	return (dst);
 }

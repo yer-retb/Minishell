@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/30 15:41:23 by ky05h1n           #+#    #+#             */
-/*   Updated: 2022/11/11 04:55:21 by yer-retb         ###   ########.fr       */
+/*   Created: 2022/11/16 07:02:29 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/11/16 07:02:31 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ char	*get_char(char *str, char c)
 	i = 0;
 	if (!str)
 	{
-		str = malloc (sizeof(char) * 2);
+		str = ft_malloc (sizeof(char) * 2);
 		str[0] = c;
 		str[1] = '\0';
 		return (str);
 	}
-	strnw = malloc((ft_strlen(str) + 2) * sizeof(char));
+	strnw = ft_malloc((ft_strlen(str) + 2) * sizeof(char));
 	while (str[i])
 	{
 		strnw[i] = str[i];
@@ -57,12 +57,12 @@ char	**cmd_tab(char **cmd_table, char *newcmd)
 	i = 0;
 	if (!cmd_table)
 	{
-		cmd_table = malloc(2 * sizeof(char *));
+		cmd_table = ft_malloc(2 * sizeof(char *));
 		cmd_table[0] = newcmd;
 		cmd_table[1] = NULL;
 		return (cmd_table);
 	}
-	newtable = malloc((tdm(cmd_table) + 2) * sizeof(char *));
+	newtable = ft_malloc((tdm(cmd_table) + 2) * sizeof(char *));
 	while (cmd_table[i])
 	{
 		newtable[i] = cmd_table[i];

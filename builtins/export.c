@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 08:50:49 by enja              #+#    #+#             */
-/*   Updated: 2022/11/10 22:46:54 by yer-retb         ###   ########.fr       */
+/*   Created: 2022/11/16 06:57:46 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/11/16 06:57:48 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_string(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while ((ft_strlen(str) != 0) && str[i])
 	{
 		if (ft_isdigit(str[0]) || str[0] == '=')
 			return (1);
@@ -39,11 +39,18 @@ int	check_string(char *str)
 	return (0);
 }
 
-void	export_print_error(char *str)
+int	check_equel(char *str)
 {
-	print_fd(3, STDERR_FILENO, "Minishell: ", str,
-		": not a valid identifier\n");
-	g_b.exit_val = 1;
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '=')
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 void	export_utils(t_env *envirement, char **str)
@@ -54,7 +61,7 @@ void	export_utils(t_env *envirement, char **str)
 
 	env = envirement;
 	i = 0;
-	while (str && str[i])
+	while (str && (ft_strlen(str[i]) != 0) && str[i])
 	{
 		if (str[i][0] == '=')
 		{
@@ -65,7 +72,7 @@ void	export_utils(t_env *envirement, char **str)
 		tmp = ft_split(str[i], '=');
 		if (check_string(tmp[0]))
 			export_print_error("export");
-		if (!tmp[1] && str[i][ft_strlen(str[i]) - 1] == '=')
+		if (!tmp[1] && check_equel(str[i]))
 			tmp[1] = ft_strdup("");
 		if (check_duplicate(env, tmp) && (!check_string(tmp[0])))
 			list_at_back4(&env, init_env1(tmp));

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/05 10:21:43 by enja              #+#    #+#             */
-/*   Updated: 2022/11/12 22:27:41 by yer-retb         ###   ########.fr       */
+/*   Created: 2022/11/16 07:01:01 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/11/16 07:01:03 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	**init_env(t_env *last_env)
 		env = env->next;
 	}
 	env = last_env;
-	g_b.my_env = malloc(sizeof (char *) * (i + 1));
+	g_b.my_env = ft_malloc(sizeof (char *) * (i + 1));
 	i = 0;
 	while (env)
 	{
@@ -64,84 +64,68 @@ t_parser	*start_lexing(char *cmd, t_token *tk, t_parser *hd)
 	return (hd);
 }
 
+void	ft_free(t_parser **head, char **cmd)
+{
+	t_parser	*nhd;
+	t_parser	*tmp;
+
+	nhd = *head;
+	while (nhd)
+	{
+		free(nhd->token_struct->value);
+		free(nhd->token_struct);
+		tmp = nhd->next_token;
+		free(nhd);
+		nhd = tmp;
+	}
+	free(nhd);
+	free(*cmd);
+}
+
+int	ft_norm(t_token **token, char **cmd, t_parser **head, t_env **last_env)
+{
+	g_b.my_env = init_env(*last_env);
+	*cmd = get_prompt();
+	if (*cmd == NULL)
+	{
+		printf("\nexit\n");
+		exit (g_b.exit_val);
+	}
+	*head = start_lexing(*cmd, *token, *head);
+	if (!head)
+	{
+		ft_free(head, cmd);
+		return (0);
+	}
+	return (1);
+}
+// int ft_norm2(char **cmd,t_parser **head,char **tab)
+
 void	init_shell(t_env *last_env)
 {
-	char		*cmd;
 	t_token		*token;
 	t_parser	*head;
-	t_parser	*nhd;
-	t_psr		*nhead;
 	char		**tab;
 	t_data		*data;
-	int			i;
 
-	i = 0;
-	token = NULL;
 	head = NULL;
-	nhead = NULL;
 	while (TRUE)
 	{
-		g_b.my_env = init_env(last_env);
-		cmd = get_prompt();
-		if (cmd == NULL)
-		{
-			free(cmd);
-			exit (g_b.exit_val);
-		}
-		head = start_lexing(cmd, token, head);
-		if (!head)
-		{
-			free(cmd);
-			nhd = head;
-			t_parser	*tmp;
-			while (nhd)
-			{
-				free(nhd->token_struct->value);
-				free(nhd->token_struct);
-				tmp = nhd->next_token;
-				free(nhd);
-				nhd = tmp;
-			}
-			free(nhd);
+		g_b.i = 0;
+		if (!ft_norm(&token, &g_b.cmd, &head, &last_env))
 			continue ;
-		}
 		tab = parser_get(head, g_b.my_env);
 		if (!tab)
 		{
-			free(cmd);
-			nhd = head;
-			t_parser	*tmp;
-			while (nhd)
-			{
-				free(nhd->token_struct->value);
-				free(nhd->token_struct);
-				tmp = nhd->next_token;
-				free(nhd);
-				nhd = tmp;
-			}
-			free(nhd);
+			ft_free(&head, &g_b.cmd);
 			continue ;
 		}
-		nhd = head;
-		t_parser	*tmp;
-		while (nhd)
-		{
-			free(nhd->token_struct->value);
-			free(nhd->token_struct);
-			tmp = nhd->next_token;
-			free(nhd);
-			nhd = tmp;
-		}
-		free(nhd);
-		i = 0;
-		data = parser_exec_preparation(tab, nhead);
+		ft_free(&head, &g_b.cmd);
+		data = parser_exec_preparation(tab, g_b.nhead);
 		excut_herdoc(data);
-		printf("->> %d\n", (*data).in);
 		builtins(&last_env, data);
-		while (tab[i])
-			free(tab[i++]);
+		while (tab[g_b.i])
+			free(tab[g_b.i++]);
 		free(tab);
-		free(cmd);
-		i = 0;
 	}
 }

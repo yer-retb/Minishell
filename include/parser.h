@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/19 05:08:33 by enja              #+#    #+#             */
-/*   Updated: 2022/11/10 22:47:56 by yer-retb         ###   ########.fr       */
+/*   Created: 2022/11/16 06:58:52 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/11/16 06:58:54 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,7 @@ char	*join_env(char **tab, char *ptr);
 char	*get_env(char *ptr, char **env);
 
 char	*norm_doller(int *x, char *str, char *ptr, char **env);
+
+char	*detect_doller(char *str, char **env);
 
 #endif

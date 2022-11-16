@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:53:07 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/11 19:47:41 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/14 17:11:13 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	its_n(char *str)
 	int	i;
 
 	i = 1;
-	while (str[i])
+	while ((ft_strlen(str) != 0) && str[i])
 	{
 		if (str[i] != 'n')
 			return (0);

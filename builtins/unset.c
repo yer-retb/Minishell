@@ -6,11 +6,18 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:53:51 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/11 01:37:58 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/15 22:41:54 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
+
+void	export_print_error(char *str)
+{
+	print_fd(3, STDERR_FILENO, "Minishell: ", str,
+		": not a valid identifier\n");
+	g_b.exit_val = 1;
+}
 
 int	check_duplicate(t_env *envi, char **str)
 {
