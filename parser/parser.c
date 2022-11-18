@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 07:02:47 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/16 07:19:13 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/17 08:45:47 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ char	*detect_doller(char *str, char **env)
 			str = norm_doller(&i, str, ptr, env);
 		else if (str[i] && str[i] == '$' && ft_isdigit(str[i + 1]))
 			str = ft_strdup(str + 2);
+		else if (str[i] && str[i] == '$' && str[i + 1] == '?')
+			str = ft_itoa(g_b.exit_val);
 		else if (str[i] && str[i] == '\"')
 			str = doller_quats(str, ptr, env, &i);
 		else if (str && str[i])

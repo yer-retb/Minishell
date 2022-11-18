@@ -6,11 +6,19 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 23:28:03 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/16 06:14:18 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/18 01:45:07 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
+
+void	ft_cnf(void)
+{
+	if (g_b.cnf == 127)
+		exit(0);
+	printf("Minishell: : command not found\n");
+	exit(127);
+}
 
 void	ft_excut_cmd(t_data data, char **path)
 {
@@ -22,6 +30,8 @@ void	ft_excut_cmd(t_data data, char **path)
 	{
 		if (scan_path(data.str[0]) == 0)
 		{
+			if (data.str[0][0] == '\0')
+				ft_cnf();
 			cmd = ft_strjoin_no_free("/", data.str[0]);
 			while (path[++i])
 				path[i] = ft_strjoin_no_free(path[i], cmd);
@@ -39,11 +49,9 @@ void	ft_excut_cmd(t_data data, char **path)
 
 void	bash_builtin(t_data data, char **path, int *prosid)
 {
-	int	id;
-
-	id = fork();
-	*prosid = id;
-	if (id == 0)
+	g_b.id = fork();
+	*prosid = g_b.id;
+	if (g_b.id == 0)
 		ft_excut_cmd(data, path);
 }
 

@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 07:01:54 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/16 07:01:57 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/17 06:39:29 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ t_data	big_data(t_psr *node)
 				first_red(&hd_red, &node, &data);
 			else
 				last_red(&hd_red, &node, &data);
-		}	
+		}
 		node = node->nx_tkn;
 	}
 	if (hd_red)

@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 07:01:17 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/16 07:01:19 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/17 08:43:32 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,9 @@ char	*get_env(char *ptr, char **env)
 		}
 		i++;
 	}
+	g_b.cnf = 127;
 	free(ptr);
-	return (ft_strdup(""));
+	return (NULL);
 }
 
 char	*norm_doller(int *x, char *str, char *ptr, char **env)
@@ -114,6 +115,8 @@ char	*norm_doller(int *x, char *str, char *ptr, char **env)
 		ptr = get_char(ptr, str[i++]);
 	ptr = get_env(ptr, env);
 	str = merge_str(str, ptr);
+	if (!str)
+		str = ft_strdup("");
 	ptr = NULL;
 	i = 0;
 	*x = i;

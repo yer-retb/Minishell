@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 07:02:17 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/16 07:02:19 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/18 00:21:33 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,6 @@ void	*parser_exec_preparation(char **tab, t_psr *hd)
 		j++;
 	}
 	data[0].size = i;
+	g_b.s_size = i;
 	return (data);
 }

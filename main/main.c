@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 05:50:34 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/16 05:45:49 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/18 00:53:31 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ void	*ft_malloc(int size)
 	return (tmp);
 }
 
+void	ft_signal(void)
+{
+	signal (SIGQUIT, sig_handler);
+	signal (SIGINT, sig_handler);
+}
+
 int	main(int ac, char **av, char **env)
 {
 	t_env	*last_env;
@@ -31,14 +37,6 @@ int	main(int ac, char **av, char **env)
 	g_b.index = 0;
 	g_b.my_env = NULL;
 	last_env = envirement_list(env);
+	ft_signal();
 	init_shell(last_env);
 }
-
-// signal (SIGQUIT, SIG_IGN);
-// signal (SIGINT, SIG_IGN);
-
-// echo "| ls"
-// echo "               "'$HOME'"$PATH"'$USER'
-// echo ls > $P
-// echo "'$USER'"'$USER'"'''$USER"
-// echo $"HOME" = HOME

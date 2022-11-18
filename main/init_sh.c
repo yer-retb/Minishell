@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 07:01:01 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/16 07:01:03 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/17 08:49:18 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	ft_norm(t_token **token, char **cmd, t_parser **head, t_env **last_env)
 	*cmd = get_prompt();
 	if (*cmd == NULL)
 	{
-		printf("\nexit\n");
+		printf("exit\n");
 		exit (g_b.exit_val);
 	}
 	*head = start_lexing(*cmd, *token, *head);
@@ -99,7 +99,6 @@ int	ft_norm(t_token **token, char **cmd, t_parser **head, t_env **last_env)
 	}
 	return (1);
 }
-// int ft_norm2(char **cmd,t_parser **head,char **tab)
 
 void	init_shell(t_env *last_env)
 {

@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:52:23 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/15 00:31:39 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/18 00:27:06 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_if_isalpha(char **str)
 }
 
 void	print_exit_error(char *str, int ex)
-{	
+{
 	printf("exit\nMinishel: exit: %s: numeric argument required\n", str);
 	exit(ex);
 }
@@ -46,6 +46,8 @@ void	built_exit(char **str)
 	int	num;
 
 	i = 0;
+	if (g_b.s_size != 1)
+		return ;
 	if (!str[0])
 	{
 		printf("exit\n");

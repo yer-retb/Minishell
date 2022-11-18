@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 06:58:02 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/16 06:58:04 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/18 04:35:15 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,8 @@ void	get_file_descr(t_data *data);
 void	export_print_error(char *str);
 void	swap(int *a, int *b);
 void	ft_excut_cmd(t_data data, char **path);
+void	close_files(void);
+void	ft_is_directory(char *cmd);
+void	print_is_directory(char *cmd);
 
 #endif

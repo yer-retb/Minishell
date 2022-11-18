@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 00:37:42 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/15 05:01:32 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/18 04:35:56 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,12 @@ void	execute(t_data data)
 		close(g_b.pipes[i][0]);
 		i++;
 	}
+	ft_is_directory(data.str[0]);
 	if (execve(data.str[0], data.str, g_b.my_env) == -1)
+	{
+		perror("execve");
 		exit(127);
+	}
 	exit(g_b.exit_val);
 }
 
@@ -52,8 +56,8 @@ int	scan_path(char *cmd)
 
 char	*check_command(char **files, char *cmd)
 {
-	int	fd;
-	int	i;
+	int			fd;
+	int			i;
 
 	i = 0;
 	while (files[i])
