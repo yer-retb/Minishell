@@ -6,7 +6,7 @@
 #    By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/16 00:40:44 by yer-retb          #+#    #+#              #
-#    Updated: 2022/11/18 04:37:33 by yer-retb         ###   ########.fr        #
+#    Updated: 2022/11/19 03:43:42 by yer-retb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ NAME = minishell
 
 CC = gcc
 
-CFLAG = -Wall -Wextra -Werror -lreadline -fsanitize=address -g
+CONTROL = @stty -echoctl
+
+CFLAG = -Wall -Wextra -Werror -lreadline
 
 RDLINE = -lreadline -L/Users/yer-retb/goinfre/.brew/opt/readline/lib -I /Users/yer-retb/goinfre/.brew/opt/readline/include
 
@@ -27,10 +29,11 @@ SRS = main/get_prompt.c parser/parser.c lexer/lexer.c main/main.c main/init_node
 	libft/ft_split.c libft/ft_strjoin.c libft/ft_strtrim.c libft/ft_itoa.c libft/ft_strmapi.c libft/ft_striteri.c libft/ft_strjoin_no_free.c \
 	libft/ft_putchar_fd.c libft/ft_strcmp.c libft/ft_putstr_fd.c libft/ft_putendl_fd.c libft/ft_putnbr_fd.c main/error_msg.c parser/parser_parse_tab.c \
 	builtins/builtins.c builtins/envirement.c builtins/export.c builtins/herdoc.c builtins/cd.c builtins/env.c builtins/exit.c builtins/pwd.c\
-	builtins/unset.c builtins/echo.c builtins/builtins_utils.c builtins/builtins_utils_ll.c builtins/error_stat.c
+	builtins/unset.c builtins/echo.c builtins/builtins_utils.c builtins/builtins_utils_ll.c builtins/error_stat.c builtins/norm.c
 all : $(NAME)
 
 $(NAME) : $(SRS)
+	$(CONTROL)
 	@$(CC) $(CFLAG) $(RDLINE) $(SRS) -o $(NAME)
 	@echo "\033[42mMinishell Is Ready\033[0m"
 
@@ -47,5 +50,5 @@ re : fclean all
 push :
 	rm -rf minishell.dSYM
 	@git add .
-	@git commit -m "almost finish MiniShell"
+	@git commit -m "MiniShell"
 	@git push -f

@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 06:58:02 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/18 04:35:15 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/19 02:30:32 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	execute(t_data data);
 void	bash_builtin(t_data data, char **path, int *prosid);
 char	**get_binary_file(t_env *env);
 int		herdoc(char *str);
-void	excut_herdoc(t_data *data);
+int		excut_herdoc(t_data *data);
 int		its_n(char *str);
 int		ft_if_isalpha(char **str);
 int		check_duplicate(t_env *envi, char **str);

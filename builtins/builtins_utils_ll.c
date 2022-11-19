@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 23:28:03 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/18 01:45:07 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/19 03:32:55 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_excut_cmd(t_data data, char **path)
 	char	*cmd;
 
 	i = -1;
+	error(path);
 	if (data.str)
 	{
 		if (scan_path(data.str[0]) == 0)
@@ -49,10 +50,16 @@ void	ft_excut_cmd(t_data data, char **path)
 
 void	bash_builtin(t_data data, char **path, int *prosid)
 {
+	signal (SIGQUIT, SIG_IGN);
+	signal (SIGINT, SIG_IGN);
 	g_b.id = fork();
 	*prosid = g_b.id;
 	if (g_b.id == 0)
+	{
+		signal (SIGQUIT, SIG_DFL);
+		signal (SIGINT, SIG_DFL);
 		ft_excut_cmd(data, path);
+	}
 }
 
 char	**get_binary_file(t_env *env)

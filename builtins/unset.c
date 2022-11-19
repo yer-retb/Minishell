@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:53:51 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/15 22:41:54 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/19 02:57:08 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	export_print_error(char *str)
 {
 	print_fd(3, STDERR_FILENO, "Minishell: ", str,
 		": not a valid identifier\n");
+	g_b.is = 0;
 	g_b.exit_val = 1;
 }
 

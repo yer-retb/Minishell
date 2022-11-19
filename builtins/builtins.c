@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 06:57:11 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/18 00:21:47 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/19 02:56:14 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,13 @@ void	built_pipe(t_data *data, int *proid)
 	while (++i < data[0].size)
 	{
 		waitpid(proid[i], &stat, 0);
-		if (WIFEXITED(stat))
+		if (g_b.is && WIFEXITED(stat))
 			g_b.exit_val = (WEXITSTATUS(stat));
 	}
+	ft_signal();
 	if (g_b.exit_val == 0)
 		g_b.cnf = 0;
+	g_b.is = 1;
 }
 
 void	open_pipes(t_data *data)

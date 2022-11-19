@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   norminet.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 18:51:57 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/19 03:23:52 by yer-retb         ###   ########.fr       */
+/*   Created: 2022/11/19 03:34:44 by yer-retb          #+#    #+#             */
+/*   Updated: 2022/11/19 03:39:16 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
-void	built_env(t_env *envirement, int fd)
+void	error(char **path)
 {
-	t_env	*env;
-
-	env = envirement;
-	while (env)
+	if (!path)
 	{
-		if (env->path && env->path[0] != '\0')
-			print_fd(4, fd, env->name, "=", env->path, "\n");
-		env = env->next;
+		printf("Minishell: command not found\n");
+		exit(EXIT_FAILURE);
 	}
+}
+
+int	free_tab(char **tab)
+{
+	while (tab[g_b.i])
+		free(tab[g_b.i++]);
+	free (tab);
+	return (1);
 }

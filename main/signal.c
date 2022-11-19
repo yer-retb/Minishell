@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:19:23 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/18 01:33:09 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/19 02:18:20 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 
 void	int_sig(void)
 {
+	if (g_b.sg_hd == 2)
+	{
+		g_b.sg_hd = -1;
+		g_b.saved = dup(0);
+		close(0);
+		return ;
+	}
 	printf("\n");
 	rl_on_new_line();
 	rl_replace_line("", 0);

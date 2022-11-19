@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 07:01:01 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/17 08:49:18 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/19 03:39:03 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,10 +121,10 @@ void	init_shell(t_env *last_env)
 		}
 		ft_free(&head, &g_b.cmd);
 		data = parser_exec_preparation(tab, g_b.nhead);
-		excut_herdoc(data);
+		if (!excut_herdoc(data))
+			if (free_tab(tab))
+				continue ;
 		builtins(&last_env, data);
-		while (tab[g_b.i])
-			free(tab[g_b.i++]);
-		free(tab);
+		free_tab(tab);
 	}
 }

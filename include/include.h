@@ -6,7 +6,7 @@
 /*   By: yer-retb <yer-retb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 04:48:47 by yer-retb          #+#    #+#             */
-/*   Updated: 2022/11/18 03:34:05 by yer-retb         ###   ########.fr       */
+/*   Updated: 2022/11/19 03:43:02 by yer-retb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <fcntl.h>
 # include <stdarg.h>
 # include <signal.h>
-#include <sys/stat.h>
+# include <sys/stat.h>
 
 //*********USEER*********//
 # include "token.h"
@@ -52,6 +52,9 @@ typedef struct n_gb
 	int		cnf;
 	int		id;
 	int		s_size;
+	int		sg_hd;
+	int		is;
+	int		saved;
 }t_gb;
 
 t_gb	g_b;
@@ -64,6 +67,8 @@ typedef struct n_test
 
 }	t_test;
 
+int		free_tab(char **tab);
+void	error(char **path);
 void	print_fd(int args_num, int fd, ...);
 void	*ft_malloc(int size);
 void	ft_signal(void);
